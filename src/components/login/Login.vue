@@ -60,7 +60,7 @@ export default {
         //密码校验正确处理
         if(res.status===200){
           console.log(this.$router)
-          this.$router.push('/home')
+          this.$router.push('/Home')
         }
       })
       .catch((err)=>{

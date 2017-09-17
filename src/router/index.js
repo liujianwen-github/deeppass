@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/components/login/Login'
 import Home from '@/components/home/Home'
+import Device from '@/components/device/DeviceManage'
 Vue.use(Router)
 
 export default new Router({
@@ -13,12 +14,16 @@ export default new Router({
       redirect: { name: 'Login' }
     },{
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },{
-      path: '/Home',
-      name: 'Home',
+      path: '/home',
+      name: 'home',
       component: Home
+    },{
+      path: '/device',
+      name: 'device',
+      component: Device
     }
   ]
 })

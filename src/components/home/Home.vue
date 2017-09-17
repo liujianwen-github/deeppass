@@ -2,7 +2,7 @@
   <Row class="container">
     <Intell :viewWhich='popState' :toIntell="personData" @popState="changePop"></Intell>
     <IntellAnalyse :viewWhich="popState" @update="update" @popState="changePop" :toIntellAnalyse="personData"></IntellAnalyse>
-    <createUser :viewWhich="popState" @update="update" @modalMessage="modalMessage" @popState="changeState" :toCreateUser="createUserData"></createUser>
+    <createUser :viewWhich="popState" @update="update" @popState="changePop" :toCreateUser="personData"></createUser>
     <Col span="4" class="">
       <Sider :item="0"></Sider>
     </Col>
@@ -65,7 +65,7 @@ import Intell from './intell.vue'
 import IntellAnalyse from './intellAnalyse.vue'
 import createUser from './createUser.vue'
 export default {
-  name: 'hello',
+  name: 'Home',
   data(){
     return{
       //分页信息
@@ -95,7 +95,7 @@ export default {
       personData:{}
     }
   },
-  components:{HeadBox, Sider, Intell, IntellAnalyse},
+  components:{HeadBox, Sider, Intell, IntellAnalyse, createUser},
   methods:{
     search(){
       //
