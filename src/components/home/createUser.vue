@@ -1,52 +1,57 @@
 <template>
-  <div class="popup" id="createUser" :class="{notshow:intellNotShow}">
-   <div v-if="viewWhich=='createUser'">
+  <div class="popup" id="createUser" v-if="viewWhich=='createUser'">
+   <div >
     <header>
-      <h3 class="whiteText">新建用户</h3>
+      <h3>新建用户</h3>
       <div class="closeWindow" @click="close">&times;</div>
       <div class="setHead">
         <img :src="img" alt="">
         <div class="changePic">
-          <span>修改头像</span>
+          <p>修改头像</p>
           <input type="file" name="" accept="image/png,image/jpg,image/jpeg"  ref="inputer" @change="changePic">
         </div>
       </div>
       <div class="addUser">
         <div class="addMessage long">
-          <label class="whiteText">姓名</label>
+          <label>姓名</label>
           <input class="input" type="text" name="name" v-model="name" v-validate="'required|name'">
-          <span v-show="errors.has('name')">&nbsp;{{ errors.first('name') }}</span>
+          <p v-show="errors.has('name')">&nbsp;{{ errors.first('name') }}</p>
         </div>
         <div class="addMessage short">
-          <label class="whiteText">性别</label>
+          <label>性别</label>
           <div>
             <input type="radio" id="fkman" name="sex" value="0" checked="checked" v-model="sex" v-validate="'required'">
-            <label for="fkman" class="whiteText">男</label>
+            <label for="fkman" >男</label>
             <input type="radio" id="fkwoman" name="sex" value="1" v-model="sex" v-validate="'required'">
-            <label for="fkwoman" class="whiteText">女</label>
+            <label for="fkwoman" >女</label>
           </div>
-          <span v-show="errors.has('sex')">&nbsp;{{ errors.first('sex') }}</span>
+          <p v-show="errors.has('sex')">&nbsp;{{ errors.first('sex') }}</p>
         </div>
         <div class="addMessage long">
-          <label class="whiteText">生日</label>
+          <label>生日</label>
           <Date-picker v-model="birthday" class="input" :options="birthdayOPT"></Date-picker>
           <!-- <input type="date" name="" v-model="birthday"> -->
         </div>
         <div class="addMessage short">
-          <label class="whiteText">VIP</label>
+          <label>门禁权限</label>
           <!-- <Date-picker v-model="birthday" class="input"></Date-picker> -->
           <div>
             <input type="radio" id="isVip" name="isVip" value='0' v-model="vip">
-            <label for="isVip" class="whiteText">是</label>
+            <label for="isVip" >是</label>
             <input type="radio" id="notVip" name="isVip" value='1' v-model="vip">
-            <label for="notVip" class="whiteText">否</label>
+            <label for="notVip" >否</label>
           </div>
         </div>
+        <div class="addMessage long">
+          <label>设备</label>
+          <Select v-model="device" class="input" >
+            <Option v-for="item in deviceList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+        </div>
         <div class="addMessage long" :class="{itemHide:cardHide}">
-          <label class="whiteText">卡号</label>
+          <label>卡号</label>
           <input class="input" type="text" name="cardId" v-model="cardId">
         </div>
-        
       </div>
     </header>
     <article>
@@ -55,7 +60,7 @@
         <button class="footBtn btn" @click="checkForm">确定</button>
       </div>
     </article>
-   </div>
+    
    <VueCropper
       :class="{cropShow:cropShow}"
       class="cropBox"
@@ -69,15 +74,19 @@
       :fixed="cropImg.fixed"
       :fixedNumber="cropImg.fixedNumber"
     ></VueCropper>
+    <div class="btnhid" style="position:absolute;top:0;z-index:100" :class="{cropShow:cropShow}">
+      <button @click="cropTheImg({keyCode:13})" style="width:100px;height:50px;background-color:lightblue;font-size:30px">确认</button>
+    </div>
+   </div>
   </div>
 </template>
 <!-- 新建用户组件 -->
 <script>
-// import $ from 'jquery'
-import Axios from 'axios'
+import $ from 'jQuery'
 import config from '@/config/default'
 import INTERFACE from '@/INTERFACE'
 import VueCropper from 'vue-cropper'
+import common from '@/common'
 // import QsConfig from '@/axiosCon'
 export default {
   name: 'createUser',
@@ -93,6 +102,17 @@ export default {
       img:'',
       vip: 0,
       sex: 0,
+      device: '',
+      deviceList:[{
+        value:'1',
+        label:'摄像头1'
+      },{
+        value:'2',
+        label:'摄像头2'
+      },{
+        value:'3',
+        label:'摄像头3'
+      }],
       cardId: null,
       birthday: null,
       facetrackId: null,
@@ -100,6 +120,11 @@ export default {
     }
   },
   props: ['viewWhich', 'toCreateUser'],
+  // computed: {
+  //   img(){
+  //     return common.get_facetrackimage(this.persomData.)
+  //   }
+  // },
   components: {VueCropper},
   // computed:{
   //   img: function(){
@@ -121,6 +146,7 @@ export default {
       this.sex = 0
       this.cardId = null
       this.birthday = null
+      this.img = ''
     },
     // 返回到历史记录查询
     returnHistory: function () {
@@ -151,8 +177,9 @@ export default {
         console.log(this.cardId === null)
         const isVip = this.vip === 0 
         if (!result) {
-          // this.$Message.error('请按照提示完整填写')
-          this.$emit('modalMessage','warning',this.errors.errors[0].msg)
+          this.$Message.warning(this.errors.items[0].msg)
+          console.log(this.errors.items[0].msg)
+          // this.$emit('modalMessage','warning',this.errors.errors[0].msg)
           this.$emit('popState','createUser')
           this.update = false
           console.log(this.update)
@@ -196,6 +223,7 @@ export default {
       let dataList = new FormData()
       // 修改日期格式
       this.birthday = typeof this.birthday === 'undefined' ? '' : new Date(this.birthday).Format('yyyy-MM-dd')
+      dataList.append('customName',this.$store.state.userInfo.customName)
       dataList.append('facetrackId', this.facetrackId)
       dataList.append('sex', this.sex)
       // 
@@ -211,12 +239,13 @@ export default {
       if (!isVip)  dataList.append('cardId', this.cardId)
       dataList.append('birthday', this.birthday)
       dataList.append('vip', this.vip)
+      dataList.append('deviceId',this.device)
       // for(let item of dataList.values()){
       //   console.log(item)
       // }
       // return 
       // http操作
-      Axios({
+      this.$http({
         method: 'POST',
         url: INTERFACE.POST_USER_FACETRACK,
         data: dataList,
@@ -248,20 +277,22 @@ export default {
   watch: {
     // 当前窗口
     viewWhich: function (val, old) {
-      console.log('createUser->viewWhich:' + val)
+      console.log(val)
       if (val === 'createUser') {
         this.intellNotShow = false
-        this.init()
+        // this.init()
       } else {
         this.intellNotShow = true
       }
     },
     // 传递到创建用户组件的数据
     toCreateUser: function (val, old) {
+      console.log(val)
       this.facetrackId = val.facetrackId
       // this.facetrackId = val.facetrackId
       this.intellNotShow = false
-      this.img = config.get_facetrackimage(this.facetrackId)
+      this.img = common.get_facetrackimage(this.facetrackId)
+      console.log(this.img)
     },
     // 根据是否为vip判断cardId是否展示
     vip: function (val, old) {
@@ -291,16 +322,98 @@ export default {
 @import '../../assets/style.css'
 </style>
 
-<style scoped>
+<style lang="scss" scoped>
 .notshow{
   display: none;
 }
-header{
+#createUser{
+  >div{
+    header{
+      background-color:white;
+      .setHead{
+        text-align:left;
+        position:relative;
+        height:150px;
+        >img{
+          height:100%;
+        }
+        .changePic{
+          height:30px;
+          width:150px;
+          position:absolute;
+          left:0;
+          bottom:0;
+          text-align:center;
+          background-color:rgba(0,0,0,0.7);
+          color:white;
+          >p{
+            display:inline-block;
+            line-height: 30px;
+            height:30px;
+          }
+          input{
+            width:100%;
+            background-color:red;
+            position:absolute;
+            left:0;
+            bottom:0;
+            opacity:0;
+          }
+        }
+      }
+      .addUser{
+        display:block;
+        .addMessage{
+          display:inline-block;
+          vertical-align:top;
+          width:49%;
+          height:60px;
+          p{
+            display:inline-block;
+          }
+          >label{
+            display:inline-block;
+            width:60px;
+          }
+        }
+        .addMessage.long{
+          .input{
+            width:120px;
+            height:32px;
+            border-radius:5px;
+            // border:1px;
+          }
+          // background-color:red;
+        }
+        .addMessage.short{
+          >div{
+            display:inline-block;
+            input{
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+    article{
+      >div{
+        letter-spacing:1em;
+        button{
+          letter-spacing:0;
+          width: 60px;
+          height:35px;
+          background-color:white;
+          border:1px solid grey；
+        }
+      }
+    }
+  }
+}
+/*header{
   height: 60%
 }
 header>div:not(.closeWindow){
   display: inline-block;
-  /*float: left;*/
   vertical-align: top;
   margin-top: 20px
 }
@@ -323,9 +436,7 @@ header .addUser .addMessage{
   width: 35%;
   text-align: center;
 }
-.itemHide{
-  visibility: hidden;
-}
+
 
 header .setHead{
   position: relative;
@@ -362,7 +473,7 @@ article>div>button{
 .changePic{
   height: 30px
 }
-.changePic>span{
+.changePic>p{
   line-height: 30px
 }
 input[type="file"]{
@@ -375,12 +486,17 @@ input[type="file"]{
   cursor: pointer;
 }
 .input{
-  /*width: 40%;*/
   max-width: 160px;
   height: 30px;
   display: inline-block;
+}*/
+.itemHide{
+  visibility: hidden;
 }
 .cropShow{
-  display: block
+  display: block!important;
+}
+.btnhid{
+  display:none;
 }
 </style>

@@ -9,7 +9,8 @@ const state = {
   userInfo:{
   	customName:'',
   	password:''
-  }
+  },
+  deviceInfo:[]
 };
 
 const mutations = {
@@ -21,6 +22,9 @@ const mutations = {
   },
   INIT_USERINFO(state,data){
   	state.userInfo = data
+  },
+  INIT_DEVICEINFO(state,data){
+    state.deviceInfo = data
   }
 };
 const actions = {

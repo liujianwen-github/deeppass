@@ -1,0 +1,6 @@
+login 记录当前登陆时间  返回上次登录时间,返回用户昵称
+getfacetracklist 返回采集地点
+device 添加日期,备注
+查找未成功识别记录： deviceId
+
+

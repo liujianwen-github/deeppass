@@ -4,29 +4,34 @@
 .container{
   /*overflow:hidden;*/
 }
-#model1,#model2,#model3,#userManage{
+/*#model1,#model2,#model3,#userManage{
   background: -webkit-gradient(linear, left top, left bottom, from(#7B8EA7), to(#90AEBD));
   background: linear-gradient(#7B8EA7, #90AEBD);
   min-height: 700px
-}
+}*/
 .popup{
   max-width: 680px;
   max-height: 550px;
   width: 80%;
   height: 80%;
   min-height: 450px;
+  min-width: 440px;
   position: fixed;
   top:50%;
   left: 50%;
   z-index: 2;
+
 }
+.nav{
+    text-align: left;
+  }
 .popup header{
   background-color: #2B77D5;
   width: 100%;
   padding: 20px;
 }
 .popup.show{
-  display: block;
+  display: block!important;
 }
 .popup>div{
   background-color: #EAEDED!important;

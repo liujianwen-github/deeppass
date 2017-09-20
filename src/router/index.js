@@ -4,6 +4,8 @@ import Hello from '@/components/Hello'
 import Login from '@/components/login/Login'
 import Home from '@/components/home/Home'
 import Device from '@/components/device/DeviceManage'
+import User from '@/components/user/UserManage'
+import System from '@/components/system/SystemManage'
 Vue.use(Router)
 
 export default new Router({
@@ -11,7 +13,7 @@ export default new Router({
     {
       path: '/',
       //默认路由重定向到login
-      redirect: { name: 'Login' }
+      redirect: { name: 'login' }
     },{
       path: '/login',
       name: 'login',
@@ -24,6 +26,14 @@ export default new Router({
       path: '/device',
       name: 'device',
       component: Device
+    },{
+      path: '/user',
+      name: 'user',
+      component: User
+    },{
+      path: '/system',
+      name: 'system',
+      component: System
     }
   ]
 })

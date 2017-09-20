@@ -142,6 +142,7 @@ export default {
       facetracks.push(this.intellParams.facetrackId)
       dataForm.append('personId', this.dataList[this.whichBgc].personId)
       dataForm.append('facetrackIds', facetracks)
+      dataForm.append('customName',this.$store.state.userInfo.customName)
       // alert(dataForm.get('personId'))
       Axios({
         method: 'POST',
@@ -179,7 +180,10 @@ export default {
     },
     toIntellAnalyse: function (val, old) {
       this.personData = val
-      this.intellParams.facetrackId = val.facetrackId
+      this.intellParams = {
+        facetrackId: val.facetrackId,
+        customName: this.$store.state.userInfo.customName
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="popup" id="intell" :class="{notshow:intellNotShow}">
-   <div v-if="viewWhich=='intell'">
+  <div class="popup" id="intell" v-if="viewWhich=='intell'">
+   <div >
     <header>
       <div class="closeWindow" @click="close">&times;</div>
       <div class="setHead">
@@ -8,7 +8,7 @@
       </div>
       <div class="addUser whiteText">
         <p class="headInfo">来访时间: <span v-text="toIntell.facetrackCreateTime"></span></p>
-        <!-- <p class="headInfo">采集地点: <span v-text="toIntell.sourceDes"></span></p> -->
+        <p class="headInfo">采集地点: <span v-text="toIntell.sourceDes"></span></p>
         <div class="btn" @click="createUser">新建用户</div>
         <div class="btn" @click="intellAnalyse">智能分析</div>
       </div>
@@ -104,6 +104,9 @@ export default {
 .popup header .addUser{
   padding-left:10px;
   height: 160px
+}
+.popup header .addUser .headInfo{
+  text-align: left;
 }
 .popup header .btn{
   border:1px solid white;

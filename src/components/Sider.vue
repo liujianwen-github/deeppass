@@ -1,6 +1,5 @@
 <template>
   <div class="container" id="sider">
-    <div class="logo">logo</div>
     <div class="sideBox">
       <div class="sideItem" >
         <button class="itemBtn" @click="switchRouter(0)" :class="{selectd:item==0}">首页</button>
@@ -11,9 +10,9 @@
       <div class="sideItem" >
         <button class="itemBtn" @click="switchRouter(2)" :class="{selectd:item==2}">用户管理</button>
       </div>
-      <div class="sideItem" >
+     <!--  <div class="sideItem" >
         <button class="itemBtn" @click="switchRouter(3)" :class="{selectd:item==3}">系统管理</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -35,14 +34,10 @@ export default {
 
 <style scoped>
 .container{
-  background-color: red;
-  height: 620px
+  /*background-color: red;*/
+  height: 580px
 }
-.logo{
-  width: 100%;
-  height: 40px;
-  background-color: yellow
-}
+
 .sideBox{
   height: 500px
 }
