@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width:100%;height:100%">
+<head>
+    <meta charset="utf-8">
+    <title>工作台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+    <meta name="apple-touch-fullscreen" content="yes">
+
+    <link href="css/style.css"rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/mobiscroll.custom-2.17.0.min.css" rel="stylesheet" />
+</head>
+
+
+<body>
+<div class="containers">
+
+    <div class="userHead info">
+        <div class="head">
+
+        </div>
+        <p class="uName">采集完成，请填写信息</p>
+        <a href="" class="editHead">修改头像</a>
+    </div>
+    <div class="addInfo">
+        <div class="userInfo">
+            <p class="addName"><label for="addName">姓名</label><input type="text" name="" id="addName" placeholder="请输入您的真实姓名"></p>
+            <div class="addSex"><label>性别</label>
+                <div class="pItem">男<input name="sex" type="radio" value="1" checked=""></div>
+                <div class="pItem last">女<input name="sex" type="radio" value="0" ></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="leaveMessage">
+            <div class="addSex"><label>留言</label>
+                <div class="pItem">短期留言<input name="message" type="radio" value="1" checked=""></div>
+                <div class="pItem last">长期留言<input name="message" type="radio" value="0"></div>
+            </div>
+            <div class="messageTime">
+                <input class="datainp" id="startDate" type="text" placeholder="请选择" readonly>
+                <span>至</span>
+                <input class="datainp" id="endDate" type="text" placeholder="请选择" readonly>
+            </div>
+            <div class="messageArea">
+                <textarea name="" id="" placeholder="请输入留言内容 (最长不超过20字)"></textarea>
+            </div>
+            <p class="messageTip">留言会在设定时段内您脸部识别时出现</p>
+            <div class="clear"></div>
+        </div>
+        <a href="" class="messageBtn">完成</a>
+    </div>
+    <div id="calendars"></div>
+</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.1.8.js"></script>
+<script type="text/javascript" src="js/mobiscroll.custom-2.17.0.min.js"></script>
+<script type="text/javascript" src="js/content.js"></script>
+<script>
+	$('#calendars').mobiscroll().range({
+        theme: 'mobiscroll',
+        lang: 'zh',
+        controls: ['calendar', 'time'],
+        defaultValue: [new Date(), new Date()],
+        startInput: '#startDate',
+        endInput: '#endDate'
+    });
+</script>
+
+</html>

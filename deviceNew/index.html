@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Device</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/animation.css" />
+</head>
+
+<body>
+
+    <div id="container">
+        <!--隐藏输入框-->
+        <input type="text" style="background-color: #fff; position: absolute; z-index: -10; bottom: 0px;" id="inputCard" value="" onChange="shuaKa(this.value)" autofocus="autofocus" />
+
+        <!--全屏背景图片-->
+        <div id="backgroundImg">
+            <img class="backgroundImg" src="images/bgNew.png" />
+            <div id="box" style="width: 800px; height: 1280px; background-color: #000;">
+                <canvas id="shibie" width="800px" height="1280px"></canvas>
+            </div>
+        </div>
+
+        <!--视频窗口-->
+        <header class="headerGo">
+            <!--预留实时监控画面-->
+            <div class="videobox">
+                <div>
+                    <OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" id="videoSource" id="videoSource" events="True">
+						<param name="AutoLoop" value="1" />
+						<param name='autoplay' value='True' />
+						<EMBED pluginspage="http://www.videolan.org"
+							type="application/x-vlc-plugin" version="VideoLAN.VLCPlugin.2"
+							name="vlc" loop="yes"
+							target="v4l2:///dev/video1:width=640:height=320"></EMBED>
+					</OBJECT>
+                </div>
+
+                <img src="images/video.png" class="videoboxImg" />
+            </div>
+        </header>
+
+        <!--特殊用户弹窗-->
+        <div id="specialbox">
+            <canvas id="specialCanvas"></canvas>
+            <div class="title">
+                <div class="box">
+                    <img src="images/specialTitleImg.png" alt="" />
+                    <canvas id="touxiang"></canvas>
+                </div>
+            </div>
+            <div class="content">
+                <h4>生日快乐!</h4>
+                <p>今天是你的生日，同时也是你来公司的第258！ 这258天我们并肩奋斗，一起挥洒汗水， 一起度过了多少日夜，闯过了无数难关；今天是你的生日，同时也是你来公司的第258！ 这258天我们并肩奋斗，一起挥洒汗水， 一起度过了多少日夜，闯过了无数难关；
+                </p>
+            </div>
+        </div>
+
+        <!--中部时间、动画等-->
+        <div id="midCircle">
+            <!--特殊用户背景图像-->
+            <div class="turnright">
+                <!--右平移-->
+                <div class="turnleft">
+                    <!--左平移-->
+
+                    <div class="midback">
+                        <!--外圈背景整体-->
+
+                        <div class="out">
+                            <!--最外圈旋转点-->
+                            <img src="images/fir-c2.png" /> <img src="images/fir-c3.png" />
+
+                            <div class="outline">
+                                <!--外圈环形-->
+                                <img src="images/fir-c1.png" style="position: absolute;" />
+                                <div class="outpointbox">
+                                    <!--球形附近光点旋转-->
+                                    <canvas id="outpoint"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="midtime">
+                        <!--右下平移-->
+                        <div>
+                            <!--左上平移-->
+                            <!--待机界面背景球形图片-->
+                            <canvas id="centerCircle" width="" height=""></canvas>
+
+                            <div class="midtimeContent">
+                                <!--时间div-->
+                                <div>
+                                    <p id="currentTime"></p>
+                                    <p id="currentDay"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--任务信息框-->
+        <footer id="footer">
+        <!--预留底部人物状态栏-->
+        </footer>
+
+        <!--提示刷卡-->
+        <div id="red">
+            <img src="images/red-bg.png" style="width: 800px; position: absolute;" />
+        </div>
+
+        <div id="btns">
+            <button id="active" onclick="active()">激活</button>
+            <!--<button id="show" onclick="createVipPerson($newPerson)">识别</button>-->
+            <button id="show" onclick="backImgAnimate()">识别</button>
+            <button id="special" onclick="specialPerson()">特殊</button>
+            <button id="normal" onclick="createNormalPerson()">一般</button>
+            <button id="wrong" onclick="Err()">失败</button>
+            <div>
+                <input type="text">
+                <button id="set">设置时间</button>
+            </div>
+        </div>
+
+    </div>
+    <!--container结束-->
+
+    <script src="lib/jquery.1.8.js" type="text/javascript" charset="utf-8"></script>
+    <!--实时摄像头-->
+    <script type="text/javascript" src="js/createPersonInfo.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/ajax-pushlet-client.js"></script>
+    <script src="js/liujianwen.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/createPerson.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/normalPerson.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/personInfoAnimate.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/shuaka.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/DateUtils.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        PL._init();
+        PL.userId = 'pushlet';
+        PL.joinListen('/push/facetrack');
+        PL.joinListen('/push/FaceTrackCreated');
+
+        function onData(event) {
+            var json = eval("(" + event.arr.msg + ")");
+            var method = json.method;
+            console.log("method = " + method);
+            if (method == undefined || method == "faceTrackCreated") {
+                startReader(true); //摄像头
+            } else if (method == "faceTrackMatchedToPerson") {
+            		if(!ifStart){
+            			return
+            		}
+                backImgAnimate(); //开始识别动画
+                setTimeout(function() {
+                		createPersonInfo(json); //只是处理数据函数，返回一个字符串
+                		vip();
+                }, 0.4 * 1000);
+            } else if (method == "swipeCardNotify") {
+            		if(!ifStart){
+            			return
+            		}
+                backImgAnimate(); //开始识别动画
+                setTimeout(function() {
+                		createNormalPerson(); //刷卡提示   只出 请刷卡信息框
+                }, 0.4 * 1000);
+            } else if (method == "userSwipeCardSucc") {
+            		if(!ifStart){
+            			return
+            		}
+                normalPerson(json); //刷卡成功    返回用户数据  调用normalPerson(json)方法  
+            } else if (method == "userSwipeCardFail") {
+            		if(!ifStart){
+            			return
+            		}
+                Err();
+            }
+        }
+
+        $(function() {
+            setInterval(function() {
+                var Datemd = new Date();
+                var year = Datemd.getFullYear();
+                var month = Datemd.getMonth() + 1;
+                var montH = month < 10 ? '0' + month : month;
+                var day = Datemd.getDate() < 10 ? '0' + Datemd.getDate() :
+                    Datemd.getDate();
+                var xingqi = ' 星期' + '日一二三四五六'.charAt(Datemd.getDay());
+                var hour = Datemd.getHours() < 10 ? '0' + Datemd.getHours() :
+                    Datemd.getHours();
+                var min = Datemd.getMinutes() < 10 ? '0' + Datemd.getMinutes() :
+                    Datemd.getMinutes();
+                var time = hour + ':' + min
+                $('#currentTime').eq(0).html(time); //月份
+                $('#currentDay').html(year + '/' + month + '/' + day + xingqi); //当前日期
+                $('inputCard').val(time);
+            }, 1000);
+            bigEarth();
+        })
+        //input框自动获取焦点
+        $('#inputCard').blur(function(){
+        		var i = 2;
+        		clearInterval(inF);
+        		var inF = setInterval(function(){
+        			i--;
+        			if(i == 0){
+        				$('#inputCard').focus();
+        				clearInterval(inF);
+        			}
+        		},1000);
+        })
+    </script>
+</body>
+
+</html>

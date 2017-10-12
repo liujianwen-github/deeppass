@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width: 100%; height: 100%">
+<head>
+<meta charset="utf-8">
+<title>工作台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<meta name="apple-touch-fullscreen" content="yes">
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+<link href="css/mobiscroll.custom-2.17.0.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="weui-1.1.1/dist/style/weui.min.css" />
+<script type="text/javascript" src="js/jquery.2.0.min.js"></script>
+</head>
+
+<body>
+
+
+	<div class="js_dialog" id="iosDialog2" style="display: block;">
+		<div class="weui-mask"></div>
+		<div class="weui-dialog">
+			<div class="weui-dialog__bd">
+				<h3>用户须知</h3>
+				<p>this is a news</p>
+			</div>
+			<div class="weui-dialog__ft">
+				<a href="####" onclick="biubiu();return false"
+					class="weui-dialog__btn weui-dialog__btn_primary">知道了</a>
+				<script type="text/javascript">
+					function biubiu() {
+						//              		document.getElementById('iosDialog2').style.display='none'
+						$('#iosDialog2').fadeOut(200)
+					}
+				</script>
+			</div>
+		</div>
+	</div>
+	<div class="containers">
+
+		<div class="userHead info">
+			<canvas style="display: block;" class="head" id="cvs">
+				<!--<img src="images/head.jpg" />-->
+        		</canvas>
+			<p class="uName">采集完成，请填写信息</p>
+			<a href="##" style="position: relative;" class="editHead">修改头像<input
+				style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0;"
+				type="file" class="upload_pic" id="upload"></a>
+		</div>
+		<div class="addInfo">
+			<div class="userInfo">
+				<p class="addName">
+					<label for="addName">姓名</label><input type="text" name=""
+						id="addName" placeholder="请输入您的真实姓名">
+				</p>
+				<div class="addSex">
+					<label>性别</label>
+					<div class="pItem" id="man">
+						男<input name="sex" id="sexMan" type="radio" value="1">
+					</div>
+					<div class="pItem last" id="weman">
+						女<input name="sex" id="sexWoman" type="radio" value="0">
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<button class="messageBtn">下一步</button>
+		</div>
+		<div id="calendars"></div>
+	</div>
+	<!--<img src=""/>-->
+</body>
+
+<script type="text/javascript" src="js/mobiscroll.custom-2.17.0.min.js"></script>
+<script src="js/zepto.min.js" type="text/javascript"></script>
+<!--微信开发的js框架-->
+<script type="text/javascript"
+	src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript"
+	src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+
+<script type="text/javascript" src="js/content.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<!--<script src="js/mobileBUGFix.mini.js" type="text/javascript"></script>-->
+<script src="js/exif.js" type="text/javascript"></script>
+<script>
+	$(function() {
+		//	测试信息
+
+		//源代码
+
+		var code = GetQueryString("code");
+		$.post('/faceserver/servlet/user?Method=getUserInfoByCode', {
+			'code' : code
+		}, function(data) {
+			var json = eval('(' + data + ')');
+			if (json.code == 0) {
+				var user = json.results.user;
+				setCookie('userId', user.userId);
+				$('#addName').val(user.name);
+				var c = document.getElementById('cvs');
+				var ctx = c.getContext('2d');
+				var img = new Image();
+				img.src = "data:image/jpg;base64, " + user.imageId;
+
+				//页面加载时的头像
+				img.onload = function() {
+					ctx.drawImage(img, 0, 0, 300, 150);
+				};
+				var sex = document.getElementsByName("sex");
+				if (user.sex == 1) {
+					sex[0].checked = "checked";
+					$("#man").addClass("current");
+				} else {
+					sex[1].checked = "checked";
+					$("#weman").addClass("current");
+				}
+			}
+
+		});
+		$('#calendars').mobiscroll().range({
+			theme : 'mobiscroll',
+			lang : 'zh',
+			controls : [ 'calendar', 'time' ],
+			defaultValue : [ new Date(), new Date() ],
+			startInput : '#startDate',
+			endInput : '#endDate'
+		});
+		$('.messageBtn')[0].addEventListener('touchend', function() {
+			var userName = $('#addName').val();
+			var sex = $(':radio[name="sex"]:checked').val();//1为男，0为女
+			$.post('/faceserver/servlet/user?Method=userRegister', {
+				'userName' : userName,
+				'sex' : sex,
+				'userId' : getCookie("userId")
+			}, function(data) {
+				var json = JSON.parse(data);
+				if (json.code == json.SUCC_CODE) {
+					window.location.href = 'collection.html?bilibili='+getCookie("userId");
+				} else {
+					alert(json.msg);
+				}
+			});
+		});
+
+		//获取上传按钮
+		var input1 = document.getElementById("upload");
+
+		if (typeof FileReader === 'undefined') {
+			//result.innerHTML = "抱歉，你的浏览器不支持 FileReader"; 
+			input1.setAttribute('disabled', 'disabled');
+		} else {
+			input1.addEventListener('change', readFile, false);
+			/*input1.addEventListener('change',function (e){
+				console.log(this.files);//上传的文件列表
+			},false); */
+		}
+		/////////////////////////////////////////////////////////////////////////////////////////
+		function readFile() {
+			var file = this.files[0];//获取上传文件列表中第一个文件
+			if (!/image\/\w+/.test(file.type)) {
+				//图片文件的type值为image/png或image/jpg
+				alert("文件必须为图片！");
+				return false;
+			}
+
+			// console.log(file);
+			var reader = new FileReader();//实例一个文件对象
+			reader.readAsDataURL(file);//把上传的文件转换成url
+			var canvas = document.getElementById('cvs');//获取canvas的DOM对象
+			var ctx = canvas.getContext('2d');//获取canvas的2d环境
+
+			//当文件读取成功便可以调取上传的接口
+			reader.onload = function(e) {
+				var data = e.target.result.split(',');
+				var tp = (file.type == 'image/png') ? 'png' : 'jpg';
+				var imgUrl = data[1];//图片的url，去掉(data:image/png;base64,)
+				//			上传步骤转到下边----url为ndata
+				//需要上传到服务器的在这里可以进行ajax请求 
+
+				var image = new Image();
+				// 设置src属性 
+				image.src = e.target.result;
+				//			alert(Image.src.length)
+
+				//测试内容：判断用户系统为ios，对上传的图片进行方向更改
+				if (navigator.userAgent.match(/iphone/i)) {
+					console.log('this is ios')
+					EXIF.getData(image, function() {
+						console.log('pull data success');
+						EXIF.getAllTags(image);
+						var Orientation = EXIF.getTag(image, 'Orientation');
+						console.log(Orientation);
+
+						//如果方向角不为1，都需要进行旋转 added by lzk  
+						if (Orientation != "" && Orientation != 1) {
+							//                      alert('旋转处理');  
+							switch (Orientation) {
+							case 6://需要顺时针（向左）90度旋转  
+							//                              alert('需要顺时针（向左）90度旋转');  
+								rotateImg(image, 'left', canvas);
+								//rotateImg（）函数的三个参数（HTMLelement，direction，canvas element）
+								break;
+							case 8://需要逆时针（向右）90度旋转  
+							//                              alert('需要顺时针（向右）90度旋转');  
+								rotateImg(image, 'right', canvas);
+								break;
+							case 3://需要180度旋转  
+							//                              alert('需要180度旋转');  
+								rotateImg(image, 'right', canvas);//转两次  
+								rotateImg(image, 'right', canvas);
+								break;
+							}
+						}
+
+					})
+
+				}
+
+				//			alert('max')
+				var max = 200;
+				// 绑定load事件处理器，加载完成后执行，避免同步问题
+				////////////////////////////////image.onload/////////////////////////////////
+				image.onload = function() {
+					// 如果高度超标 宽度等比例缩放 *= 
+					if (image.height > max) {
+						image.width *= max / image.height;
+						image.height = max;
+					}
+					//之前变量声明的canvas和ctx
+					// canvas清屏 
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+					if (canvas.width > max) {
+						canvas.Width = max
+					}
+					//				image.width=canvas.width;
+					//				image.height=canvas.height;
+					//				alert(image.size)
+					ctx.drawImage(image, 0, 0, 300, 150);
+					//进行最小化压缩
+					var ndata = canvas.toDataURL('image/jpeg', 0.1);
+					imgUrl = ndata.split(',')[1]
+
+					//////////////////////////////////post///////////////////////////////
+					//上传到服务器进行ajax请求
+					$
+							.post(
+									'/faceserver/servlet/UploadHandleServlet?Method=img',
+									{
+										'imgUrl' : imgUrl,
+										'userId' : getCookie('userId')
+									}, function(data) {
+										console.log("上传成功！");
+									});
+					///////////////////////////////post//////////////////////////////////
+
+				};
+				/////////////////////////////////image.onload////////////////////////////////
+			}
+		}
+		///////////////////////////////////////////function readfile/////////////////////////////////////////////////////
+		//对图片旋转处理 
+		function rotateImg(img, direction, canvas) {
+			//alert(img);  
+			//最小与最大旋转方向，图片旋转4次后回到原方向    
+			var min_step = 0;
+			var max_step = 3;
+			//var img = document.getElementById(pid);    
+			if (img == null)
+				return;
+			//img的高度和宽度不能在img元素隐藏后获取，否则会出错    
+			var height = img.height;
+			var width = img.width;
+			//var step = img.getAttribute('step');    
+			var step = 2;
+			if (step == null) {
+				step = min_step;
+			}
+			if (direction == 'right') {
+				step++;
+				//旋转到原位置，即超过最大值    
+				step > max_step && (step = min_step);
+			} else {
+				step--;
+				step < min_step && (step = max_step);
+			}
+
+			//旋转角度以弧度值为参数    
+			var degree = step * 90 * Math.PI / 180;
+			var ctx = canvas.getContext('2d');
+			switch (step) {
+			case 0:
+				canvas.width = width;
+				canvas.height = height;
+				ctx.drawImage(img, 0, 0);
+				break;
+			case 1:
+				canvas.width = height;
+				canvas.height = width;
+				ctx.rotate(degree);
+				ctx.drawImage(img, 0, -height);
+				break;
+			case 2:
+				canvas.width = width;
+				canvas.height = height;
+				ctx.rotate(degree);
+				ctx.drawImage(img, -width, -height);
+				break;
+			case 3:
+				canvas.width = height;
+				canvas.height = width;
+				ctx.rotate(degree);
+				ctx.drawImage(img, -width, 0);
+				break;
+			}
+		}
+
+	})
+</script>
+
+</html>

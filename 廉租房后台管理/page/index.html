@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>test1</title>
+	<link rel="stylesheet" type="text/css" href="stylle.css">
+</head>
+<body>
+<div class="content" style="padding: 100px">
+
+	<div class="foot">
+		<button id="btnPre" onclick="flip(false,$('#pageNum'))">pre</button>
+		<ul id="pageNum">
+
+		</ul>
+		<button id="btnNext" onclick="flip(true,$('#pageNum'))">next</button>
+	</div>
+	
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript">
+	var bibi=5;
+	// console.log(Math.round(bibi/2))
+	/**
+	 * [页码总数，当前页码，显示页码数量]
+	 * @type {Object}
+	 */
+	var data={
+			totalNum:20,
+			currentNum:1,
+			showNum:5
+		}
+
+	var	totalNum=20;
+	var	currentNum=1;
+	var	showNum=5;
+	
+	$('#pageNum').loadContent(totalNum,currentNum,showNum);
+</script>
+</body>
+</html>

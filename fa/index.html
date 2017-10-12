@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>FacetrackTask-page</title>
+<meta charset=utf-8>
+<!-- <meta name=description content=""> -->
+<meta name=viewport content="width=device-width,height=device-height, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style_1.css" />
+</head>
+
+<body>
+	<div class="container" style="padding: 20px 10px">
+		<div class="btnListItem">
+            <button class="btn btn-info">上传照片</button>
+            <input type="file" id="uploadImg" accept="image/jpg,image/png,image/jpeg" capture="camera">
+        </div>
+        
+	</div>
+	
+	<div id="box">
+		<!--场景图-->
+		<div class="sencePicture">
+			<ul class="ul clearfix">
+				<!-- 上传图片展示 -->
+			</ul>
+			<p id="personId"></p>
+		</div>
+		<div class="closeWindow" onclick="choseNextStep()">
+        	<p>&times;</p>
+        </div>
+
+		<!--比较图片-->
+		<div class="comparePicture">
+			<ul class="ul clearfix">
+				<!-- 推送图片展示 -->
+
+			</ul>
+		</div>
+		<div class="footer" style="height: 60px">
+			<!-- <div style="margin-left: -50%"> -->
+			<p align="center" style="height: 60px;color: red">
+				<button class="btn btn-info"  onclick="checkFaceTrackToPerson()">提交</button>
+				<button class="btn btn-info" onclick="stopSearch()">完成</button>
+			</p>		
+		</div>
+		<div class="model">
+			<div>
+				<div>
+					<button class="btn btn-info" onclick="returnIndex()">返回</button>
+					<button class="btn btn-info" onclick="research()">重新查找</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="task">
+		<div>
+			<div>
+				<p style="color: white">加载中</p>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="js/jquery.1.8.js"></script>
+<script src="js/FacetrackTask_1.js"></script>
+
+<script type="text/javascript" src="js/ajax-pushlet-client.js"></script>
+<script src="js/config.js"></script>
+<script src="js/listener.js"></script>
+<script type="text/javascript">
+
+	PL._init();
+	PL.userId = "pushlet";
+	PL.joinListen("/pushTest");
+	function onData(event) {
+		var json = eval("(" + event.arr.msg + ")");
+		var strList = '';
+		if (json != null && json.code == json.succ_code) {
+			var method = json.method;
+			console.log("method = " + method);
+			var results = json.results;
+			if (method == "facetrackReverseResult") {
+				showSencePicture(results.personImgUrl);
+				showComparePicture(results.array,results.personId);
+			}
+		}
+	}
+</script>
+</html>

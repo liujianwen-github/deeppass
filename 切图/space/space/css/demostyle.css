@@ -1,0 +1,40 @@
+*{margin: 0;padding: 0;font-size: 16px;}
+body{width: 100%;height: 100%;background: #93aee4;}
+ul,li,ol{list-style: none;}
+input,button{border: none;outline: none;}
+#listBox,#message{float:left;height: 8rem;}
+/*************listBox*************/
+#listBox{margin:1.38rem 0.99rem 0 2rem;width: 8rem;}
+#listBox p{height: 1.02rem;width: 100%;background: #1f3b5a;color: #ffffff;line-height: 1.02rem;}
+#listBox p span{font-size: 0.36rem;}
+#listBox p .like{margin-left: 0.5rem;}
+#listBox p .cTime{margin-left: 2.86rem;}
+#listBox p .refresh{margin-left: 1.31rem;}
+#list{height: 6.98rem;overflow: auto;background:#e5edf9;}
+#list li{width: 100%;}
+#list li:nth-of-type(odd) .listLeft{height: 60%;width: 3rem;float: left;margin: 0.37rem 0.95rem 0 0.5rem;}
+#list li:nth-of-type(odd) .listLeft .graph{width:3rem; height:0.06rem;background: #FFFFFF;}
+#list li:nth-of-type(odd) .listLeft .graph .bar{display:block; background:#7ad5b6; float:left; height:100%;width: 1%; text-align:center; }
+#list li:nth-of-type(odd) .listLeft .whichLike{display: block;font-size: 0.24rem;margin-top: 0.2rem;}
+#list li:nth-of-type(odd) .listRight{height: 60%;width: 2.33rem;font-size: 0.3rem;float: left;margin-top: 0.28rem;}
+
+#list li:nth-of-type(even) .listLeft{height: 60%;width: 3rem;float: left;margin: 0.32rem 0.95rem 0 0.5rem;}
+#list li:nth-of-type(even) .listLeft .graph{width:3rem; height:0.06rem;background: #FFFFFF;}
+#list li:nth-of-type(even) .listLeft .graph .bar{display:block; background:#7ad5b6; float:left; height:100%;width: 1%; text-align:center; }
+#list li:nth-of-type(even) .listLeft .whichLike{display: block;font-size: 0.24rem;margin-top: 0.2rem;}
+#list li:nth-of-type(even) .listRight{height: 60%;width: 2.33rem;font-size: 0.3rem;float: left;margin-top: 0.23rem;}
+
+#list li:nth-of-type(odd){ background:#e5edf9;height: 1.13rem;}/*奇数行 */
+#list li:nth-of-type(even){ background:#d0def0;height: 1.02rem;}/*偶数行 */
+/************message*************/
+#message{width: 6rem;margin-top: 1.38rem;background: #e6f0fa;}
+#message p{height: 1.02rem;width: 4.12rem;padding-left: 1.88rem;background: #1f3b5a;font-size: 0.36rem; color: #ffffff;line-height: 1.02rem;}
+#message .imgs{width: 100%;height: 1.45rem;margin: 0.34rem 0 0.86rem 0;}
+#message .imgs img{width: 1.45rem;height: 1.45rem; margin-left: 0.42rem;}
+#message .writeMessage{width: 5.32rem;height: 2.99rem;margin-left: 0.34rem;}
+#userName,#userId{display: block; height: 0.7rem;width: 5.04rem;padding-left: 0.26rem; border: 1px solid #6a9bc5;border-radius: 5px;color: #79797a;font-size: 0.28rem;}
+.writeMessage #userId{margin: 0.1rem 0 0.3rem 0;}
+.writeMessage lable{font-size: 0.28rem;color: #313c42;}
+.sendCard{width: 2.5rem;height: 0.64rem;border-radius: 0.3rem;font-size: 0.28rem;color: #FFFFFF;background: #1f3b5a;margin-left: 0.5rem;position: relative;text-align: center;}
+.sendCard input{width: 2.5rem;height: 0.64rem;position: absolute;left: 0;top: 0;opacity: 0;}
+.finish{width: 2.3rem;height: 0.64rem; background: #21b986;font-size: 0.28rem;color: #FFFFFF;border-radius: 0.3rem;margin-left: 0.2rem;}

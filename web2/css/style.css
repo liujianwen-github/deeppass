@@ -1,0 +1,1190 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 22px;
+	background-color: #FFF;
+	text-align: left;
+	-webkit-backface-visibility: hidden;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+	form, fieldset, legend, input, button, textarea, p, blockquote, th, td
+	{
+	font-size: 12px;
+	margin:0;
+	padding: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, img, dl, dt, dd,
+	table, th, td, blockquote, fieldset, div, strong, label, em {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+ul, ol, li {
+	list-style: none;
+}
+
+input, button {
+	margin: 0;
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+body {
+	font-size: 12px;
+	font-family: 微软雅黑, Arial, Helvetica, sans-serif;
+	background: #fff;
+	max-width: 1200px;
+	min-width: 768px;
+	margin: 0 auto;
+}
+
+a {
+	color: #333;
+	text-decoration: none !important;;
+}
+
+a:hover {
+	text-decoration: none;
+	opacity: .95
+}
+
+em {
+	font-style: normal;
+}
+
+img {
+	margin: 0px;
+	padding: 0px;
+	border: none
+}
+
+ul, ol {
+	margin: 0 !important;
+}
+
+li {
+	list-style: none
+}
+
+input {
+	color: #000 !important;
+}
+
+.clear {
+	clear: both
+}
+
+.containers.vague {
+	-webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	-o-filter: blur(3px);
+	-ms-filter: blur(3px);
+	filter: blur(3px);
+	pointer-events: none;
+}
+
+#tab {
+	overflow: hidden;
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 999;
+	left: 0;
+	top: 0;
+}
+
+#tab>img:not (:first-child ){
+	display: none;
+}
+
+#tab1 {
+	overflow: hidden;
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 999;
+	left: 0;
+	top: 0;
+}
+
+#tab1>img:not (:first-child ){
+	display: none;
+}
+
+header {
+	width: 100%;
+	height: 4.15em;
+	line-height: 4.15em;
+}
+
+header .logo {
+	width: 33%;
+	float: left;
+	font-size: 1.2em;
+	color: #005BAB;
+	margin-left: 2%;
+}
+
+header .option {
+	float: left;
+	width: 33%;
+	text-align: center;
+}
+
+header .option a {
+	width: 6.3em;
+	height: 2.3em;
+	line-height: 2.3em;
+	font-size: 1.2em;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	margin: 0 1em;
+}
+
+header .option a.cur {
+	background: #005BAB;
+	color: #FFF;
+	border-radius: 2.5em;
+}
+
+header .logout {
+	background: url("../images/logout.png") no-repeat left center;
+	width: 10%;
+	height: 1.9em;
+	line-height: 1.9em;
+	padding-left: 2em;
+	color: #333;
+	font-size: 1.2em;
+	float: right;
+	margin-top: 1em;
+}
+
+header .logout:hover {
+	color: #333;
+}
+
+.location {
+	height: 5em;
+	line-height: 5em;
+	width: 100%;
+	background: #ABB6C6;
+	clear: both;
+}
+
+.locationInfo {
+	background: url("../images/location.png") no-repeat left 1em;
+	width: 30%;
+	float: left;
+	font-size: 1.2em;
+	color: #333;
+	padding-left: 2.5em;
+	margin-left: 2%;
+}
+
+.visitData {
+	width: 33%;
+	float: left;
+	text-align: center;
+	height: 5em;
+}
+
+.visitData .dataInfo {
+	display: inline-block;
+	font-size: 1em;
+	color: #333;
+	margin: 0 1em;
+}
+
+.visitData .dataInfo span {
+	color: #005BAB;
+	font-size: 1.5em;
+	margin-left: .5em;
+	display: inline-block;
+}
+
+.optionContent {
+	position: relative;
+	width: 100%;
+	clear: both;
+	padding-top: 3%;
+	background: -webkit-linear-gradient(#7B8EA7, #90AEBD);
+	/* Safari 5.1 - 6.0 */
+	/* Opera 11.1 - 12.0 */
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(#7B8EA7, #90AEBD); /* 标准的语法（必须放在最后） */
+}
+
+
+.stranger {
+
+}
+
+.oUserInfo {
+	height: 16.5em;
+	width: 13%;
+	border-radius: 1em;
+	text-align: center;
+	background: #fff;
+	margin-bottom: 3%;
+	float: left;
+	margin-left: 3.16%;
+}
+
+.oUserInfo img {
+	height: 10em;
+	width: 10em;
+	margin: 1.4em 0;
+	border-radius: 1em;
+	cursor: pointer;
+}
+
+.oUserInfo .time {
+	height: 3em;
+	background: #E6EAEC;
+	line-height: 3em;
+	font-size: 1.2em;
+	color: #737373;
+	border-radius: 0px 0px 12px 12px;
+}
+
+.oUserInfo .time span {
+	font-size: 1.5em;
+	color: #005BAB;
+	display: inline-block;
+	margin-left: .5em;
+}
+
+.alreadyRecognition {
+
+}
+
+.recTab {
+	background: url("../images/navBar.png") no-repeat left center;
+	height: 2em;
+	line-height: 2em;
+	padding-left: 1.8em;
+	color: #fff;
+	font-size: 1.5em;
+	margin-left: 2%;
+	margin-bottom: .8em;
+}
+
+.recognitionContent {
+
+}
+
+.recognitionContent ul li {
+	height: 10em;
+	width: 20.9%;
+	border-radius: 1em;
+	background: #fff;
+	margin-bottom: 2%;
+	float: left;
+	margin-left: 2%;
+	padding: .8em;
+}
+
+.recognitionContent li img {
+	float: left;
+	width: 10em;
+	height: 10em;
+	border-radius: 1em;
+}
+
+.recInfo {
+	text-align: left;
+	float: left;
+	height: 100%;
+	color: #333;
+	margin-left: 1.5em;
+}
+
+.recInfo .finalTime {
+	font-size: 1.2em;
+	color: #999;
+	margin-bottom: 5px;
+}
+
+.recInfo .name {
+	font-size: 1.5em;
+}
+
+.recInfo .setWord {
+	width: 7em;
+	height: 2em;
+	line-height: 2em;
+	background: #1D80D7;
+	border-radius: .5em;
+	display: inline-block;
+	text-align: center;
+	color: #fff;
+	font-size: 1.2em;
+	margin-top: .4em;
+	cursor: pointer;
+}
+
+.resUser .recInfo .finalTime {
+	margin-bottom: 0;
+}
+
+.recInfo .resTime {
+	font-size: 1.2em;
+	color: #333;
+	margin-bottom: 0;
+	line-height: 1.2em;
+}
+
+.resUser .recInfo .setWord {
+	margin-top: .5em;
+}
+
+/* 弹出层开始 */
+.reveal-modal-bg {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	background: rgba(0, 0, 0, .8);
+	z-index: 100;
+	display: none;
+	top: 0;
+	left: 0;
+}
+
+.reveal-modal {
+	visibility: hidden;
+	top: 100px;
+	left: 50%;
+	margin-left: -18.5em;
+	background: #fff;
+	width: 37em;
+	height: 25em;
+	position: absolute;
+	z-index: 101;
+	border-radius: 5px;
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+	-box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+}
+
+.reveal-modal .close-reveal-modal {
+	font-size: 2.5em;
+	line-height: .5;
+	position: absolute;
+	top: 8px;
+	right: 6px;
+	color: #fff;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0,0.6);
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.dialogTop {
+	height: 14.25em;
+	width: 100%;
+	background: #2B77D5;
+	padding-top: 2.75em;
+}
+
+.dialogTop .setHead {
+	width: 12em;
+	height: 12em;
+	position: relative;
+	margin-left: 2.25em;
+	float: left;
+}
+
+.dialogTop .setHead img {
+	width: 12em;
+	height: 12em;
+}
+
+.dialogTop .setHead a {
+	position: absolute;
+	background: #000;
+	font-size: 1.2em;
+	text-align: center;
+	color: #fff;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 2em;
+	line-height: 2em;
+	background: rgba(0, 0, 0, 0.5);
+	filter: Alpha(opacity = 50);
+	/*陌生人--无匹配用户--修改头像*/
+}
+/*a标签下隐藏一个file的input输入框*/
+.dialogTop .setHead input[type=file]{
+	background-color: red;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 2em;
+	line-height: 2em;
+	opacity: 0;	
+}
+.dialogTop .setHead input[type=file]:hover{
+	cursor: pointer;
+	/*修改图像悬停样式*/
+}
+
+.dialogTop .addUser {
+	float: left;
+	width: 20em;
+	margin-left: 2em;
+	height: 12em;
+	color: #fff;
+}
+
+.dialogTop .addUser .title {
+	font-size: 1.5em;
+	margin-bottom: 1em;
+	float: left;
+}
+
+.dialogTop .addUser .addName {
+	float: left;
+	margin-bottom: 0;
+	width: 100%;
+}
+
+.dialogTop .addUser .addName label {
+	float: left;
+	line-height: 2em;
+	font-size: 1.2em;
+}
+
+.dialogTop .addUser .addName input {
+	width: 10em;
+	height: 1.4em;
+	line-height: 1.4em;
+	float: left;
+	margin-left: 1em;
+}
+
+.dialogTop .addUser .addSex {
+	float: left;
+	width: 100%;
+}
+
+.dialogTop .addUser .addSex label {
+	float: left;
+}
+
+.dialogTop .addUser .addSex .pItem {
+	float: left;
+	background: url("../images/radioNo.png") no-repeat left .1em;
+	padding-left: 2.5em;
+	margin-left: 1em;
+	cursor: pointer;
+}
+
+.dialogTop .addUser .addSex .pItem.current {
+	background: url("../images/radioYes.png") no-repeat left .1em;
+}
+
+.addUser .addSex .pItem input {
+	display: none;
+}
+
+.dialogTop .addUser .addSex .pItem.last {
+	margin-left: 6em;
+}
+.dialogTop .addUser .errorMessage{
+	color: red;
+	font-size: 14px;
+	font-weight: 700;
+	font-family: "微软雅黑";
+}
+.dialogTop .addUser .analysis {
+	width: 7em;
+	height: 2.1em;
+	border: 1px solid #fff;
+	border-radius: 8px;
+	color: #fff;
+	font-size: 1.2em;
+	display: block;
+	float: left;
+	text-align: center;
+	line-height: 2.1em;
+	margin-top: .5em;
+}
+
+.dialogBottom {
+	text-align: center;
+}
+
+.dialogBottom a {
+	display: inline-block;
+	width: 7em;
+	height: 2.5em;
+	background: #2B77D5;
+	text-align: center;
+	line-height: 2.5em;
+	color: #fff;
+	border-radius: 8px;
+	margin: 1.2em 1.2em 0;
+	font-size: 1.2em;
+}
+
+.dialogBottom a:hover {
+	color: #fff;
+}
+
+.reveal-modal.intAnalysis {
+	margin-left: -28.5em;
+	width: 57em;
+	height: 42.5em;
+}
+
+.analysis.close-reveal-modal {
+	position: static;
+}
+
+.intAnalysis .analysisTitle {
+	font-size: 1.5em;
+	margin-bottom: 1em;
+	color: #fff;
+}
+
+.intAnalysis .analysisInfo {
+	font-size: 1.2em;
+	color: #fff;
+}
+
+.intAnalysis .intContent {
+	text-align: center;
+}
+
+.intAnalysis .intContent .pItem {
+	width: 8.5em;
+	height: 11.5em;
+	border: 1px solid #C0C0C0;
+	border-radius: 8px;
+	padding: .75em;
+	text-align: center;
+	color: #333;
+	font-size: 1.2em;
+	display: inline-block;
+	margin: 2em 2em 0;
+	cursor: pointer;
+}
+
+.intAnalysis .intContent .pItem.current {
+	border: 3px solid #2C78D6;
+	position: relative;
+}
+
+.intAnalysis .intContent .pItem.current:after {
+	content: '';
+	display: block;
+	position: absolute;
+	z-index: 9;
+	bottom: 0;
+	right: -1px;
+	width: 32px;
+	height: 32px;
+	background: url(../images/checked.png) no-repeat;
+	background-size: contain;
+}
+
+.intAnalysis .intContent .pItem input {
+	display: none;
+}
+
+.intAnalysis .intContent .pItem hr {
+	height: .6em;
+	background: #0E913A;
+	margin: .5em 0;
+}
+
+.intAnalysis .intContent .pItem img {
+	height: 120px;
+	width: 120px;
+}
+
+.dialogBottom .intAnalysisBtn a {
+	position: static;
+	font-size: 1.2em;
+	line-height: 2.5em;
+}
+
+.reveal-modal.createUserSuccess {
+	margin-left: -28.5em;
+	width: 57em;
+	height: 43.5em;
+}
+
+.createUserSuccess .dialogTop {
+	text-align: center;
+	color: #fff;
+	font-size: 1.2em;
+	padding-top: 1.5em;
+	height: 13em;
+}
+
+.createUserSuccess .dialogTop img {
+	width: 120px;
+	height: 120px;
+	margin-bottom: .8em;
+}
+
+.createUserSuccess .dialogTop p {
+	margin-bottom: 0;
+}
+
+.createUserSuccess .dialogBottom img {
+	width: 150px;
+	height: 150px;
+	margin: 2em 0 .5em;
+}
+
+.createUserSuccess .dialogBottom p {
+	margin-bottom: 0;
+	font-size: 1.2em;
+	color: #333;
+}
+
+.createUserSuccess .dialogBottom .intAnalysisBtn a {
+	margin-top: 2em;
+	width: 9em;
+}
+
+.createUser .dialogBottom .close-reveal-modal {
+	position: static;
+	font-size: 1.2em;
+	line-height: 2.5em;
+}
+
+.reveal-modal.leaveMessage {
+	margin-left: -28.5em;
+	width: 57em;
+	height: 42.5em;
+}
+.reveal-modal.leaveMessage .pointMessage{
+	text-align: center;
+}
+
+.leaveMessageTop {
+	float: left;
+	color: #fff;
+	margin-left: 2em;
+}
+
+.leaveMessageTop .name {
+	font-size: 1.5em;
+	margin-bottom: .3em;
+}
+
+.leaveMessageTop .nameSet {
+	font-size: 1.2em;
+}
+
+.leaveMessageTop .addSex {
+	float: left;
+	width: 100%;
+}
+
+.leaveMessageTop .addSex .pItem {
+	float: left;
+	background: url("../images/radioNo.png") no-repeat left .1em;
+	padding-left: 2.5em;
+	margin-right: 5em;
+	cursor: pointer;
+	font-size: 1.2em;
+}
+
+.leaveMessageTop .addSex .pItem.current {
+	background: url("../images/radioYes.png") no-repeat left .1em;
+}
+
+.leaveMessageTop .addSex .pItem input {
+	display: none;
+}
+
+.leaveMessageContent {
+	clear: both;
+	padding: 2.5em 2.5em 0;
+}
+
+.leaveMessageContent .title {
+	color: #333;
+	font-size: 1.2em;
+}
+
+.leaveMessageContent textarea {
+	height: 6.4em;
+	border: 2px solid #2C78D6;
+	border-radius: 8px;
+	width: 42em;
+	padding: 1em;
+	font-size: 1.2em;
+	color: #333;
+	font-family: 微软雅黑;
+}
+
+.leaveMessage .dialogBottom a {
+	position: static;
+	font-size: 1.2em;
+	line-height: 2.5em;
+}
+
+.userInfos .userInfoTime {
+	margin-bottom: .2em;
+	font-size: 1.2em;
+}
+
+.userInfos .userInfoTime span {
+	display: inline-block;
+	margin-right: .5em;
+	width: 7em;
+}
+
+.reveal-modal.userInfos {
+	margin-left: -28.5em;
+	width: 57em;
+	height: 42.5em;
+}
+
+.userInfos .leaveMessageTop .name {
+	margin-bottom: 10px;
+}
+
+.userInfosItem {
+
+}
+
+.userInfosItem .search {
+	background: url("../images/search.png") no-repeat top center;
+	width: 9.75em;
+	height: 3.75em;
+	margin-top: 4.5em;
+	margin-left: 2.5em;
+	font-size: 1.2em;
+	color: #000;
+	display: block;
+	text-align: center;
+	float: left;
+	padding: 7em 4em 0;
+}
+
+.searchList {
+	float: left;
+	width: 30em;
+}
+
+.searchList .title {
+	font-size: 1.2em;
+	color: #000;
+	margin-top: 1em;
+}
+
+.searchList ul {
+	height: 19em;
+	outline: none;
+}
+
+.scrollInfo {
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	float: left;
+	padding-right: 2em;
+	position: relative;
+}
+/*动图隐藏图层*/
+.scrollInfo #tab{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top:0;
+	left: 0;
+	border-radius: 8px;
+	background-color: rgba(0,0,0,0.6);
+	overflow: hidden;
+}
+.scrollInfo #tab #tabContent{
+	/*display: table-cell;
+	vertical-align: middle;*/
+	border-radius: 8px;
+	height: 100%;
+	width: auto;
+	text-align: center;
+}
+.scrollInfo #tab #tabContent img{
+	border-radius: 8px;
+	height: 100%!important;
+	width: auto!important;
+}
+
+.searchList ul {
+	overflow: auto;
+}
+
+.searchList ul li {
+	padding-left: 1.2em;
+	border-left: 2px solid #2B77D5;
+	float: left;
+	margin-left: 2em;
+	position: relative;
+	padding-top: 4em;
+	height: 8em;
+	margin-top: 2em;
+}
+
+.searchList ul li hr {
+	border-top: 1px solid #ccc;
+	clear: both;
+	margin-top: 6em;
+}
+
+.searchList ul li .time {
+	float: left;
+	font-size: 1.2em;
+	color: #333;
+}
+
+.searchList ul li .time .date {
+	color: #999;
+	background: url("../images/searchListIcon.png") no-repeat left top;
+	position: absolute;
+	left: -9px;
+	padding-left: 2.5em;
+	top: -10px;
+}
+
+.searchList ul li .time .num {
+	margin-top: 0;
+	margin-left: 1em;
+}
+
+.searchList ul li img {
+	float: right;
+	/*width: 13em;*/
+	width: auto;
+	height: 10em;
+	/*border-radius: 1em;*/
+	margin-left: 5em;
+	margin-top: -4em;
+	margin-bottom: 1em;
+}
+.searchList ul li span{
+	position: absolute;
+	bottom: 2em;
+	right: 0;
+	padding: 0.3em 0.5em;
+	/*margin-bottom: 0.4em;*/
+	opacity: 0.8;
+	color: white;
+	background-color: steelblue;
+}
+
+.search.close-reveal-modal {
+	position: static;
+}
+
+.reveal-modal.searchResult {
+	margin-left: -28.5em;
+	width: 57em;
+	height: 42.5em;
+}
+
+.searchItem {
+	font-size: 1.2em;
+	float: left;
+	line-height: 2em;
+	margin-right: 1em;
+}
+
+.searchResult .leaveMessageTop .name {
+	margin-bottom: 10px;
+	float: left;
+	margin-right: 2em;
+}
+
+.searchResult .leaveMessageTop {
+	width: 36em;
+}
+
+.searchResult .leaveMessageTop .addSex .pItem {
+	margin-top: 1em;
+	margin-right: 2em;
+}
+
+.searchTimeInfo .hourNum {
+	float: left;
+	font-size: 1.2em;
+	display: none;
+	margin-top: .2em;
+}
+
+.searchTimeInfo .hourNum input {
+	width: 5.5em;
+	height: 1.2em;
+	line-height: 1.2em;
+	text-align: center;
+	margin-top: .5em;
+	margin-right: 1em;
+	margin-bottom: 0;
+}
+
+.searchTimeInfo .searchBtn {
+	clear: both;
+	color: #fff;
+	font-size: 1.2em;
+	background: #6AA0E2;
+	display: block;
+	text-align: center;
+	width: 12em;
+	height: 2em;
+	line-height: 2em;
+	border-radius: 8px;
+}
+
+.searchResult .leaveMessageTop .addSex {
+	padding-bottom: 1em;
+}
+
+.searchInfoBottom {
+	clear: both;
+	width: 597px;
+	margin: 0 auto;
+}
+
+.searchInfoBottom .tip {
+	font-size: 1.2em;
+	color: #999;
+	margin-top: 1.5em;
+	text-indent: 1.8em;
+	margin-bottom: .5em;
+}
+
+.searchInfoBottomCont {
+	height: 20em;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.searchInfoBottomCont ul li {
+	width: 20em;
+	height: 18em;
+	border-radius: 8px;
+	border: 2px solid #C4C4C4;
+	padding: .6em;
+	text-align: center;
+	float: left;
+	margin: 0 1em 1em 2em;
+}
+
+.searchInfoBottomCont ul li img {
+	height: 11.25em;
+	margin-bottom: 1em;
+	width: 20em;
+}
+
+.searchInfoBottomCont ul li .date {
+	font-size: 1.2em;
+	color: #333;
+}
+
+.searchResult .dialogBottom a {
+	position: static;
+	font-size: 1.2em;
+	line-height: 2.5em;
+	margin-top: 0;
+	width: 7em;
+}
+
+.JQ-slide-nav a {
+	display: block;
+	z-index: 99;
+	width: 13px;
+	color: #b4b4b4;
+	position: absolute;
+	top: 80px;
+	height: 23px;
+	right: 580px;
+}
+
+.JQ-slide-nav span {
+	display: block;
+	background: url("../images/left.png") no-repeat center;
+	width: 13px;
+	cursor: pointer;
+	height: 23px;
+}
+
+.JQ-slide-nav .next {
+	right: 0;
+}
+
+.JQ-slide-nav .next span {
+	background: url("../images/right.png") no-repeat center;
+}
+
+.JQ-slide-nav .corner {
+	border-color: #4b4b4b;
+}
+
+.JQ-slide-content {
+	position: absolute;
+}
+
+.shortMessage {
+	clear: both;
+	padding-top: .5em;
+}
+
+.shortMessage .datainp {
+	border: 0;
+	border: none;
+	background: none;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0) !important;
+	color: #fff !important;
+	border-bottom: 1px solid #fff;
+	border-radius: 0;
+	font-size: 1em;
+	letter-spacing: 1px;
+	padding-left: 0;
+	width: 11em;
+	margin-left: 1em;
+	padding-bottom: 0;
+	cursor: pointer;
+}
+
+.shortMessage .datainp::-webkit-input-placeholder {
+	color: #fff;
+	font-family: 微软雅黑;
+}
+
+.shortMessage .datainp:-moz-placeholder {
+	color: #fff;
+	font-family: 微软雅黑;
+}
+
+.shortMessage .datainp::-moz-placeholder {
+	color: #fff;
+	font-family: 微软雅黑;
+}
+
+.shortMessage .datainp:-ms-input-placeholder {
+	color: #fff;
+	font-family: 微软雅黑;
+}
+
+.shortMessage .timeChoose {
+	font-size: 1.2em;
+}
+/* 弹出层结束 */
+
+/*responsive-design*/
+@media ( max-width :1180px) {
+	.recognitionContent ul li {
+		width: 23%;
+		margin-left: 7em;
+		margin-bottom: 2%;
+	}
+}
+
+@media ( max-width :1100px) {
+	.recognitionContent ul li {
+		width: 25%;
+		margin-left: 4em;
+		margin-bottom: 2%;
+	}
+}
+
+@media ( max-width :1024px) {
+	header .logo {
+		width: 33%;
+	}
+	header .option {
+		width: 33%;
+	}
+	.oUserInfo {
+		width: 16.2%;
+	}
+	.visitData {
+		width: 34%;
+	}
+	.recognitionContent ul li {
+		width: 26%;
+		margin-left: 3em;
+		margin-bottom: 2%;
+	}
+}
+
+@media ( max-width :960px) {
+	header .logo {
+		width: 38%;
+	}
+	header .option {
+		width: 38%;
+	}
+	.visitData {
+		width: 42%;
+	}
+	.recognitionContent ul li {
+		width: 29%;
+		margin-left: 1em;
+		margin-bottom: 2%;
+	}
+}
+
+@media ( max-width :850px) {
+	header .logo {
+		width: 36%;
+	}
+	header .option {
+		width: 38%;
+	}
+	.visitData {
+		width: 42%;
+	}
+	.recognitionContent ul li {
+		width: 32%;
+		margin-left: 7em;
+		margin-bottom: 3%;
+	}
+}
+
+@media ( max-width :768px) {
+	header .logo {
+		width: 36%;
+	}
+	header .option {
+		width: 39%;
+	}
+	.locationInfo {
+		width: 31%;
+	}
+	.visitData {
+		width: 42%;
+	}
+	.oUserInfo {
+		width: 21%;
+	}
+	.recognitionContent ul li {
+		width: 32%;
+		margin-left: 7em;
+		margin-bottom: 3%;
+	}
+}
+
+
+

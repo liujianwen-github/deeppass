@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>index</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<style type="text/css">
+			legend{
+				font-size: 18px;
+			}
+			form{
+				width: 300px;
+				margin: 0 auto;
+			}
+			article{
+				padding: 100px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<h2 style="margin: 0;">DeepFace</h2>
+			</header>
+			<article>
+				<form action="index.html" method="get" onsubmit="return checkUser()"><!--表单地址   post-->
+					<fieldset id="">
+						<legend>用户登录</legend>
+						<div class="form-group ">
+						    <label for="username">用户名：</label>
+						    <input type="text" id="username" class="form-control" id="username" autofocus="autofocus" placeholder="username">
+					 	</div>
+					    <div class="form-group">
+						    <label for="password">密码：</label>
+						    <input type="password" id="password" class="form-control" id="password" placeholder="password">
+					    </div>
+					    <div class="form-group text-center" style="margin-top: 50px;">
+							<input type="submit" class="btn btn-info navbar-left" value="登陆" />	
+							<button href="#" class="btn btn-info navbar-right" disabled="disabled">注册</button>
+					    </div>
+
+					</fieldset>
+				</form>
+				
+			</article>
+		</div>
+		<script type="text/javascript">
+			function checkUser(){
+				var username=document.getElementById('username').value;
+				var psd=document.getElementById('password').value;
+				if (username=="deepface"&&psd=="123") {
+					return true
+				}else{
+					alert('用户名或密码错误');
+					return false
+				}
+			}
+		</script>
+	</body>
+</html>

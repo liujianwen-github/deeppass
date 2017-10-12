@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width:100%;height:100%">
+<head>
+    <meta charset="utf-8">
+    <title>工作台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+    <meta name="apple-touch-fullscreen" content="yes">
+
+    <link href="css/style.css"rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/mobiscroll.custom-2.17.0.min.css" rel="stylesheet" />
+
+</head>
+
+
+<body>
+<div class="containers">
+
+    <div class="searchInfo">
+    	<div class="timeImg">
+    		<img src="images/biao.png" alt="" />
+    		<img src="images/b-1.png" class="timCircle"/>
+    		<div class="timeNum">半小时内</div>
+    	</div>
+    	<div class="clear"></div>
+    	<p class="searchTip">请选择未识别成功时段</p>
+    	<div class="chooseBar">
+    		<div class="schedule"></div>
+    		<div class="timePart one checked">半小时内</div>
+    		<div class="timePart two">4小时内</div>
+    		<div class="timePart three">12小时内</div>
+    		<div class="timePart four">24小时内</div>
+    		
+    	</div>
+    	
+    	<div class="customTime">
+    		<p class="customTip">自定义时段</p>
+    		<div class="customTimeBox">
+    			<div class="timeBox">
+    				<label for="startDates">开始时间</label>
+    				<input class="datainp custom" id="startDates" type="text" placeholder="请选择" readonly>
+         
+                
+            	</div>
+            	<div class="timeBox">
+            		<label for="endDates">结束时间</label>
+            		<input class="datainp custom" id="endDates" type="text" placeholder="请选择" readonly>
+            	</div>
+            	
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+    </div>
+	<a href="" class="messageBtn">查找</a>
+	<p class="searchBottom">智能分析可帮您在指定时段内查找未识别成功的记录并完成自主学习,使识别更准确</p>
+	<div id="calendar2"></div>
+</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.1.8.js"></script>
+<script type="text/javascript" src="js/mobiscroll.custom-2.17.0.min.js"></script>
+<script type="text/javascript" src="js/content.js"></script>
+<script>
+	$('#calendar2').mobiscroll().range({
+        theme: 'mobiscroll',
+        lang: 'zh',
+        controls: ['calendar', 'time'],
+        defaultValue: [new Date(), new Date()],
+        startInput: '#startDates',
+        endInput: '#endDates'
+    });
+</script>
+</html>

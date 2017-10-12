@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width: 100%; height: 100%">
+
+<head>
+<meta charset="utf-8">
+<title>工作台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<meta name="apple-touch-fullscreen" content="yes">
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="weui-1.1.1/dist/style/weui.min.css" />
+<style type="text/css">
+.weui-mask {
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+.weui-dialog {
+	max-width: none;
+	width: 100vw;
+	height: 100vw;
+	background-color: transparent;
+}
+
+.weui-dialog__bd {
+	width: 100vw;
+	height: 100vw;
+	padding: 0 !important;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+	<p>
+		判断百度的LOGO是否存在：<br> <IMG
+			src="http://www.baidu.com/img/baidu_logo2.gif"
+			onerror=>
+	</p>
+	<p>
+		如果不存在，则替换成WebDm.cn 的 logo：<br>
+		<IMG src="http://www.baidu.com/img/baidu_logo11.gif"
+			onerror="javascript:this.src='http://www.webdm.cn/themes/pic/webdm_logo.gif'">
+	</p>
+</body>
+<script type="text/javascript" src="js/jquery.2.0.min.js"></script>
+<script type="text/javascript"
+	src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+<script type="text/javascript" src="js/content.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+
+<script type="text/javascript">
+	$.ajaxSetup( {
+			    timeout:5000,
+			    aysnc: true , // 默认异步加载
+//			    type: "POST" , // 默认使用POST方式
+
+			    complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+			　　　　if(status=='timeout'){
+			 　　　　　 alert('请求超时');
+			 			window.location.reload()
+			　　　　}
+			　　}
+			} );
+//	alert('1.1.1')
+		var getCookies = getCookie('userId') || localStorage.getItem('userId');
+		if(getCookies == null || getCookies == '') {
+			var code = GetQueryString("code");
+			$.post('/faceserver/servlet/user?Method=getUserInfoByCode', {
+				'code': code
+			}, function(data) {
+				var json = eval('(' + data + ')');
+				if(json.code == 0) {
+					var user = json.results.user;
+					setCookie('userId', user.userId);
+					localStorage.setItem('userId',user.userId)
+					getCookies = getCookie('userId') || localStorage.getItem('userId');
+					writeUserInfo(getCookies);
+				}
+			});
+		} else {
+				writeUserInfo(getCookies);
+		}
+
+		function writeUserInfo(getCookies) {
+			$.post('/faceserver/servlet/user?Method=getUserInfo', {'userId': getCookies},function(data) {
+						(function() {
+							var userHeadstr = '';
+							//添加用户头像
+							userHeadstr = '<div class="head">' +
+								'<img src="data:image/jpg;base64, ' + data.results.user.imageId + '" />' +
+//								'<div class="uEdit" style="text-align:center">'+
+//								'<input type="file" name="uEditFile" id="uEditFile" value="" />'+
+//									这里添加一个file input，然后绑定事件传送文件；需要修改样式
+
+
+
+
+								'</div>' +
+								'</div>' + '<p class="uName">' +
+								data.results.user.name + '</p>' +
+								'<p class="uInfo">' + '<span>' +
+								data.results.user.createT + '</span>'
+							if(data.results.user.noFrom == data.WX) {
+								userHeadstr += '<span>手机注册</span>' + '</p>'
+							} else if(data.results.user.noFrom == data.AD) {
+								userHeadstr += '<span>后台注册</span>' + '</p>'
+							}
+							$('.userHead').html(userHeadstr);
+						})();
+
+					}, 'json');
+
+			$.post('/faceserver/servlet/user?Method=getUserMatchLogs', {'userId': getCookies},function(data) {
+					(function() {
+						var str = '';
+						var results = data.results.matchList;
+						if(data.code == data.SUCC_CODE &&
+							results != "") {
+							for(var i in results) {
+								var item = results[i];
+								var times = item.createTime.split(' ');
+								str += '<li>' +
+									'<div class="leftInfo">' +
+									'<p class="time">' + //时间
+									times[1].substr(0, 5) +
+									'</p>' + '<p class="date">' +
+									times[0] + '</p>' +//年月日
+									'<p class="date">' +
+									getDayOfWeek(times[0]) +//星期几
+									'</p><p align="center" style="margin-top:3em">'+
+									'<span  style="border-radius:2px;color: white;background-color:rgba(88,144,196,0.8);padding:0.4em 0.6em;font-size:12px;" '+
+//									" onclick='seachImgs(\""+
+//									item.matchId+ "\",\""+
+//									"/faceserver/servlet/user?Method=getUserImgs" + "\");'" //
+									" onclick='linshi(\""+
+									item.matchId+ "\",\""+
+									item.yunFaceTrackId+ "\");'"+
+									'>现场图片</span>'+
+									/*
+									 * 时间：2017.03.22 星期三
+									 * 
+									 * 
+									 * 
+									 * 试试添加一个name，值为facetrackid
+									 * 
+									 * 
+									 * 
+									 * 
+									 * 
+									 * 作者：刘建文
+									 * 描述：index界面，详情界面，添加的左侧查看现场图片序列（这里需要添加一个searchImgs函数，同下，url换一下）
+									 */
+									'</p></div>';
+
+								/* if (item.confirmStatus == -1) {
+									str += '<a class="btns" onclick="logConfirm('
+											+ item.matchId + ');">确认</a>';
+								} else {
+									str += '<a class="btns" >记录已确认</a>';
+								} */
+
+							 str += '<div style="position: relative;" class="userPic">' +
+									'<span style="padding: 0.1em 0.2em;color: rgb(242,242,242);background-color: rgba(88,144,196,0.8);position: absolute;right: 4px;bottom: 3px;border-top-left-radius: 10%;font-size:12px">动图</span>'+
+									'<img style="opacity: 1;" src="' +
+									item.imageUrl +
+									'" alt="" style="width:100%" '+
+									" onclick='seachImgs(\""+
+									item.matchId+ "\",\""+
+									"/faceserver/servlet/user?Method=getUserImgs" + "\");'"+
+									
+//									onclick="seachImgs(\' +
+//									item.matchId + 
+//									','+
+//									'"/faceserver/servlet/user?Method=getUserImgs"'+//这里添加ajax URL的参数
+//									')";+
+									'/ >' +
+									'</div>' + '</li>';
+							}
+						}
+							
+							
+						
+						$('.Info').append(str);
+						//临时绑定时间，正式要调seachImgs函数
+						
+					})();
+				}, 'json');
+		}
+		
+		function linshi(matchid,yunfacetrack){
+			//alert(matchid+','+yunfacetrack);
+			$('#tab .weui-dialog__bd').html(' ');
+			$('#tab').css('display', 'block');
+			$('#tab').on('touchend', function() {
+				$('#tab').css('display', 'none');
+				return false;
+			})
+			var img=new Image();
+			img.src=imgHead+yunfacetrack+".jpg";
+			img.style.width="100%";
+			img.alt="yunfacetrack";
+			$('#tab .weui-dialog__bd').append(img);
+		}
+		//获取facetrack图片序列，页面形成弹窗播放动图
+		function seachImgs(matchId,methodUrl) {
+//			console.log(methodUrl);
+			$.ajax({
+					url: methodUrl,
+					data: {
+						'userId': getCookies,
+						'matchId': matchId
+					},
+					type: "POST",
+					dataType: 'json',
+					async: false,
+					success: function(data) {
+						$('#tab').css('display', 'block');
+						$('#tab').on('touchend', function() {
+							$('#tab').css('display', 'none');
+							clearInterval(animaImg);//清除循环
+							return false;
+						})
+						str = "";
+						if(data.code == data.SUCC_CODE) {
+							var imgs = data.results.imgs;
+							for(var i in imgs) {
+								var item = imgs[i];
+								str += '<img width="100%" height="100%" src="data:image/jpg;base64, ' +
+									item + '" alt="" />';
+							}
+							$('#tab .weui-dialog__bd').html(str);
+							var images = $('#tab').find('img');
+							var pos = 0;
+							var len = images.length;
+							var animaImg=self.setInterval(function () {
+								images[pos].style.display = 'none';
+								pos = ++pos == len ? 0 : pos;
+								images[pos].style.display = 'inline';
+							}, 100);
+						} else {
+							alert(data.msg);
+						}
+					}
+				});
+		}
+		
+		$('.uNav').on('touchend', function() {
+			window.location.href = "search.html";
+		})
+		$('.userHead').on('change','#uEditFile',function(){
+//			var uEditFile=document.getElementById('')
+//步骤同imformation,需要把information下面上传文件的js提出来单独建立一个文件
+		})
+	</script>
+
+</html>

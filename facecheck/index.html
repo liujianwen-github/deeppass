@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PersonTask</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <div id="box">
+        <div class="box"></div>
+        <!--头部 logo + 比对结果-->
+        <div class="header clearfix">
+            <!--logo文字-->
+            <div class="logo">监控视频人脸识别系统</div>
+            <!--匹配结果-->
+            <div class="cont">
+                <span class="FP">F-P:<i>0</i></span>
+                <span class="PP">P-P:<i>0</i></span>
+                <span id="title">PersonTask页面</span>
+                <a href="FacetrackTask.html">Go   FacetrackTask页面</a>
+            </div>
+        </div>
+
+        <!--场景图-->
+        <div class="sencePicture">
+            <ul class="ul  clearfix">
+
+            </ul>
+            <!--场景图按钮-->
+            <button class="btn btn1">场景图</button>
+            <p id="personId"></p>
+        </div>
+
+        <!--比较图片-->
+        <div class="comparePicture">
+            <ul class="ul  clearfix">
+
+            </ul>
+        </div>
+
+        <!--比较按钮-->
+        <div class="button">
+            <!--分值 和 相似度-->
+            <ul class="ul1">
+                <li>分值</li>
+                <li><i class="score"></i></li>
+                <li>相似度</li>
+                <li><i class="percent"></i></li>
+            </ul>
+            <!--per按钮-->
+            <div class="per">
+                <ul class="ul2 clearfix">
+
+                </ul>
+            </div>
+
+            <h2>请确认上下两组图片是否是一个人</h2>
+            <!--是  否 按钮-->
+            <div class="submit">
+                <button class="yes">是</button>
+                <button class="no">否</button>
+            </div>
+
+        </div>
+
+        <!--场景图弹出框-->
+        <div id="sencePicture">
+            <div class="header">
+                <span id="x">X</span>
+            </div>
+            <div class="content"></div>
+        </div>
+
+        <!--提交提示框-->
+        <div id="tishi">
+            <p>确定要提交么？</p>
+            <div class="anniu">
+                <button class="shi">是</button>
+                <button class="fou">否</button>
+            </div>
+        </div>
+        <button class="refresh">刷新</button>
+    </div>
+    <!--loading提示框-->
+    <div id="loading">
+        <div class="spinner">
+            <div class="spinner-container container1">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container2">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container3">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+        </div>
+        <p id="load">努力加载中，请稍后...</p>
+        <p id="err">加载出错</p>
+        <p id="friend">友情提示：若一直显示加载出错，可能是需要处理的任务都已完成，请关闭页面~</p>
+        <a href="FacetrackTask.html">去F-P页面</a>
+        <a href="javascript:void(0)" onclick="window.location.reload()" class="a1">刷新</a>
+    </div>
+</body>
+
+<script src="lib/jquery.1.8.js"></script>
+<script src="js/config.js"></script>
+<script src="js/PersonTask.js"></script>
+<script src="js/animate.js"></script>
+<script>
+    //		对应per的index
+    var idx = 0;
+    var perIndex = null;
+    $('.ul2').on('click', 'li', function() {
+        idx = $(this).index();
+        showPerInfo(idx);
+        getPersonId(idx);
+    });
+</script>
+
+</html>

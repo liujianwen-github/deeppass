@@ -1,0 +1,740 @@
+/*
+ *created by deepdot on 2017.4.25
+ **/
+
+*
+{
+    font-family: '微软雅黑';
+
+    margin: 0 auto;
+    padding: 0;
+}
+
+ul,li{
+    list-style: none;
+}
+input{
+    border: none;
+    outline: none;
+}
+.clearfix:after {                 
+ content: "" ;                    
+ display: block ;   
+ height: 0 ;   
+ clear: both ;   
+ visibility: hidden ;   
+}
+/*修改默认bootstrap样式*/
+.nav .active > a
+{
+    margin: 0!important;
+
+    color: #c1977c!important;
+    border: 0!important;
+    border-bottom: 2px solid #c1977c!important;
+    background-color: inherit!important;
+}
+select{
+    width: 300px;
+}
+
+
+
+/*背景div*/
+.backgroundImg
+{
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient（top,#f6bb90,#f19987）;
+
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#f6bb90), to(#f19987)); 
+    /*四个百分比参数，分别是left,top,right,bottom渲染的比例，从0-100，0位初始颜色，100为结束颜色*/
+    background: -moz-linear-gradient(top, #f6bb90,#f19987);
+
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FF0000',endColorStr='#F9F900',gradientType='0');
+}
+/*中心内容div*/
+.containers
+{
+    /*overflow: hidden;*/
+    height: auto;
+    position: relative;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+    width: 1250px;
+    min-width: 1250px;
+    /*margin-top: 60px;*/
+    
+    border-radius: 5px;
+    background-color: #ecf6fd;
+}
+/*头部菜单栏*/
+.containers header
+{
+    position: relative;
+
+    display: -moz-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+
+    width: 100%;
+    height: 80px;
+
+    background-color: #1e253e;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+/*头部作则logo*/
+.containers header .left-logo
+{
+    width: 400px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.containers header .left-logo .systemName
+{
+    font-size: 20px;
+    line-height: 80px;
+
+    color: white;
+}
+/*头部菜单导航栏*/
+.containers header ul
+{
+    display: inline-block;
+
+    width: 600px;
+    height: 80px;
+    /*float: right;*/
+
+    border: 0;
+}
+.containers header ul li a
+{
+    line-height: 70px;
+
+    display: inline-block;
+
+    height: 80px;
+
+    color: white;
+}
+
+/*分页栏内容所在盒子*/
+article {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*overflow: hidden;*/
+}
+
+article .tab-pane {
+    border-radius: 5px
+}
+article .tab-pane .contentBox
+{
+    /*border:1px dashed red;*/
+    padding: 0 40px 20px 40px;
+    
+    background-color: #ecf6fd;
+    /*border-radius: 5px;*/
+}
+article .tab-pane .contentBox > div
+{
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+article .tab-pane .contentBox .visitHead>span:nth-child(2){
+    position: relative;
+    /*color: red*/
+}
+
+
+/*****************首页内容样式表*****************/
+#home .dataTable
+{
+    width: 100%;
+    height: 360px;
+    padding-bottom: 0;
+}
+
+/*来访列表详情*/
+#home .visitList .visitContent{
+    width: 100%;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-pack: justify;
+     -ms-flex-pack: justify;
+         justify-content: space-between;
+}
+/*来访列表分栏详情*/
+
+#home .visitList .visitContent .visitItem{
+    border:1px solid #ECF3F7;
+    width: 370px;
+    height: 272px;
+    overflow: hidden;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+}
+/*来访列表表头*/
+#home .visitList .visitContent .visitItem .listHead{
+    color: white;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 12px
+}
+#home .visitList .visitContent .visitItem .listHead p{
+    margin:0;
+}
+/*第三个显示人数的span标签放大字体*/
+#home .visitList .visitContent .visitItem .listHead p a{
+    color: white;
+}
+#home .visitList .visitContent .visitItem .listHead p a:hover{
+    color: #337ab7;
+}
+#home .visitList .visitContent .visitItem .listHead p>a>span{
+    font-size: 30px;
+    line-height: 40px;
+    cursor: pointer;
+    margin-right: 10px
+}
+
+/*住客列表表头*/
+#home .visitList .visitContent .visitItem#householdVisit .listHead{
+    background-color: #5ac0a0;
+}
+/*陌生人列表表头*/
+#home .visitList .visitContent .visitItem#strangerVisit .listHead{
+    background-color: #738fc5
+}
+/*黑名单列表表头*/
+#home .visitList .visitContent .visitItem#blackListVisit .listHead{
+    background-color: #f57d77
+}
+
+#home .visitList .visitContent .visitItem table>thead td{
+    height: 30px;
+    /*color: red;*/
+}
+/*表格标题靠右侧显示*/
+#home .visitList .visitContent .visitItem table tr>td:last-child{
+    text-align: right
+}
+#home .visitList .visitContent .visitItem table tbody>tr{
+    cursor: pointer;
+}
+#home .visitList .visitContent .visitItem table tbody>tr>td:first-child{
+    text-indent: 10px
+}
+#home .visitList .visitContent .visitItem table tbody>tr>td:last-child{
+    /*padding-right: 30px*/
+    width: 80px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+/*****************住户内容样式表*****************/
+.tab-pane>.contentBox>.emptyContent{
+    display: none;
+}
+.tab-pane>.contentBox>.emptyContent p{
+    /*position: absolute;*/
+    margin-top: 200px;
+    color: #606060;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+/*created by zls*/
+.tab-pane .foot{
+    text-align: center;
+}
+.personList{
+ width: 100%;
+ min-height: 540px;
+ position: relative;
+ background-color: #fff;
+
+}
+.frequencyView{
+    display: none;
+}
+.personList .person{
+ /*float: left;*/
+ display: inline-block;
+ height: 220px;
+ width: 200px;
+ background-color: lightblue;
+ border-radius: 20%;
+ text-align: center;
+ margin-left: 15px;
+ margin-right: 15px;
+ margin-bottom: 20px;
+ padding-bottom: 10px
+}
+.personList .person .img{
+ width: 200px;
+ /*height: 125px;*/
+text-align: center;
+ /*background-color: #fff;*/
+ /*border-radius: 50%;*/
+ border:0;
+ padding-top:5px;
+ /*overflow: hidden;*/
+}
+.personList .person .img img{
+ /*width: 60px;*/
+width: 120px;
+height: 120px;
+border-radius: 50%;
+ border: 0;
+ background-color: white;
+}
+.personList .person .time,.personList .person .date{
+ text-align: center;
+ font-size: 14px;
+ margin:0;
+ height: 20px;
+ line-height: 30px
+}
+.personList .person .time{
+    margin-bottom: 5px;
+}
+.personList .person .time span{
+    display: inline-block;
+    /*padding: 5px;*/
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    color: white;
+    border-radius: 50%;
+    line-height: 20px
+}
+.personList .person .xiangqing{
+ width: 100px;
+ border-radius: 5px;
+ height: 30px;
+ line-height: 20px;
+ color: #fff;
+ background-color: #27AAEE;
+ margin-top:10px
+}
+.personList .person .xiangqing:hover{
+ background-color: #005BAD;
+}
+
+
+
+
+
+div.active{
+    display: block;
+}
+/*****************陌生人内容样式表*****************/
+
+
+
+
+
+
+
+
+
+
+/****************黑名单内容样式表****************/
+
+
+
+
+
+
+
+/**************悬浮窗口样式列表******************/
+/*详情列表最外层*/
+.containers .detailsModel{
+    z-index: 5;
+    width: 100%;
+    height: 980px;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+    border-radius: 5px;
+    display: none;
+    /*margin-top: 20px;*/
+    padding:20px 40px 20px 40px;
+    position: absolute;
+    /*position: relative;为了让containers高度自动拉伸，mgb只能用这个了*/
+    top: 0;
+    left: 0;
+}
+/*中心内容盒子区域*/
+.containers .detailsModel .contentBox{
+    /*background-color: rgba(245,125,119,0.5);*/
+    background-color: white;
+    border-radius:5px;
+    position: relative;
+}
+/*中心内容区域*/
+.containers .detailsModel .contentBox>div{
+    padding: 20px;
+}
+/*列表三部分 分割的下划线*/
+.containers .detailsModel .contentBox .detailNav,.containers .detailsModel .contentBox .detailHead{
+    border-bottom: 2px solid #bfbfbf;
+}
+/*退出图标*/
+.containers .detailsModel .contentBox>div>div:first-child>span{
+    font-size: 30px;
+    color: #303030;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    color: red;
+}
+.containers .detailsModel .contentBox>div>div:first-child>span:hover{
+    color: white;
+    background-color: rgba(0,0,0,0.7);
+}
+/*顶部详情类型、日期选择*/
+.containers .detailsModel .contentBox .detailNav{
+    width: 100%;
+    height: 30px;
+}
+/*详情头部*/
+.containers .detailsModel .contentBox .detailHead{
+    position: relative;
+}
+.containers .detailsModel .contentBox .detailHead>div{
+    width: 50%;
+    height: 180px;
+    padding:15px 15px 15px 0;
+    margin:0;
+    /*border:1px dashed red;*/
+}
+/*详情头部图片右侧显示person信息*/
+.containers .detailsModel .contentBox .detailHead>div .message{
+    display: inline-block;
+    height: 120px;
+    position: absolute;
+    padding-left: 20px;
+}
+/*person类型的span*/
+.containers .detailsModel .contentBox .detailHead>div .message .personType{
+    height: 30px;
+}
+/*下拉选单*/
+.containers .detailsModel .contentBox .detailHead>div .dropdown{
+    display: inline-block;
+}
+.containers .detailsModel .contentBox .detailHead>div .dropdown button{
+    width: 150px;
+    height: 30px;
+    position: relative;
+    padding-left: 0;
+}
+/*下拉菜单弹出框*/
+.containers .detailsModel .contentBox .detailHead>div .dropdown .dropdown-menu{
+    left: 70px
+}
+/*按钮中箭头图标位置*/
+.containers .detailsModel .contentBox .detailHead>div .dropdown button .caret{
+    /*float: right;*/
+    position: absolute;
+    top: 14px;
+    right: 20px
+    /*margin-left: 20px*/
+}
+/*detailHead下方两个分类标签名*/
+.containers .detailsModel .contentBox .detailHead>div>p{
+    display: inline-block;
+    width: 50%;
+    position: absolute;
+    bottom: -5px;
+    left: 0
+}
+.containers .detailsModel .contentBox .detailHead>div>p:last-child{
+    position: absolute;
+    left: 50%
+}
+/*详情列表页detailbody区域*/
+
+.containers .detailsModel .contentBox .detailBody>div{
+    padding-top: 10px;
+    position: relative;
+    /*padding: 15px;*/
+    width: 1130px;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-pack: justify;
+     -ms-flex-pack: justify;
+         justify-content: space-between;
+}
+.containers .detailsModel .contentBox .detailBody>div .detailBodyItem{
+    width: 100%;
+    height: 480px;
+}
+/*************person信息列表组样式？*************/
+/*/*列表组单条*/
+.containers .detailsModel .contentBox .detailBody>div .detailBodyItem>.listItem{
+    /*background-color: #D48C95;*/
+    border-bottom:1px solid #ebebeb;
+    height: 120px;
+    width: 282px;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+    padding-top: 10px;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+}
+/*头像上的gif标识*/
+.containers .detailsModel .contentBox .detailBody>div .detailBodyItem>.listItem>span{
+    position: absolute;
+    top: 85px;
+    left: 68px;
+    color: white;
+    display: inline-block;
+    width: 30px;
+    height: 24px;
+    line-height: 22px;
+    letter-spacing: 2px;
+    font-size: 12px;
+    border:1px solid white;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px
+}
+/*头像*/
+.containers .detailsModel .contentBox .detailBody>div .detailBodyItem>.listItem img{
+    position: absolute;
+    cursor: pointer;
+}
+/*右侧信息*/
+.containers .detailsModel .contentBox .detailBody>div .detailBodyItem>.listItem>.message{
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    left: 110px;
+}
+/*按钮*/
+.containers .detailsModel .contentBox .detailBody>div .detailBodyItem>.listItem>.message>div{
+    position: absolute;
+    bottom: 0;
+}
+.containers .detailsModel .contentBox .detailBody>div .detailBodyItem>.listItem>.message>div button{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border:0;
+    background-color: #738fc5;
+    color: white
+}
+#modelContent .detailBodyItem .listItem>.message>.time>span{
+    display: inline-block;
+    /*padding: 5px;*/
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    color: white;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+}
+/*************person信息列表组样式？*************/
+
+/*底部分页列表组别*/
+.containers .detailsModel .contentBox .detailFoot{
+    clear: both;
+    /*background-color: #4E3DD6;*/
+    padding-top:30px;
+    width: 100%;
+    height:100px;
+    text-align: center;
+}
+.containers .detailsModel .contentBox .detailFoot .foot{
+    width: auto;
+    display: inline-block;
+    margin:0 auto;
+}
+.containers .detailsModel .contentBox .detailFoot  button{
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    border:1px solid transparent;
+    background-color: #738fc5;
+    color: white
+}
+/*悬浮窗口页码样式*/
+.containers .detailsModel .contentBox .detailFoot ul{
+    display: inline-block;
+    
+}
+.containers .detailsModel .contentBox .detailFoot ul li{
+    cursor: pointer;
+}
+.containers .detailsModel .contentBox .detailFoot ul li:hover{
+    color: #f8c6a2
+}
+.containers .detailsModel .contentBox .detailFoot ul li.current{
+    background-color: inherit;
+    color: #f8c6a2
+}
+
+
+/*查看场景图*/
+.model{
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.8);
+    visibility: hidden;
+}
+.model .content{
+    width: 600px;
+    /*height: 400px;*/
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+    /*margin-top: 50%*/
+}
+.model .content .head{
+    height: 40px;
+    /*padding: 5px;*/
+    background-color: #2e6da4;
+    position: relative;
+    /*border-top-right-radius:10px;*/
+}
+.model .content .head p{
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    letter-spacing: 5px;
+    font-size: 20px;
+    color: white;
+}
+/*退出按钮*/
+.model .content .head span{
+    /*退出符号*/
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px
+}
+.model .content .head span:hover{
+    color: #151514
+}
+.model .content .body{
+    height: 300px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px
+}
+.model .content .body{
+    
+}
+.model .content .body img{
+    /*width: 300px;*/
+    height: 300px;
+    position: absolute;
+    left: 35px
+/*    width: 400px;
+    height: 226px*/
+}
+#viewGif .content .body img{
+    /*width: 300px;*/
+    height: 300px;
+    position: absolute;
+    left: 150px
+/*    width: 400px;
+    height: 226px*/
+}
+.model .content .foot{
+    text-align: center;
+    padding: 10px
+}
+.model .content .foot button{
+    width: 100px;
+    cursor: pointer;
+}
+/*住客陌生人黑名单页码列表*/
+.foot ul{
+    display: none;
+}
+
+/*切换频率、时间的按钮*/
+.switch{
+    display: inline-block;
+}
+.MASK{
+   position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    background-color: rgba(0,0,0,0);
+    /*background-color: red;*/
+    /*background-color: red;*/
+    width: 100%;
+    height: 100%;
+}
+
+.bootstrap-switch-container>span{
+    width: 44px!important;
+    height: 28px!important
+}
+
+
+/*
+@media only screen and (min-width: 1300px){
+    .containers{
+        margin-top:30px
+    }
+}*/
+
+

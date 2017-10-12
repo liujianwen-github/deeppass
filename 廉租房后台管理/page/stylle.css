@@ -1,0 +1,28 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul{
+	background-color: lightblue;
+	display: inline-block;
+	padding: 0;
+	/*height: 20px*/
+}
+ul li{
+	display: inline-block;
+	padding:5px 15px;
+	cursor: pointer;
+	width: 40px;
+	height: 20px;
+	text-align: center;
+	/*line-height: 20px*/
+}
+ul li:hover{
+	background-color: red;
+	color: white;
+}
+button{
+	width: 50px;
+	height: 20px;
+
+}

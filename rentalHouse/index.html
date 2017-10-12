@@ -1,0 +1,577 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8> 
+	<meta name=description content="index.html">
+	<!-- <meta name=viewport content="width=device-width,height=device-height, initial-scale=1"> -->
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/style.css">
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-switch.css">
+	<title>主页</title>
+</head>
+<body>
+	<!-- 背景div -->
+	<div class="backgroundImg"></div>
+	<div class="MASK"></div>
+	<!-- 中心内容div -->
+	<div class="containers" ng-app="visitList" ng-controller="visitListControl">
+		<!-- 头部标题，高70px -->
+		<header  >
+			<div class="left-logo" onclick="window.location.reload()">
+				<img src="lib/images/logo.png" alt="logo" title="logo">
+				<span class="systemName">廉租房门禁管理系统1.0</span>
+				<!--
+				*	data:2017.04.26
+				*	修改：更改images文件夹位置，src->lib
+				*	chart.js public/js->src
+				* 
+			-->
+		</div>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab" onclick="resetTime()">首页</a></li>
+			<li role="presentation"><a href="#household" aria-controls="household" role="tab" data-toggle="tab" ng-click="getPersonList(1,0)" onclick="resetTime(1)">住户</a></li>
+			<li role="presentation"><a href="#stranger" aria-controls="stranger" role="tab" data-toggle="tab" ng-click="getPersonList(2,0)" onclick="resetTime(2)">陌生人</a></li>
+			<li role="presentation"><a href="#blacklist" aria-controls="blacklist" role="tab" data-toggle="tab" ng-click="getPersonList(3,0)" onclick="resetTime(3)">黑名单</a></li>
+		</ul>
+	</header>
+	<article class="tab-content"  data-ng-init="load()">
+		<!-- 首页 -->
+		<div role="tabpanel" class="tab-pane active" id="home">
+			<div class="contentBox">
+				<!-- canvas表格 -->
+				<div class="dataTable">
+					<canvas id="dataCvs1" width="1128" height="320"></canvas>
+				</div>
+				<!-- 来访列表 -->
+				<div class="visitList" >
+					<div class="visitHead">
+						<span>来访列表</span>
+						<span class="pull-right">
+							<label for="#dateList">按日期查看：</label>
+							<select id="dateList">
+								<option value="0" selected="selected">今日</option>
+								<option value="1">昨日</option>
+								<option value="7">一周内</option>
+								<option value="30">一个月内</option>
+							</select>
+						</span>
+					</div>
+					<div class="visitContent" >
+						<div class="visitItem" id="householdVisit" persontype='1'>
+							<div class="listHead">
+								<p>
+									<span>住客</span>
+									<span>出入</span>
+									<span ng-bind="householdVisit.total">&nbsp;</span>
+									<span>人次</span>
+									<a href="#household" class="pull-right" aria-controls="household" role="tab" data-toggle="tab" ng-click="personReach(1,0)" onclick="resetTime(1)" aria-expanded="true">
+										<span class="glyphicon glyphicon-hand-right " ></span>
+									</a>
+								</p>
+							</div>
+							<table class="table table-hover">	
+								<thead>						
+									<tr>								
+
+										<td>序号</td>
+										<td>出入频次</td>
+									</tr>
+								</thead>
+								<tbody>
+									<!--
+									**	viewdetails(fkperson)
+									** fkPerson:用于绑定fkperson的标识符
+									*	personType:绑定person类型
+									*	
+									* -->
+									<tr ng-repeat="item in householdVisit.personMatchCountsList" personType="1" title="{{$index}}" fkPerson="{{item.fkPerson}}"  ng-click="viewDetails(item.fkPerson,1,0,0)">
+										<td>{{$index+1}}</td>
+										<td>{{item.matchCounts}}</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="visitItem" id="strangerVisit" persontype='2'>
+							<div class="listHead">
+								<p>
+									<span>陌生人</span>
+									<span>出入</span>
+									<span ng-bind="stranger.total">&nbsp;</span>
+									<span >人次</span>
+									<!-- <a href="#household" aria-controls="household">
+										
+									</a> -->
+									<a href="#stranger"  class="pull-right" aria-controls="stranger" role="tab" data-toggle="tab" ng-click="personReach(2,0)" onclick="resetTime(2)" aria-expanded="true">
+										<span class="glyphicon glyphicon-hand-right" ></span>
+									</a>
+									
+								</p>
+							</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<td>序号</td>
+										<td>出入频次</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in stranger.personMatchCountsList" personType="2" title="{{$index}}" fkPerson="{{item.fkPerson}}"  ng-click="viewDetails(item.fkPerson,2,0,0)">
+										<td>{{$index+1}}</td>
+										<td>{{item.matchCounts}}</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="visitItem" id="blackListVisit" persontype='3'>
+							<div class="listHead">
+								<p>
+									<span>黑名单</span>
+									<span>出入</span>
+									<span ng-bind="blackList.total">&nbsp;</span>
+									<span>人次</span>
+									<a href="#blackList" class="pull-right" aria-controls="blackList" role="tab" data-toggle="tab" ng-click="personReach(3,0)" onclick="resetTime(1)" aria-expanded="true">
+										<span class="glyphicon glyphicon-hand-right" ></span>
+									</a>
+								</p>
+							</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<td>序号</td>
+										<td>出入频次</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in blackList.personMatchCountsList" personType="3" title="{{$index}}" fkPerson="{{item.fkPerson}}"  ng-click="viewDetails(item.fkPerson,3,0,0)">
+										<td>{{$index+1}}</td>
+										<td>{{item.matchCounts}}</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 住客 -->
+		<div role="tabpanel" class="tab-pane" id="household">
+			<div class="contentBox">
+
+				<div class="visitHead">
+					<span>住客列表</span>
+					<span>
+						<!-- <button ng-click="personReach(1,0)">按频率查看</button>
+						<button ng-click="getPersonList(1,0)">按日期查看</button> -->
+						<!-- <div class="switch switch-large"> -->
+						    <label for="#rentalBtn">查看方式：</label>
+						    <input type="checkbox" id="rentalBtn" name="viewType-checkbox"  checked="checked" value="time" />
+						<!-- </div> -->
+						
+					</span>
+					<span class="pull-right">
+						<label for="#dateList1">按日期查看：</label>
+						<select id="dateList1">
+							<option value="0">今日</option>
+							<option value="1">昨日</option>
+							<option value="7">一周内</option>
+							<option value="30">一个月内</option>
+						</select>
+					</span>
+				</div>
+				<!-- 按时间查看列表 -->
+				<ul class="personList clearfix timeView" >
+					<li class="person" ng-repeat="item in visitListBox1.personDetailList  ">
+						<div class="img">
+							<img src="{{item.imageBaseurl}}{{item.headImage}}" alt="person头像" class="img-circle" />
+						</div>
+						<p class="date">{{item.createTime.split(" ")[0]}}</p>
+						<p class="time" >
+							{{item.createTime.split(" ")[1]}}
+							<span ng-show="item.sourceId.slice(0,2)=='55'" style="background-color: green">进</span>
+							<span ng-show="item.sourceId.slice(0,2)=='6b'" style="background-color: red">出</span>
+						</p >
+						<!-- <p ng-show="item.sourceId.slice(0,2)=='55'" style="color: red">进</p>
+						<p ng-show="item.sourceId.slice(0,2)=='6b'" style="color: green">出</p> -->
+						<input type="button"  value="详情" class="xiangqing" ng-click="viewDetails(item.fkPerson,1,0)"/>
+					</li>
+
+				</ul>
+				<!-- 安频率查看列表 -->
+				<ul class="personList clearfix frequencyView">
+					<li class="person" ng-repeat="item in detailFrequency1.personMatchCountsDtoList">
+						<div class="img">
+							<img src="{{item.headImage}}" alt="person头像11111" class="img-circle" />
+						</div>
+						<p class="time" >频次： {{item.matchCounts}} </p >
+						<input type="button"  value="详情" class="xiangqing" ng-click="viewDetails(item.fkPerson,1,0)"/>
+					</li>
+
+				</ul>
+
+				<div class="foot">
+					<ul  uib-pagination total-items="totalPage1"  ng-model="currentPage1" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"  boundary-links="true" num-pages="numPages" previous-text="上一页" next-text="下一页"
+                        first-text="首页" last-text="尾页">
+								
+					</ul>
+
+					<ul uib-pagination total-items="totalPage11" ng-model="currentPage11" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" boundary-links="true" num-pages="numPages" previous-text="上一页" next-text="下一页"
+                first-text="首页" last-text="尾页">
+
+						
+					</ul>
+					<span class="timeView" style="position: relative;bottom: 30px">共{{totalPage1/10}}页</span><span class="frequencyView" style="position: relative;bottom: 30px">共{{totalPage11/10}}页</span>
+							<!-- {{currentPage}}! -->
+				</div>
+			</div>
+		</div>
+		<!-- 陌生人 -->
+		<div role="tabpanel" class="tab-pane" id="stranger">
+			<div class="contentBox">
+				<div class="visitHead">
+					<span>陌生人列表</span>
+					<span>
+						<!-- <button ng-click="personReach(2,0)">按照频率查看</button>
+						<button ng-click="getPersonList(1,0)">按日期查看</button> -->
+						<label for="#strangerBtn">查看方式：</label>
+					    <input type="checkbox" id="strangerBtn"  name="viewType-checkbox"  checked="checked" value="time" />
+					</span>
+					
+					<span class="pull-right">
+						<label for="#dateList2">按日期查看：</label>
+						<select id="dateList2">
+								<option value="0">今日</option>
+								<option value="1">昨日</option>
+								<option value="7">一周内</option>
+								<option value="30">一个月内</option>
+							</select>
+					</span>
+				</div>
+				<div class="emptyContent">
+					<p>查询记录为空！</p>
+				</div>
+				<ul class="personList clearfix timeView">
+					<li class="person" ng-repeat="item in visitListBox2.personDetailList">
+						<div class="img">
+							<img src="{{item.imageBaseurl}}{{item.headImage}}" alt="person头像" class="img-circle" />
+						</div>
+						<p class="date">{{item.createTime.split(" ")[0]}}</p>
+						<p class="time" >
+							{{item.createTime.split(" ")[1]}}
+							<span ng-show="item.sourceId.slice(0,2)=='55'" style="background-color: green">进</span>
+							<span ng-show="item.sourceId.slice(0,2)=='6b'" style="background-color: red">出</span>
+						</p >
+						<input type="button"  value="详情" class="xiangqing" ng-click="viewDetails(item.fkPerson,2,0)"/>
+					</li>
+				</ul>
+				<ul class="personList clearfix frequencyView">
+					<li class="person" ng-repeat="item in detailFrequency2.personMatchCountsDtoList">
+						<div class="img">
+							<img src="{{item.headImage}}" alt="person头像" class="img-circle" />
+						</div>
+						<p class="time" >频次： {{item.matchCounts}} </p >
+						<input type="button"  value="详情" class="xiangqing" ng-click="viewDetails(item.fkPerson,2,0)"/>
+					</li>
+
+				</ul>
+				<div class="foot">
+					<ul uib-pagination total-items="totalPage2" ng-model="currentPage2" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" boundary-links="true" num-pages="numPages" previous-text="上一页" next-text="下一页"
+                        first-text="首页" last-text="尾页">
+								
+					</ul>
+					<ul uib-pagination total-items="totalPage21" ng-model="currentPage21" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" boundary-links="true" num-pages="numPages" previous-text="上一页" next-text="下一页"
+                first-text="首页" last-text="尾页">
+						
+					</ul>
+					<span class="timeView" style="position: relative;bottom: 30px">共{{totalPage2/10}}页</span><span class="frequencyView" style="position: relative;bottom: 30px">共{{totalPage21/10}}页</span>
+							<!-- {{currentPage}}! -->
+				</div>
+			</div>
+		</div>
+		<!-- 黑名单 -->
+		<div role="tabpanel" class="tab-pane" id="blacklist">
+			<div class="contentBox">
+				<div class="visitHead">
+					<span>黑名单列表</span>
+					<span>
+						<!-- <button ng-click="personReach(3,0)">按照频率查看</button>
+						<button ng-click="getPersonList(1,0)">按日期查看</button> -->
+						<label for="#blackListBtn">查看方式：</label>
+					    <input type="checkbox" id="blackListBtn"  name="viewType-checkbox"  checked="checked" value="time" />
+
+					</span>
+					<span class="pull-right">
+						<label for="#dateList3">按日期查看：</label>
+						<select id="dateList3">
+								<option value="0">今日</option>
+								<option value="1">昨日</option>
+								<option value="7">一周内</option>
+								<option value="30">一个月内</option>
+							</select>
+					</span>
+				</div>
+				<div class="emptyContent">
+					<p>查询记录为空！</p>
+				</div>
+				<ul class="personList clearfix timeView">
+					<li class="person" ng-repeat="item in visitListBox3.personDetailList ">
+						<div class="img">
+							<img src="{{item.imageBaseurl}}{{item.headImage}}" alt="person头像" class="img-circle" />
+						</div>
+						<p class="date">{{item.createTime.split(" ")[0]}}</p>
+						<p class="time" >
+							{{item.createTime.split(" ")[1]}}
+							<span ng-show="item.sourceId.slice(0,2)=='55'" style="background-color: green">进</span>
+							<span ng-show="item.sourceId.slice(0,2)=='6b'" style="background-color: red">出</span>
+						</p >
+						<input type="button"  value="详情" class="xiangqing" ng-click="viewDetails(item.fkPerson,3,0)"/>
+						<!-- TODO 
+						** 查看详情参数：fkPerson、personType,
+						** 跳转到viewdetails生成的页面
+						-->
+					</li>
+				</ul>
+				<ul class="personList clearfix frequencyView">
+					<li class="person" ng-repeat="item in detailFrequency3.personMatchCountsDtoList">
+						<div class="img">
+							<img src="{{item.headImage}}" alt="person头像" class="img-circle" />
+						</div>
+						<p class="time" >频次： {{item.matchCounts}} </p >
+						<input type="button"  value="详情" class="xiangqing" ng-click="viewDetails(item.fkPerson,3)"/>
+					</li>
+
+				</ul>
+				<div class="foot">
+					<ul uib-pagination total-items="totalPage3" ng-model="currentPage3" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" boundary-links="true" num-pages="numPages" previous-text="上一页" next-text="下一页"
+                        first-text="首页" last-text="尾页">
+								
+					</ul>
+
+					<ul uib-pagination total-items="totalPage31" ng-model="currentPage31" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" boundary-links="true" num-pages="numPages" previous-text="上一页" next-text="下一页"
+                first-text="首页" last-text="尾页">					
+					</ul>
+					<span class="timeView" style="position: relative;bottom: 30px">共{{totalPage3/10}}页</span><span class="frequencyView" style="position: relative;bottom: 30px">共{{totalPage31/10}}页</span>
+							<!-- {{currentPage}}! -->
+				</div>
+			</div>
+
+		</div>
+		
+		<!-- 悬浮层内容 -->
+		<div class="detailsModel" id="detailBox">
+			<div class="contentBox" id="modelContent">
+				<div>
+					<div style="text-align: right;padding-right: 20px">
+						<!-- <button > -->
+							<span class="closeDetail" title="{{detailPersonType}}" ng-click="closeDetail(detailPersonType)">&times;</span>
+						<!-- </button> -->
+					</div>
+					<!-- 详情列表顶部 -->
+					<div class="detailNav">
+						<span class="detailType"  ng-show="detailHead.personType==1">住客详情</span>
+						<span class="detailType" style="position: absolute;" ng-show="detailHead.personType==2">陌生人详情</span>
+						<span class="detailType" style="position: absolute;" ng-show="detailHead.personType==3">黑名单详情</span>
+						<!-- 日期选项 -->
+						<span class="pull-right" >
+							<select id="dateList4">
+								<option value="0">今日</option>
+								<option value="1">昨日</option>
+								<option value="7">一周内</option>
+								<option value="30">一个月内</option>
+							</select>
+							</span>
+					</div>
+					<!-- 详情列表头部 -->
+					<div class="detailHead">
+						<div>
+							<img src="{{detailHead.img}}" width="120" height="120" alt="详情fkperson头像">
+							<div class="message" ng-hide="detailHead.personType==1">
+							<!-- 住客不提供修改类型操作 -->
+								<p class="personType" ng-show="detailHead.personType==1">住客</p>
+								<p class="personType" ng-show="detailHead.personType==2">陌生人</p>
+								<p class="personType" ng-show="detailHead.personType==3">黑名单</p>
+								<p  >
+									<div class="dropdown" >
+										<span>修改类型：</span>
+										<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											<span  class="caret" ></span>
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+											<li><a href="#" class="household" type='1' ng-hide="detailHead.personType==1">住客</a></li>
+											<li><a href="#" class="stranger" type='2' ng-hide="detailHead.personType==2" >陌生人</a></li>
+											<li><a href="#" class="blackList" type='3' ng-hide="detailHead.personType==3">黑名单</a></li>
+										</ul>
+									</div>
+								</p>
+								<p>
+									<button class="btn btn-primary" id="btnModifiy" type="{{detailHead.personType}}" title="{{detailHead.fkPerson}}">确定</button>
+								</p>
+							</div>
+
+						</div>
+					</div>
+					<!-- 详情列表内容 -->
+					<div class="detailBody" >
+						<div>
+							<div class="detailBodyItem">
+								<div class="listItem" ng-repeat="item in detailBox">
+									<span>GIF</span>
+									<img src="{{item.pictures[0]}}"  width="100" height="100" alt="详情fkperson头像" ng-click="viewGif(item.pictures)">
+									<div class="message">
+										<p class="date">{{item.createTime.split(' ')[0]}}</p>
+										<p class="time">{{item.createTime.split(' ')[1]}}
+											<span ng-show="item.sourceId.slice(0,2)=='55'" style="background-color: green">进</span>
+											<span ng-show="item.sourceId.slice(0,2)=='6b'" style="background-color: red">出</span>
+										</p>
+										<div>
+											<button ng-click="viewScene(item.scene)">查看场景</button>
+										</div>
+									</div>
+								</div>			
+
+							</div>
+						</div>
+					</div>
+					<div class="detailFoot">
+						<div class="foot">
+							<!-- <button id="btnPre"  ng-click="expression">pre</button> -->
+							<ul uib-pagination total-items="bigTotalItems" ng-model="currentPage" max-size="maxSize" ng-change="detailFlip()" class="pagination-sm" boundary-link-numbers="true" boundary-links="true" num-pages="numPages" previous-text="上一页" next-text="下一页"
+                        first-text="首页" last-text="尾页">
+								
+							</ul>
+							<span style="position: relative;bottom: 30px" >共{{bigTotalItems/10}}页</span>
+							
+							<!-- <button id="btnNext" ng-click="next()" >next</button> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<!-- 场景图 -->
+	<div id="scene" class="model">
+		<div class="content">
+			<div class="head">
+				<p align="center">场景图<span ng-click="closeScene()">&times;</span></p>
+				
+			</div>
+			<div class="body">
+				<img  alt="场景图">
+			</div>
+			<div class="foot">
+				<button class="btn btn-primary" ng-click="closeScene()">确&nbsp;&nbsp;定</button>
+			</div>
+		</div>
+	</div>
+	<!-- 动图 -->
+	<div id="viewGif" class="model">
+		<div class="content">
+			<div class="head">
+				<p align="center">动图<span ng-click="closeGif()">&times;</span></p>
+				
+			</div>
+			<div class="body">
+				<!-- <img src="#" id="viewCanvas" alt="动图"> -->
+			</div>
+			<div class="foot">
+				<button class="btn btn-primary" ng-click="closeGif()">确&nbsp;&nbsp;定</button>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript" src="lib/jquery.2.0.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/angular.js/1.6.4/angular.min.js"  charset="utf-8"></script>
+<!-- <script type="text/javascript" src="lib/angular-ui-bootstrap.js"></script> -->
+<script type="text/javascript" src="lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script type="text/javascript" src='public/js/config.js'></script>
+<script type="text/javascript" src="src/dataInit.js"></script>
+<script type="text/javascript" src="public/js/date.js"></script>
+<script type="text/javascript" src="lib/Chart.js"></script>
+<script type="text/javascript" src="src/loadCanvas.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="src/modules.js"></script>
+
+<!-- <script type="text/javascript" src="lib/page.js"></script>-->
+<script type="text/javascript">
+// TODO 频率切换时间	
+	$(function(){
+		$('.visitItem>table').each(function(index,el){
+			console.log($(this).find('tr').length);
+			console.log($(this).children("thead").length);
+		})
+	})
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>视频图像对比</title>
+<style type="text/css">
+table {
+	border: 1px solid lightblue;
+}
+
+input[type=reset], button {
+	box-sizing: border-box;
+	padding: 4px 4px;
+	width: 70px;
+	border: height25px;
+	background-color: white;
+	border: 1px solid lightgray;
+	background-color: skyblue;
+	border: 1px solid transparent;
+	margin: 0 20px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<form action="#">
+		<table border="1" cellpadding="20" cellspacing="0">
+			<tr>
+				<td>appkey</td>
+				<td>
+					<div id="">
+						<input type="text" name="" id="appkey" value="" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>选择视频</td>
+				<td>
+					<div id="uploadVideo">
+						<input type="file" name="" id="btnVideo" value="上传视频"
+							accept="video/*" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>选择图片</td>
+				<td>
+					<div id="uploadImg">
+						<input type="file" name="" id="btnImg" value="上传图片"
+							accept="image/*" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button id="btnSubmit">提交视频</button> <input type="reset"
+					id="btnReset" name="" value="重新选择">
+				</td>
+			</tr>
+		</table>
+	</form>
+
+
+	<div id="returnMsg" style="visibility: hidden;"></div>
+</body>
+<script src="js/jquery.2.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var upvideo = document.getElementById('btnVideo');
+		var upimg = document.getElementById('btnImg');
+		var btnSubmit = document.getElementById('btnSubmit');
+		var appkey = $("#appkey");
+		appkey.val(getCookie("appkey"));
+		var videoData, imgData, appkeyData
+		upvideo.addEventListener('change', function() {
+			//
+			var file = this.files[0];
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e) {
+				var data = e.target.result.split(',')[1];
+				videoData = data;
+			}
+		}, false)
+
+		upimg.addEventListener('change', function() {
+			//
+			var file = this.files[0];
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(e) {
+				//						console.log('success')
+				var data = e.target.result.split(',')[1];
+				imgData = data
+			}
+		}, false);
+
+		document.getElementById('btnReset').addEventListener(
+				'click',
+				function() {
+
+					// body...
+					document.getElementById('btnVideo').outerHTML = document
+							.getElementById('btnVideo').outerHTML;
+					document.getElementById('btnImg').outerHTML = document
+							.getElementById('btnImg').outerHTML;
+					$("#returnMsg").css("visibility", "hidden");
+					$("#appkey").attr("value", getCookie("appkey"));
+				}, false)
+
+		btnSubmit.addEventListener('click', function() {
+			if (appkey.val() == "") {
+				wrongMsg("appkey不能为空");
+				return;
+			} else {
+				setCookie("appkey", appkey.val());
+			}
+
+			if (videoData == undefined) {
+				wrongMsg("请上传视频 ");
+				return;
+			} else if (imgData == undefined) {
+				wrongMsg("请上传图片");
+				return;
+			}
+
+			btnSubmit.setAttribute('disabled', 'disabled');
+			btnSubmit.style.backgroundColor = 'gray';
+			setTimeout(function() {
+				btnSubmit.removeAttribute('disabled');
+				btnSubmit.style.backgroundColor = 'skyblue';
+			}, 3000);
+
+			$.post("/faceserver/videoMatch?method=imageMatchVideo", {
+				'certificateImage' : imgData,
+				'personVideo' : videoData,
+				'appkey' : getCookie("appkey")
+			}, function(data) {
+				data = eval('(' + data + ')');
+				if (data.code == data.succ_code) {
+					rightMsg(data.results.score);
+				} else {
+					wrongMsg(data.msg);
+				}
+			})
+		})
+	}
+	function rightMsg(msg) {
+		$("#returnMsg").css("visibility", "visible");
+		$("#returnMsg").html(
+				"<br><a style='color: green; '>验证成功，匹配分值" + msg + "</a>");
+	}
+	function wrongMsg(msg) {
+		$("#returnMsg").css("visibility", "visible");
+		$("#returnMsg").html("<br><a style='color: red; '>" + msg + "</a>");
+	}
+</script>
+</html>

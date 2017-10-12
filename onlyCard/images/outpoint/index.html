@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>wewe</title>
+	<style type="text/css">
+		body{
+			background-color: black
+		}
+	</style>
+</head>
+<body>
+	<div style="width: 200px;height: 200px">
+		<!-- <img id="bibi" src="outpoint101.png"> -->
+		<canvas id="cvs"></canvas>
+	</div>
+	<script type="text/javascript">
+		var i=101;
+		var img=document.getElementById('bibi');
+		var cvs=document.getElementById('cvs');
+		// var ctx=cvs.context
+		setInterval(function(){
+			if (i<700) {
+				bibi.src='outpoint'+i+'.png';
+				i++;
+			}else{
+				bibi.src='outpoint'+i+'.png';
+				i=101;
+			}
+				
+		},40)
+			
+	</script>
+</body>
+</html>

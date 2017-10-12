@@ -1,0 +1,184 @@
+@import url("reset.css");
+img,input{ vertical-align: middle;} 
+//封装宽 高 背景
+.whb(@w,@h,@b){
+    width:@w;
+    height:@h;
+    background:@b ;
+    margin: 0 auto;
+}
+.wh(@w,@h,@b){
+    width:@w;
+    height:@h;
+    background:@b ;
+}
+
+//封装浮动
+.f(@f){
+    float:@f;
+}
+
+//封装定位 相对定位
+.r{
+    position:relative;
+}
+//绝对定位
+.a{
+    position: absolute;
+}
+
+.big_main{
+    .whb(1920px,1080px,url('../img/background.png') no-repeat);
+    position: relative;
+    .header{
+        .whb(1920px,120px,url('../img/head.png') no-repeat);
+        position: absolute;
+        top:0;
+    }
+    .main{
+        padding: 160px 270px 120px 270px;
+        box-sizing: border-box;
+        .main_l{
+            .wh(580px,600px,none);
+            .f(left);
+            dl{
+                .whb(560px,184px,url('../img/header_background.png') no-repeat);
+                padding-left: 34px;
+                padding-top: 18px;
+                box-sizing: border-box;
+                clear: both;
+                margin-left: 0;
+                dt{
+                    .f(left);
+                    .whb(144px,144px,none);
+                    border: 3px solid #6eb3f6;
+                    border-radius: 50%;
+                    img{
+                    }
+                }
+                dd{
+                    .f(left);
+                    padding-left: 53px;
+                    box-sizing: border-box;
+                    h2{
+                        color: #fffef8;
+                        margin-bottom: 15px;
+                        font-size: 34px;
+                    }
+                    p{
+                        color: #5cb7fe;
+                        line-height: 36px;
+                        font-size: 26px;
+                    }
+                }
+                &:first-child{
+                    margin-bottom: 50px;
+                    margin-top: 75px;
+                }
+                &:nth-child(2){
+                    margin-bottom: 50px;
+                }
+            }
+        }
+        .main_r{
+            .f(right);
+            .whb(590px,800px,url('../img/shibie.png') no-repeat);
+            position: relative;
+            h3{
+                color: #fffef8;
+                margin-bottom: 15px;
+                font-size: 46px;
+                position: absolute;
+                top: 480px;
+                left: 52px;
+                .whb(488px,96px,none);
+                text-align: center;
+                line-height: 96px;
+                cursor: pointer;
+            }
+            p{
+                color: #5cb7fe;
+                line-height: 36px;
+                font-size: 26px;
+                position: absolute;
+                
+                &:last-child{
+                    top: 665px;
+                    left: 258px;
+                }
+            }
+            .date{
+                    top: 616px;
+                    left: 190px;
+                    letter-spacing: 2px;
+                }
+        }
+    }
+    .footer{
+        .whb(1920px,85px,url('../img/footer.png') no-repeat);
+        position: absolute;
+        bottom:0;
+    }
+    .yanzheng{
+        .whb(1600px,800px,#10263d);
+        opacity:0.9;
+        position: absolute;
+        top: 160px;
+        left: 160px;
+        text-align: center;
+        display: none;
+        h2{
+            font-size: 42px;
+            color: #fff;
+            margin-top: 70px;
+            margin-bottom: 60px;
+        }
+        .bidui{
+            .whb(720px,300px,none);
+            border: 2px solid #52b0fa;
+            padding: 60px 115px;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+            dl{
+                dt{
+                    margin-bottom: 15px;
+                }
+                dd{
+                    color: #f7ffff;
+                    font-size: 22px;
+                    letter-spacing: 3px;
+                }
+                &:first-child{
+                    .f(left);
+                }
+                &:last-child{
+                    .f(right);
+                }
+            }
+        }
+        h3{
+            color: #32a6fb;
+            font-size: 32px;
+            margin-bottom: 75px;
+            letter-spacing: 3px;
+        }
+        button{
+            .whb(366px,96px,none);
+            font-size: 28px;
+            padding-left: 75px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .yes{
+            background: url('../img/yes.png') no-repeat;
+            border:none;
+            margin-right: 40px;
+            color: #49db5f;
+        }
+        .no{
+            background: url('../img/no.png') no-repeat;
+            border:none;
+            color: #e73f12;
+        }
+    }
+}

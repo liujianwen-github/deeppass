@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>deepdot后台登录</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<style type="text/css">
+legend {
+	font-size: 18px;
+}
+
+.form-group {
+	width: 300px;
+	margin: 0 auto;
+}
+
+article {
+	padding: 100px;
+}
+
+#container {
+	width: 1200px;
+	margin: 0 auto !important;
+	/*border: 1px dashed red;*/
+	margin-top: 50px !important;
+	border-radius: 10px;
+	overflow: hidden;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<header>
+			<h2 style="margin: 0;">Deepdot</h2>
+		</header>
+		<article>
+			<fieldset id="">
+				<legend class="form-group">用户登录</legend>
+				<div class="form-group">
+					<label for="username">用户名：</label> <input type="text"
+						class="form-control" id="username" autofocus="autofocus"
+						placeholder="username">
+				</div>
+				<div class="form-group">
+					<label for="password">密码：</label> <input type="password"
+						class="form-control" id="password" placeholder="password">
+				</div>
+				<div class="form-group text-center"
+					style="margin-top: 50px; text-align: center; width: 200px;">
+					<input type="button" value="登录" onclick="login();"
+						class="btn btn-info navbar-left"><input type="reset"
+						value="清空" class="btn btn-info navbar-right">
+				</div>
+			</fieldset>
+		</article>
+	</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.1.8.js"></script>
+<script type="text/javascript" src="js/web.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>返查结果</title>
+<link rel="stylesheet" type="text/css" href="css/end.css" />
+</head>
+<body>
+	<div class="w">
+		<div class="img"></div>
+
+		<div class="cont">
+			<ul class="ul">
+
+			</ul>
+		</div>
+
+		<div class="time">
+			<ul class="ul">
+				<div class="top"></div>
+				<div class="bottom"></div>
+				<li></li>
+
+			</ul>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript" src="lib/jquery.1.8.js"></script>
+<script type="text/javascript" src="js/end.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/ajax-pushlet-client.js"></script>
+<script type="text/javascript">
+	PL._init();
+	PL.userId = "reverse";
+	PL.joinListen("reverseListener");
+	function onData(event) {
+		var json = eval("(" + event.arr.msg + ")");
+		var method = json.method;
+		console.log("method = " + method);
+		if (method == undefined || method == "pushReverseStart") {
+			window.location = "stat.html"
+		} else if (method == "pushReverseStop") {
+
+		} else if (method == "pushReverseEnd") {
+			window.location = "index.html"
+		} else if (method == "pushReverseAgain") {
+			//window.location = "stat.html"
+		}
+	}
+</script>
+</html>

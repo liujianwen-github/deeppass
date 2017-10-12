@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width: 100%; height: 100%">
+
+<head>
+<meta charset="utf-8">
+<title>上传视频</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<meta name="apple-touch-fullscreen" content="yes">
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="weui-1.1.1/dist/style/weui.min.css" />
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="js_dialog" id="iosDialog1" style="display: none;">
+		<div class="weui-mask" style="background: rgba(0, 0, 0, 0.8);"></div>
+		<div class="weui-dialog" style="background-color: inherit;">
+			<div>
+				<p>
+					<img src="images/timg.png" />
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="js_dialog" id="iosDialog2" style="display: none;">
+		<div class="weui-mask"></div>
+		<div class="weui-dialog">
+			<div class="weui-dialog__bd">
+				<span class="fa fa-spin fa-spinner" id="spanIcon"></span>
+				<p>正在读取文件</p>
+			</div>
+		</div>
+	</div>
+	<!--视频位置-->
+
+	<div id="videoBox"
+		style="max-width: 300px; max-height: 300px; opacity: 0; position: absolute;">video</div>
+	<div class="containers">
+
+		<div class="collectImg">
+			<img src="images/distinguishHead.jpg" alt="" />
+		</div>
+		<div class="collectTip">
+			<p class="top">采集时间为5秒，轻微晃动手机</p>
+			<p>为保证良好的采集效果,请注意光线充足正对手机,不要在昏暗或逆光下扫描</p>
+			<p>采集时会使用手机流量，建议使用wifi环境</p>
+		</div>
+		<div class="camera-area">
+			<form enctype="multipart/form-data" method="post">
+				<div style="position: relative;" class="collectBtn">
+					采集视频<input type="file" id="collectbtn" name="fileToUpload"
+						class="fileToUpload collectBtn" accept="video/mp4"
+						capture="camera" />
+					<div class="upload-progress">
+						<span></span>
+					</div>
+					<!-- <div class="thumb"></div> -->
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="nmslwsnd"
+		style="width: 100px; position: fixed; top: 10px; right: 10px; color: red; opacity: 0;"></div>
+	<div id="output" style="opacity: 1; display: none;">out</div>
+	<!--output输出视频截图
+		nmslwsnd输出控制台信息
+		videobox输出加载文件的视频-->
+
+</body>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<!-- <script type="text/javascript" src="js/androidBrowser.js"></script> -->
+<!--安卓上传接口-->
+<script type="text/javascript" src="js/upload.js"></script>
+<!--ios上传接口-->
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var agent = navigator.userAgent.toLowerCase();
+		var platform = navigator.platform.toLowerCase();
+		var userId = GetQueryString("bili");
+		// if (agent.match(/iphone/g) && platform.match(/iphone/g)) {
+			//ios手机，并且操作系统iphone
+			//alert('iphone');
+			$(".camera-area").fileUpload(
+					{
+						"url" : config.API_HOST + "/upload/video?userkey="
+								+ config.USERKEY,
+						"file" : "myFile"
+					}, function(data) {
+						var json = data;
+						if (json.code == 0) {
+							alert("上传完成!");
+							window.location.href = 'index.html';
+						} else {
+							alert(json.msg);
+						}
+					});
+
+		// } else {
+		// 	//alert('android');
+		// 	setCookie("userId", userId);
+		// 	chose();
+		// }
+
+	})
+</script>
+
+</html>

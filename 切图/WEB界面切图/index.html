@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width:100%;height:100%">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="white"/>
+    <meta name="apple-touch-fullscreen" content="yes">
+
+    <link href="css/style.css"rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/jquery.jscrollpane.css" rel="stylesheet" />
+    <link href="css/jedate.css" rel="stylesheet" />
+    <!--
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="icon-57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="icon-72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icon-144.png">-->
+   </head>
+
+
+<body>
+    <div class="containers">
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="未来门禁演示系统 1.0"/>
+            未来门禁演示系统 1.0
+        </div>
+        <div class="option">
+            <a href="javascript:void(0);" class="cur">陌生人</a>
+            <a href="javascript:void(0);">识别用户</a>
+        </div>
+        <a class="logout" href="javascript:void(0);">退出登陆</a>
+    </header>
+    <div class="location">
+        <div class="locationInfo">
+            设备位置：公司门口
+        </div>
+        <div class="visitData">
+            <div class="dataInfo">今日到访<span>128 </span></div>
+            <div class="dataInfo">陌生人<span>18 </span></div>
+            <div class="dataInfo">识别用户 <span>28 </span></div>
+        </div>
+    </div>
+
+    <div class="optionContent">
+        <div class="optionTab">
+            <ul>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person3.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person2.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person4.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person3.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person2.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person3.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person2.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+                <li class="oUserInfo">
+                    <a href="javascript:void(0);" data-reveal-id="createUser"><img src="images/person.jpg" alt="头像信息" /></a>
+                    <div class="time">
+                        到访时间<span>16:45</span>
+                    </div>
+                </li>
+            </ul>
+
+
+            <div class="clear"></div>
+
+        </div>
+        <div style="display: none;" class="optionTab">
+            <div class="alreadyRecognition">
+                <div class="recTab">
+                    今日识别用户
+                </div>
+                <div class="recognitionContent">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person3.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person2.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person2.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person3.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person2.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="name">16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="resUser">
+                <div class="recTab">
+                    注册用户
+                </div>
+                <div class="recognitionContent">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person3.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person3.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person2.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person4.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage3">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage4">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person3.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" data-reveal-id="userInfos"><img src="images/person2.jpg" alt="用户头像" /></a>
+                            <div class="recInfo">
+                                <p class="name">李女士</p>
+                                <p class="finalTime">最后到访时间</p>
+                                <p class="resTime">2016-10-15<br/>16:30</p>
+                                <a class="setWord" href="javascript:void(0);" data-reveal-id="leaveMessage">设置留言</a>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- 未识别－新建用户 start -->
+    <div id="createUser" class="reveal-modal createUser">
+
+        <a class="close-reveal-modal">&#215;</a>
+        <div class="dialogTop">
+            <div class="setHead">
+                <img src="images/person.jpg" alt="头像"/>
+                <a href="javascript:void(0);" title="修改头像">修改头像</a>
+            </div>
+            <div class="addUser">
+                <p class="title">新建用户</p>
+                <p class="addName"><label for="addName">姓名</label><input type="text" name="" id="addName"></p>
+                <div class="addSex"><label>性别</label>
+                    <div class="pItem current">男<input name="sex" type="radio" value="1" class="radio" checked=""></div>
+                    <div class="pItem last">女<input name="sex" type="radio" value="0" class="radio" ></div>
+                </div>
+                <a class="analysis close-reveal-modal" href="javascript:void(0);" title="智能分析" data-reveal-id="intelligentAnalysis">智能分析</a>
+            </div>
+        </div>
+
+        <div class="dialogBottom">
+            <a href="javascript:void(0);" title="取消" class="close-reveal-modal">取消</a>
+            <a href="javascript:void(0);" title="确定" class="close-reveal-modal" data-reveal-id="createUserSuccess">确定</a>
+        </div>
+
+    </div>
+    <!-- 未识别－新建用户 end -->
+
+    <!-- 未识别－智能分析 start -->
+    <div id="intelligentAnalysis" class="reveal-modal intAnalysis">
+        <a class="close-reveal-modal">&#215;</a>
+        <div class="dialogTop">
+            <div class="setHead">
+                <img src="images/person.jpg" alt="头像"/>
+            </div>
+            <div class="addUser">
+                <p class="analysisTitle">智能分析</p>
+                <p class="analysisInfo">TA可能是以下某一位</p>
+
+            </div>
+        </div>
+
+        <div class="dialogBottom">
+            <div class="intContent addSex">
+                <div class="pItem current">
+                    <img src="images/person3.jpg" alt="">
+                    <hr/>
+                    <input name="pay" type="radio" value="1" class="radio" checked="">
+                    <p>李先生</p>
+                </div>
+                <div class="pItem">
+                    <img src="images/person.jpg" alt="">
+                    <hr/>
+                    <input name="pay" type="radio" value="2" class="radio" >
+                    <p>李先生</p>
+                </div>
+                <div class="pItem">
+                    <img src="images/person2.jpg" alt="">
+                    <hr/>
+                    <input name="pay" type="radio" value="3" class="radio" >
+                    <p>李先生</p>
+                </div>
+
+            </div>
+            <div class="intAnalysisBtn">
+                <a href="javascript:void(0);" title="返回" class="close-reveal-modal" data-reveal-id="createUser">返回</a>
+                <a href="javascript:void(0);" title="完成" class="close-reveal-modal" data-reveal-id="createUserSuccess">完成</a>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- 未识别－智能分析 end -->
+    <!-- 未识别－新建用户成功 start -->
+    <div id="createUserSuccess" class="reveal-modal createUserSuccess">
+        <a class="close-reveal-modal">&#215;</a>
+        <div class="dialogTop">
+
+            <img src="images/person.jpg" alt="头像"/>
+            <p>李先生</p>
+            <p>到访时间&nbsp;&nbsp;16：:45</p>
+
+        </div>
+
+        <div class="dialogBottom">
+
+            <img src="images/code.jpg" alt="二维码"/>
+            <p>扫描二维码关注微信公众公众号</p>
+            <p>随时查询自己的识别记录</p>
+            <div class="intAnalysisBtn">
+
+                <a href="javascript:void(0);" title="完成" class="close-reveal-modal" >完成</a>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- 未识别－新建用户成功 end -->
+
+    <!-- 已识别用户－设置留言 start -->
+    <div id="leaveMessage" class="reveal-modal leaveMessage">
+        <a class="close-reveal-modal">&#215;</a>
+        <div class="dialogTop">
+            <div class="setHead">
+                <img src="images/person.jpg" alt="头像"/>
+            </div>
+            <div class="leaveMessageTop">
+                <p class="name">张三</p>
+                <p class="nameSet">留言设置</p>
+                <div class="addSex">
+                    <div class="pItem current">短期留言<input name="message" type="radio" value="1" class="radio" checked=""></div>
+                    <div class="pItem">长期留言<input name="message" type="radio" value="0" class="radio" ></div>
+                </div>
+                <div class="shortMessage">
+                    <div class="timeChoose">开始时间：<input class="datainp" id="startDate" type="text" placeholder="请选择"  readonly></div>
+                    <div class="timeChoose">结束时间：<input class="datainp" id="endDate" type="text" placeholder="请选择"  readonly></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="leaveMessageContent">
+            <p class="title">留言会在设定时段内识别张三时出现 (最长不超过20字)</p>
+            <textarea name="" id="" placeholder="请输入留言内容..."></textarea>
+        </div>
+        <div class="dialogBottom">
+            <a href="javascript:void(0);" title="取消" class="close-reveal-modal">取消</a>
+            <a href="javascript:void(0);" title="确定" class="close-reveal-modal">确定</a>
+        </div>
+
+    </div>
+    <!-- 已识别用户－设置留言 end -->
+
+        <!-- 已识别用户－用户详情 start -->
+    <div id="userInfos" class="reveal-modal userInfos">
+        <a class="close-reveal-modal">&#215;</a>
+        <div class="dialogTop">
+            <div class="setHead">
+                <img src="images/person.jpg" alt="头像"/>
+            </div>
+            <div class="leaveMessageTop">
+                <p class="name">张三</p>
+                <p class="userInfoTime"><span>最后到访时间：</span>2016-08-27  09:35</p>
+                <p class="userInfoTime"><span>注册时间：</span>2016-08-27  09:35</p>
+                <p class="userInfoTime"><span>注册方式：</span>手机注册</p>
+
+            </div>
+
+        </div>
+
+        <div class="userInfosItem">
+            <a class="search close-reveal-modal" href="javascript:void(0);" title="查找未成功识别记录"  data-reveal-id="searchResult">查找未成功识别记录</a>
+            <div class="searchList">
+                <p class="title">识别快照</p>
+                <div class="scrollInfo">
+                    <ul id="userScroll">
+                        <li>
+                            <div class="time">
+                                <p class="date">2016-08-27  </p>
+                                <p class="num">09：35</p>
+                            </div>
+                            <img src="images/searchList.jpg" alt=""/>
+                            <hr/>
+                        </li>
+                        <li>
+                            <div class="time">
+                                <p class="date">2016-08-27  </p>
+                                <p class="num">09：35</p>
+                            </div>
+                            <img src="images/searchList.jpg" alt=""/>
+                            <hr/>
+                        </li>
+                        <li>
+                            <div class="time">
+                                <p class="date">2016-08-27  </p>
+                                <p class="num">09：35</p>
+                            </div>
+                            <img src="images/searchList.jpg" alt=""/>
+                            <hr/>
+                        </li>
+                        <li>
+                            <div class="time">
+                                <p class="date">2016-08-27  </p>
+                                <p class="num">09：35</p>
+                            </div>
+                            <img src="images/searchList.jpg" alt=""/>
+                            <hr/>
+                        </li>
+                        <li>
+                            <div class="time">
+                                <p class="date">2016-08-27  </p>
+                                <p class="num">09：35</p>
+                            </div>
+                            <img src="images/searchList.jpg" alt=""/>
+                            <hr/>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- 已识别用户－用户详情 end -->
+
+    <!-- 已识别用户－用户详情 start -->
+    <div id="searchResult" class="reveal-modal searchResult">
+        <a class="close-reveal-modal">&#215;</a>
+        <div class="dialogTop">
+            <div class="setHead">
+                <img src="images/person.jpg" alt="头像"/>
+            </div>
+            <div class="leaveMessageTop">
+                <p class="name">张三</p>
+                <span class="searchItem">智能分析查找</span>
+
+                <div class="searchTimeInfo">
+                        <div class="addSex">
+                            <div class="pItem current">半小时<input name="hour" type="radio" value="1" class="radio" checked=""></div>
+                            <div class="pItem">4小时<input name="hour" type="radio" value="2" class="radio" ></div>
+                            <div class="pItem">12小时<input name="hour" type="radio" value="3" class="radio" ></div>
+                            <div class="pItem">24小时<input name="hour" type="radio" value="4" class="radio" ></div>
+                            <div class="pItem">自定义<input name="hour" type="radio" value="5" class="radio" ></div>
+                            <div class="hourNum"><input type="text"/>小时</div>
+                        </div>
+                        <a href="javascript:void(0);" class="searchBtn">查找</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="searchInfoBottom">
+            <p class="tip">以下是智能分析在半小时内查找到的最接近张三的来宾，请确认</p>
+            <div class="searchInfoBottomCont" id="searchInfoBottomCont">
+                <ul class="JQ-slide-content">
+                    <li>
+                        <img src="images/searchList.jpg" alt=""/>
+                        <p class="date">2016-10-01  11:32</p>
+                        <div class="dialogBottom">
+                            <a href="javascript:void(0);" title="确定" class="close-reveal-modal">确定</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/searchList.jpg" alt=""/>
+                        <p class="date">2016-10-02  11:32</p>
+                        <div class="dialogBottom">
+                            <a href="javascript:void(0);" title="确定" class="close-reveal-modal">确定</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/searchList.jpg" alt=""/>
+                        <p class="date">2016-10-03  11:32</p>
+                        <div class="dialogBottom">
+                            <a href="javascript:void(0);" title="确定" class="close-reveal-modal">确定</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/searchList.jpg" alt=""/>
+                        <p class="date">2016-10-04  11:32</p>
+                        <div class="dialogBottom">
+                            <a href="javascript:void(0);" title="确定" class="close-reveal-modal">确定</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/searchList.jpg" alt=""/>
+                        <p class="date">2016-10-05  11:32</p>
+                        <div class="dialogBottom">
+                            <a href="javascript:void(0);" title="确定" class="close-reveal-modal">确定</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/searchList.jpg" alt=""/>
+                        <p class="date">2016-10-06  11:32</p>
+                        <div class="dialogBottom">
+                            <a href="javascript:void(0);" title="确定" class="close-reveal-modal">确定</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="JQ-slide-nav">
+                    <a class="prev" href="#">
+                        <span></span>
+                    </a>
+                    <a class="next" href="#">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- 已识别用户－用户详情 end -->
+
+</body>
+<script type="text/javascript" src="js/jquery.1.8.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/jq.Slide.js"></script>
+<script type="text/javascript" src="js/jquery.jedate.min.js"></script>
+<script type="text/javascript" src="js/content.js"></script>
+<script type="text/javascript" src="js/jquery.reveal.js"></script>
+
+
+</html>

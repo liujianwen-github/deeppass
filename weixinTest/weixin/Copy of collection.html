@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width: 100%; height: 100%">
+
+<head>
+<meta charset="utf-8">
+<title>上传视频</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<meta name="apple-touch-fullscreen" content="yes">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="weui-1.1.1/dist/style/weui.min.css" />
+</head>
+
+<body>
+
+	<div class="js_dialog" id="iosDialog2" style="display: none;">
+		<div class="weui-mask"></div>
+		<div class="weui-dialog">
+			<div class="weui-dialog__bd">
+				<span class="fa fa-spin fa-spinner" id="spanIcon"></span>
+				<p>请稍后，正在上传...</p>
+			</div>
+		</div>
+	</div>
+	<div id="videoBox"
+		style="max-width: 300px; max-height: 300px; opacity: 0; position: absolute;"></div>
+	<div class="containers">
+		<div class="collectImg">
+			<img src="images/distinguishHead.jpg" alt="" />
+		</div>
+		<div class="collectTip">
+			<p class="top">采集时间为5秒，轻微晃动手机</p>
+			<p>为保证良好的采集效果,请注意光线充足正对手机,不要在昏暗或逆光下扫描</p>
+			<p>采集时会使用手机流量，建议使用wifi环境</p>
+		</div>
+		<div class="camera-area">
+			<form enctype="multipart/form-data" method="post">
+				<div style="position: relative;" class="collectBtn">
+					采集视频<input type="file" id="collectbtn" name="fileToUpload"
+						class="fileToUpload collectBtn" accept="video/*" capture="camera" />
+					<div class="upload-progress">
+						<span></span>
+					</div>
+					<!-- <div class="thumb"></div> -->
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--<div id="nmslwsnd"></div>-->
+</body>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript" src="js/androidBrowser.js"></script>
+<script type="text/javascript" src="js/upload.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript">
+	$(function() {
+
+		var agent = navigator.userAgent.toLowerCase();
+		var platform = navigator.platform.toLowerCase();
+		//			alert(platform)
+		var userId = window.location.search.slice(6);
+		if (agent.match(/iphone/g) && platform.match(/iphone/g)) {
+			//ios手机，并且操作系统iphone
+			// $('#nmslwsnd').remove();
+			// $('#output').remove();
+			// $('#videoBox').remove();
+			alert('iphone');
+			$('#iosDialog2 .weui-dialog__bd p').html('正在上传');
+
+			$(".camera-area").fileUpload(
+					{
+						"url" : config.API_SERVER + "/upload/video?userkey="
+								+ config.USERKEY,
+						"file" : "myFile"
+					}, function(data) {
+						//alert(JSON.stringify(data));
+						var json = eval('(' + data + ')');
+						if (json.code == 0) {
+							alert("上传完成!");
+							window.location.href = 'index.html';
+						} else {
+							alert(json.msg);
+						}
+					});
+
+		} else {
+			//				console.log(EXIF)
+			alert('android');
+			chose();
+		}
+
+	})
+</script>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>展示首页</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+<body>
+	<div class="w">
+		<header> </header>
+		<div class="cont">
+			<div class="left-cont">
+				<div class="top">
+					<div class="video a1">
+						<OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921"
+							id="072b619c-7d02-4215-9265-ad2c982e2767" id="videoSource"
+							events="True">
+							<param name="AutoLoop" value="1" />
+							<param name='autoplay' value='True' />
+							<EMBED pluginspage="http://www.videolan.org"
+								type="application/x-vlc-plugin" version="VideoLAN.VLCPlugin.2"
+								width="796" height="480" name="vlc" loop="yes"
+								target="rtsp://admin:abcd1234@192.168.1.66:554"></EMBED>
+						</OBJECT>
+					</div>
+				</div>
+				<div class="buttom">
+					<div class="allperson">
+						<div class="img">
+							<p></p>
+							<span>今日到访</span>
+						</div>
+					</div>
+					<div class="sex">
+						<div class="img">
+							<p class="man"></p>
+							<p class="women"></p>
+						</div>
+					</div>
+					<div class="ten age">
+						<div class="img">
+							<p></p>
+							<span>小于20岁</span>
+							<div id="indicatorContainer1"></div>
+						</div>
+					</div>
+					<div class="two age">
+						<div class="img">
+							<p></p>
+							<span>20-40岁</span>
+							<div id="indicatorContainer2"></div>
+						</div>
+					</div>
+					<div class="four age">
+						<div class="img">
+							<p></p>
+							<span>大于40岁</span>
+							<div id="indicatorContainer3"></div>
+						</div>
+					</div>
+					<div class="saomiao">
+						<div class="img">
+							<div class="sao left"></div>
+							<p>正在扫描</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="right-cont">
+				<div class="top">
+					<div class="video a2">
+						<OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921"
+							id="f8a243c5-3fac-4573-a9e4-5283945ea80a" id="videoSource1"
+							events="True">
+							<param name="AutoLoop" value="1" />
+							<param name='autoplay' value='True' />
+							<EMBED pluginspage="http://www.videolan.org"
+								type="application/x-vlc-plugin" version="VideoLAN.VLCPlugin.2"
+								width="796" height="480" name="vlc" loop="yes"
+								target="v4l2:///dev/video1:width=640:height=320"></EMBED>
+						</OBJECT>
+					</div>
+				</div>
+				<div class="buttom">
+					<div class="allperson">
+						<div class="img">
+							<p></p>
+							<span>今日到访</span>
+						</div>
+					</div>
+					<div class="sex">
+						<div class="img">
+							<p class="man"></p>
+							<p class="women"></p>
+						</div>
+					</div>
+					<div class="ten age">
+						<div class="img">
+							<p></p>
+							<span>小于20岁</span>
+							<div id="indicatorContainer4"></div>
+						</div>
+					</div>
+					<div class="two age">
+						<div class="img">
+							<p></p>
+							<span>20-40岁</span>
+							<div id="indicatorContainer5"></div>
+						</div>
+					</div>
+					<div class="four age">
+						<div class="img">
+							<p></p>
+							<span>大于40岁</span>
+							<div id="indicatorContainer6"></div>
+						</div>
+					</div>
+					<div class="saomiao">
+						<div class="img">
+							<div class="sao right"></div>
+							<p>正在扫描</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="show">
+			<ul class="ul">
+				<li style="margin-left: 1428px;">
+					<!--<div class="bg">
+							<div class="img">
+								<div>
+									<img src="http://img.article.pchome.net/00/47/42/55/pic_lib/wm/05.jpg"/>
+								</div>
+							</div>
+							<div class="info"> 
+								<p class="age">
+									<span>
+										<img src="images/women.png"/>
+									</span>
+									<i>20-40岁</i>
+								</p>
+								<p class="shipin">
+									<span>
+										<img src="images/glasses.png"/>
+									</span>
+									<i>Camera1</i>
+								</p>
+							</div>
+						</div>-->
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript" src="lib/jquery.1.8.js"></script>
+<script type="text/javascript" src="lib/radialIndicator.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/animate.js"></script>
+<script type="text/javascript" src="js/config.js"></script>
+<script type="text/javascript" src="js/ajax-pushlet-client.js"></script>
+<script type="text/javascript">
+	$(function(){
+		console.log(config.videoId);
+		console.log(config.videoTarget);
+		console.log($('.a1 object').attr('id'));
+		console.log($('.a1 object embed').attr('target'));
+		$('.a1 object').attr('id',config.videoId);
+		$('.a1 object embed').attr('target',config.videoTarget);
+		console.log($('.a1 object').attr('id'));
+		console.log($('.a1 object embed').attr('target'));
+	})
+	
+	
+	
+//	PL._init();
+//	PL.userId = 'pushlet';
+//	PL.joinListen('/push/facetrack');
+//	PL.joinListen('/push/FaceTrackCreated');
+//	function onData(event) {
+//		var json = eval("(" + event.arr.msg + ")");
+//		var method = json.method;
+//		console.log("method = " + method);
+//		if (method == undefined || method == "faceTrackCreated") {
+//			getData(json);
+//			animate();
+//		} else if (method == "reverseStart") {
+//			window.location = "stat.html"
+//		}
+//	}
+	
+	
+</script>
+</html>

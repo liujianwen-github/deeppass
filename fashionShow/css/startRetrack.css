@@ -1,0 +1,85 @@
+html,body{
+	color:#000;
+	background:#FFF;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+ul,li{
+	list-style: none;
+}
+img{
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+body{
+	/*overflow: hidden;*/	
+}
+
+.clearfix:after { 
+	content: "" ; 
+	display: block ;
+	height: 0 ;
+	clear: both ;
+	visibility: hidden ;
+}
+.w{
+	width: 1920px;
+	height: 1080px;
+	background-color: lavender;
+	border: 1px solid transparent;
+	position: relative;
+}
+header{
+	height: 150px;
+	background-color: #fff;
+}
+.show{
+	visibility: visible;
+	height: 800px;
+	width: 1500px;
+	margin: 0 auto;
+	background-color: burlywood;
+	border: 1px solid #005580;
+	border-radius: 20px;
+	overflow: hidden;
+}
+.top	{
+	height: 300px;
+	border-bottom: 1px solid darkcyan;
+}
+.top .img{
+	height: 300px;
+	padding: 0 50px;
+}
+.img li{
+	float: left;
+	width: 200px;
+	height: 200px;
+	margin: 50px 30px 30px;
+	background-color: green;
+}
+.cont .img{
+	height: 500px;
+	padding: 0 50px;
+}
+.cont .img li{
+	margin: 20px 15px 15px;
+}
+
+.loading{
+	position: absolute;
+	display: none;
+	height: 800px;
+	width: 1500px;
+	top: 0px;
+	left: 210px;
+	background-color: skyblue;
+	border: 1px solid #005580;
+	border-radius: 20px;
+	overflow: hidden;
+}

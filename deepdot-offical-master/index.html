@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+		<!--<meta name="" content=""/>-->
+	<meta name="viewport" content="height=device-height, width =device-width, user-scalable = no"/>  
+	<title>深度未来</title>
+	<!--[if IE]>
+	<script src=”lib/html5shiv.min.js”></script>
+	< ![endif]-->
+	<link rel="icon" href="" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body id="index-page" >
+	<img src="img/m-background.png" id="mbackgroundImg" >
+	<img src="img/backgroundImg.png" id="backgroundImg" >
+	<div class="containers">
+		<div id="center">
+			<div id="output" style="position: absolute;color: red;"></div>
+			<div id="box">
+				<div class="headLeft">
+					<img src="img/logo.png"/>
+				</div>
+			</div>
+			<div class="box" id="center-title">
+				<img src="img/center-title.png"/>
+			</div>
+
+			<div class="box">
+				<div id="img_camera">
+					<img id="switchOff" src="img/switchOff.png"/>
+					<img id="switchOn" style="opacity: 0;" src="img/switchOn.png"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.body.ontouchmove=function(e){
+			window.onload=disabledMouseWheel;  
+		    e.preventDefault();
+		}
+	</script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		$('.containers').css('height')
+	</script>
+</body>
+</html>

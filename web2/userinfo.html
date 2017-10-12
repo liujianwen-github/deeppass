@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width: 100%; height: 100%">
+<head>
+<meta charset="utf-8">
+<title>deepdot演示后台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<meta name="apple-touch-fullscreen" content="yes">
+
+
+<link rel="stylesheet" type="text/css" href="css/jPages.css"/>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/jquery.jscrollpane.css" rel="stylesheet" />
+<link href="css/jedate.css" rel="stylesheet" />
+
+</head>
+
+
+<body onload="pageInit();"style="overflow: hidden;">
+	<div class="containers">
+		<header>
+			<div class="logo">
+				<img src="images/logo.png" alt="未来门禁演示系统 1.0" /> 未来门禁演示系统 1.0
+			</div>
+			<div class="option">
+				<a href="javascript:void(0);" id="1" class="cur">陌生人</a> 
+				<a href="javascript:void(0);" id="2">识别用户</a> 
+				<a href="javascript:void(0);" id="3">注册用户</a>
+			</div>
+			<a class="logout" href="javascript:void(0);" onclick="logout();">退出登陆</a>
+		</header>
+		<div class="location">
+			<div class="locationInfo"></div>
+			<div class="visitData"></div>
+		</div>
+		<div class="optionContent">
+			
+			<div class="optionTab">
+				<div class="recTab">陌生人</div>
+				<ul class="unknowList" id="itemContainer"></ul>
+				<div class="holder"></div>
+				<div class="clear"></div>
+			</div>
+			<div style="display: none;" class="optionTab">
+				<div class="alreadyRecognition">
+					<div class="recTab">今日识别用户</div>
+					<div class="recognitionContent">
+						<ul class="knowList" id="itemContainer"></ul>
+						<div class="holder"></div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div style="display: none;" class="optionTab">
+				<div class="resUser">
+					<div class="recTab">注册用户</div>
+					<div class="recognitionContent">
+						<ul class="useList" id="itemContainer"></ul>
+						<div class="holder"></div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 未识别－新建用户 start -->
+	<div id="createUser" class="reveal-modal createUser">
+		<!--creatUser-->
+	</div>
+	<!-- 未识别－新建用户 end -->
+
+	<!-- 未识别－智能分析 start -->
+	<div id="intelligentAnalysis" class="reveal-modal intAnalysis">
+		<a class="close-reveal-modal">&#215;</a>
+		<div class="dialogTop">
+			<div class="setHead">
+				<!--<span>修改头像</span>-->
+				<!--添加用户头像-->
+			</div>
+
+			<div class="addUser">
+				<p class="analysisTitle">智能分析</p>
+				<p class="analysisInfo">TA可能是以下某一位</p>
+				<br /> <a class="analysis close-reveal-modal addNewUser"
+					href="javascript:void(0);" title="无匹配用户"
+					data-reveal-id="createUser">无匹配用户</a>
+			</div>
+		</div>
+
+		<div class="dialogBottom">
+			<div class="intContent addSex"></div>
+			<div class="intAnalysisBtn">
+				<a href="javascript:void(0);" title="返回" class="close-reveal-modal">返回</a>
+				<a href="javascript:void(0);" onclick="addPerson();" title="完成"
+					class="close-reveal-modal" data-reveal-id="createUserSuccess">完成</a>
+			</div>
+		</div>
+
+
+	</div>
+	<!-- 未识别－智能分析 end -->
+	<!-- 未识别－新建用户成功 start -->
+	<div id="createUserSuccess" class="reveal-modal createUserSuccess">
+		<!--
+        	作者：13502079954@163.com
+        	时间：2017-02-22
+        	描述：创建成功显示界面
+        -->
+		<!--<a class="close-reveal-modal">&#215;</a>
+		<div class="dialogTop">
+			<img src="images/person.jpg" alt="头像" />
+			<p>useName</p>
+			<p>到访时间&nbsp;&nbsp;<span>16:45time</span></p>
+		</div>
+
+		<div class="dialogBottom">
+			<img src="images/code.jpg" alt="二维码" />
+			<p>扫描二维码关注微信公众公众号</p>
+			<p>随时查询自己的识别记录</p>
+			<div class="intAnalysisBtn">
+				<a href="javascript:void(0);" title="完成" class="close-reveal-modal">完成</a>
+			</div>
+		</div>-->
+	</div>
+	<!-- 未识别－新建用户成功 end -->
+
+	<!-- 已识别用户－设置留言 start -->
+	<div id="leaveMessage" class="reveal-modal leaveMessage">
+		<a class="close-reveal-modal">&#215;</a>
+		<div class="dialogTop"></div>
+
+		<div class="leaveMessageContent">
+			<p class="title">留言会在设定时段内识别时出现 (最长不超过20字)</p>
+			<textarea name="" id="mytext" placeholder="请输入留言内容..."></textarea>
+		</div>
+		<div class="pointMessage">&nbsp;</div>
+		<div class="dialogBottom">
+			<a href="javascript:void(0);" title="取消"
+				class="cancel close-reveal-modal">取消</a> <a
+				href="javascript:void(0);" title="确定" class="submit">确定</a>
+		</div>
+	</div>
+	<!-- 已识别用户－设置留言 end -->
+
+	<!-- 已识别用户－用户详情 start -->
+	<div id="userInfos" class="reveal-modal userInfos">
+		<a class="close-reveal-modal">&#215;</a>
+		<div class="dialogTop"></div>
+		<div class="userInfosItem">
+			<a class="search close-reveal-modal" href="javascript:void(0);"
+				title="查找未成功识别记录" data-reveal-id="searchResult">查找未成功识别记录</a>
+			<div class="searchList">
+				<p class="title">识别快照</p>
+				<div class="scrollInfo">
+					<div id="tab">
+						<div id="tabContent"></div>
+					</div>
+					<ul id="userScroll">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 已识别用户－用户详情 end -->
+	
+	<!-- 已识别用户－用户详情 start -->
+	<div id="searchResult" class="reveal-modal searchResult">
+		<a class="close-reveal-modal">&#215;</a>
+		<div class="dialogTop"></div>
+		<div class="searchInfoBottom">
+			<p class="tip">以下是智能分析在半小时内查找到的最接近张三的来宾，请确认</p>
+			<div class="searchInfoBottomCont" id="searchInfoBottomCont">
+				<ul class="JQ-slide-content">
+				</ul>
+				<div class="JQ-slide-nav">
+					<a class="prev" href="#"> <span></span>
+					</a> <a class="next" href="#"> <span></span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="userList list">
+			<ul class="Info1">
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- 已识别用户－用户详情 end -->
+
+</body>
+<script type="text/javascript" src="./js/jquery.1.8.js"></script>
+<script type="text/javascript" src="./js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="./js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="./js/jq.Slide.js"></script>
+<script type="text/javascript" src="./js/jquery.jedate.min.js"></script>
+<script type="text/javascript" src="./js/content.js"></script>
+<script type="text/javascript" src="./js/jquery.reveal.js"></script>
+<script type="text/javascript" src="./js/web.js"></script>
+<script type="text/javascript" src="./js/cookie.js"></script>
+
+<script type="text/javascript"src="js/jPages.js"></script>
+<script type="text/javascript">
+	
+//function fenye(num,strPage){
+//	$("div.holder").jPages({  
+//    containerID : "itemContainer",  
+//    perPage: num,
+//    startPage: strPage,
+//  });  
+//}
+</script>
+<script language="javascript" type="text/javascript">
+	//根据用户名和性别创建用户
+	$("#createUser").on("click","#Imsure",function() {
+						//陌生人下创建新用户确定按钮的绑定事件
+						console.log('info')
+						//				var imgUrl = $(this).attr("dataimg");					
+						var imgUrl = $('#createUser').find('img').attr('src')
+						var matchId = $('#createUser').find('#matchId').val();
+						var name = $('#createUser').find('#addName').val();
+						var sex = $('#createUser').find(
+								':radio[name="sex"]:checked').val();
+						//获取新建用户的id、名字、性别
+						if (sex == null || sex == undefined) {
+							sex = 1;//默认为男
+						}
+						var createTime = $('#createUser').find('#createTime')
+								.val();
+						if (name.length == 0) {
+							$('.errorMessage').html('请输入用户信息！')
+							return false;
+
+						} else {
+							document.getElementById('createUser').style.visibility = 'hidden';
+							//检查图片地址，如果是base64，就用新上传的图片
+							if (imgUrl.match(/base64/i)) {
+								var data = imgUrl.split(',');
+								imgUrl = data[1];
+							} else {
+								imgUrl = "";//空值或没上传图片
+							}
+							var admin = JSON.parse(getCookie("admin"));
+							$.ajax({
+										url : HOST+ "/servlet/admin?Method=logConfirmByAdmin",
+										data : {
+											'matchId' : matchId,
+											'name' : name,
+											'sex' : sex,
+											"appKey" : admin.appKey,
+											"deviceId" : admin.deviceId,
+											//头像url
+											"imgUrl" : imgUrl
+										},
+										type : "POST",
+										dataType : 'json',
+										async : false,
+										success : function(data) {
+											if (data.SUCC_CODE == data.code) {
+												buildUserSucc(
+														imgUrl,
+														name,
+														getShortTime(data.results.createTime),
+														data.results.qrCode);
+											}
+										},
+										error : function(error) {
+											alert(error)
+										}
+									});
+						}
+					});
+
+	$('#createUser').on('click','.analysis',function() {
+						var imgUrl = $(this).attr("dataimg");
+						var matchId = $('#createUser').find('#matchId').val();
+						$.post(HOST+ '/servlet/user?Method=getUnknowUserImgs',
+										{
+											'matchId' : matchId
+										},
+										function(data) {
+
+											var json = eval("(" + data + ")");
+											var str = '';
+											str = '<img src="'+imgUrl+'" alt="头像" />'
+											$('.setHead').html(str);
+
+											var imglist = json.results.imgs;
+											var list = '';
+											for ( var i in imglist) {
+												var item = imglist[i];
+												list += '<div class="pItem';
+												if (i == 0) {
+													list += ' current';
+												}
+												list += '">'
+														+ '<img src="data:image/jpg;base64, '+item.img+'" alt="">'
+														+ '<hr />'
+														+ '<input name="pay" type="radio" value="'
+															+ item.personId
+															+ '" class="radio"';
+													list += '>'
+														+ '</div>';
+											}
+											list += '<input id="matchId" type="hidden" value="'+matchId+'"/>'
+											$('.intContent').empty();
+											$('.intContent').append(list);
+											//智能分析选择人物
+											var $options2 = $(".intAnalysis")
+													.find(".pItem");
+											$options2
+													.each(function() {
+														var $option = $(this), $input = $option
+																.find(":radio");
+														$option
+																.on(
+																		"click",
+																		function() {
+																			if (!$option
+																					.hasClass("current")) {
+																				$options2
+																						.removeClass("current");
+																				$options2
+																						.not(
+																								$option)
+																						.each(
+																								function() {
+																									var $option = $(this), $input = $option
+																											.find(":radio");
+																									$input
+																											.prop(
+																													"checked",
+																													false);
+																								});
+																				$option
+																						.addClass("current");
+																				$input
+																						.prop(
+																								"checked",
+																								true);
+																			}
+																		});
+														if ($input
+																.prop("checked")) {
+															$option
+																	.addClass("current");
+														}
+													});
+										})
+					});
+	//点击查看详细信息
+	$('.knowList')
+			.on(
+					'click',
+					'.userInfos',
+					function() {
+						var imgUrl = $(this).find('img').attr('src');
+						var name = $(this).attr('yname');
+						var ytime = $(this).attr('ytime');
+						var userId = $(this).attr('userId');
+						var registTime = $(this).attr('registTime');
+						var noFrom = $(this).attr('noFrom');
+						var _index = $(this).index();
+						var str = '';
+						$('#userScroll').html('');
+						str = '<div class="setHead"><img src="'+imgUrl+'" alt="头像" />'
+								+ '</div>'
+								+ '<span>修改头像</span>'
+								+ '<div class="leaveMessageTop">'
+								+ '<p class="name">'
+								+ name
+								+ '</p>'
+								+ '<p class="userInfoTime">'
+								+ '<span>最后到访时间：</span>'
+								+ ytime
+								+ '</p>'
+								+ '<p class="userInfoTime">'
+								+ '<span>注册时间：</span>'
+								+ registTime.substr(0, 19)
+								+ '</p>'
+								+ '<p class="userInfoTime">'
+								+ '<span>注册方式：</span>'
+								+ noFrom
+								+ '</p>'
+								+ '</div>'
+								+ '<input type="hidden" id="sendz" imgUrl="'+imgUrl+'" name="'+name+'" value="'+userId+'">'
+						$('#userInfos .dialogTop').html(str);
+
+						$.post(
+//							HOST + '/servlet/user?Method=getUserMatchLogs',
+							HOST + 'personManage/getPersonMatchedList',
+								{
+//									'userId' : userId
+									'userkey' : getUserKey(),
+									'pageNo' : 1,
+									'pageCount' : 2,
+									'personId' : getPersonId1(_index)
+								}, function(data) {
+//									var json = eval("(" + data + ")");
+									var list = '';
+									var matchList = data.results.list;
+									for ( var i in matchList) {
+										var item = matchList[i];
+										list += '<li><br/>'
+												+ '<div class="time">'
+												+ '<p class="date">'
+												+ item.createTime.substr(0, 10)
+												+ '</p>'
+												+ '<p class="btn" '
+												+ " onclick='seachImgs1(\""
+												+ userId + "\",\""
+												+ item.matchId + "\");'"
+												+ 'style="color: black;padding:0.1em 0.2em;font-size:12px;">查看场景图</p>'
+												+ '<p class="num">'
+												+ item.createTime.substr(11, 12)
+												+ '</p>' 
+												+ '</div> <img src="'
+												+ item.facetrackImage + '"';
+										list += " onclick='seachImgs(\""
+												+ userId + "\",\""
+												+ item.facetrackId + "\");'";
+										list += ' alt="" />' + '<hr />'
+												+ '</li>';
+									}
+									$('#userScroll').html(list);
+									//										<li onclick="searchImgs("userid","2")"></li>
+								})
+					});
+	//点击查看详细信息
+	$('.useList')
+			.on(
+					'click',
+					'.userInfos',
+					function() {
+						var imgUrl = $(this).find('img').attr('src');
+						var name = $(this).attr('yname');
+						var ytime = $(this).attr('ytime');
+						var userId = $(this).attr('userId');
+						var registTime = $(this).attr('registTime');
+						var noFrom = $(this).attr('noFrom');
+						var _index = $(this).index();
+//						console.log(_index)
+						$('#userInfos .dialogTop').html("");
+						var str = '';
+						str += '<div class="setHead"><img src="'+imgUrl+'" alt="头像" />'
+								+ '</div>'
+								+ '<div class="leaveMessageTop">'
+								+ '<p class="name">'
+								+ name
+								+ '</p>'
+								+ '<p class="userInfoTime">'
+								+ '<span>最后到访时间：</span>'
+								+ ytime
+								+ '</p>'
+								+ '<p class="userInfoTime">'
+								+ '<span>注册时间：</span>'
+								+ getLongTime(registTime)
+								+ '</p>'
+								+ '<p class="userInfoTime">'
+								+ '<span>注册方式：</span>';
+						if (noFrom == "WX") {
+							str += '手机注册';
+						} else if (noFrom == "AD") {
+							str += '后台注册';
+						}
+						str += '</p>'
+								+ '</div>'
+								+ '<input type="hidden" id="sendz" imgUrl="'+imgUrl+'" name="'+name+'" value="'+userId+'">'
+						$('#userInfos .dialogTop').html(str);
+
+						$.post(
+//							HOST + '/servlet/user?Method=getUserMatchLogs',
+							HOST + 'personManage/getPersonMatchedList',
+							
+								{
+//									'userId' : userId
+									'userkey' : getUserKey(),
+									'pageNo' : 1,
+									'pageCount' : 2,
+									'personId' : getPersonId(_index)
+								}, function(data) {
+									
+//									var json = eval("(" + data + ")");
+									var list = '';
+//									var matchList = data.results.matchList;
+									var matchList = data.results.list;
+									for ( var i in matchList) {
+										var item = matchList[i];
+//										console.log(item)
+										list += '<li>'
+												+ '<div class="time">'
+												+ '<p class="date">'
+												+ item.createTime.substr(0, 10)
+												+ '</p>'
+												+ '<p class="num">'
+												+ item.createTime.substr(11, 12)
+												+ '</p>' 
+												+ '<p class="btn" '
+												+ " onclick='seachImgs1(\""
+												+ userId + "\",\""
+												+ item.sourceImg + "\");'"
+												+ 'style="color: black;padding:0.1em 0.2em;font-size:12px;">查看场景图</p>'
+												
+												+ '</div> <img src="'
+//												+ item.imageUrl + '"';
+												+ item.facetrackImage + '"';
+										list += " onclick='seachImgs(\""
+												+ userId + "\",\""
+												+ item.facetrackId + "\");'";
+										list += ' alt="" />' + '<hr />'
+												+ '<span>动图</span></li>';
+									}
+									$('#userScroll').html(list);
+									
+								})
+					});
+
+	//按时间查找
+	$('.search')
+			.on(
+					'click',
+					function() {
+						var imgUrl = $('#sendz').attr('imgUrl');
+						var name = $('#sendz').attr('name');
+						var userId = $('#sendz').val();
+						var str = '';
+						str = '<div class="setHead">'
+								+ '<img src="'+imgUrl+'" alt="头像" />'
+								+ '</div>' + '<div class="leaveMessageTop">'
+								+ '<p class="name">'
+								+ name
+								+ '</p>'
+								+ '<span class="searchItem">智能分析查找</span>'
+								+ '<div class="searchTimeInfo">'
+								+ '<div class="addSex">'
+								+ '<div class="pItem current" vl="0.5">'
+								+ '半小时<input name="hour" type="radio" value="1" class="radio"'+
+								'checked="">'
+								+ '</div>'
+								+ '<div class="pItem" vl="4">'
+								+ '4小时<input name="hour" type="radio" value="2" class="radio">'
+								+ '</div>'
+								+ '<div class="pItem" vl="12">'
+								+ '12小时<input name="hour" type="radio" value="3" class="radio">'
+								+ '</div>'
+								+ '<div class="pItem" vl="24">'
+								+ '24小时<input name="hour" type="radio" value="4" class="radio">'
+								+ '</div>'
+								+ '<div class="pItem" vl="25">'
+								+ '自定义<input name="hour" type="radio" value="5" class="radio">'
+								+ '</div>'
+								+ '<div class="hourNum">'
+								+ '<input type="text" value=""/>小时'
+								+ '</div>'
+								+ '</div>'
+								+ '<a href="javascript:void(0);" class="searchBtn" userId="'
+								+ userId + '">查找</a>' + '</div>' + '</div>'
+						$('#searchResult .dialogTop').html(str);
+						
+						$('.JQ-slide-content').empty();
+
+						//智能分析查找选择时间
+						var $options4 = $(".searchTimeInfo").find(".pItem");
+						$options4.each(function() {
+							var $option = $(this), $input = $option.find(":radio");
+									$option.on("click",function() {
+										if (!$option.hasClass("current")) {
+												$options4.removeClass("current");
+												$options4.not($option).each(function() {
+														var $option = $(this), $input = $option.find(":radio");
+														$input.prop("checked",false);
+													});
+												$option.addClass("current");
+												$input.prop("checked",true);
+														}
+													});
+									if ($input.prop("checked")) {
+										$option.addClass("current");
+									}
+								});
+						//选择定义时间
+						$(".searchTimeInfo .addSex .pItem").click(function() {
+							var num = $(this).index();
+							if (num == 4) {
+								$(".hourNum").show();
+							} else {
+								$(".hourNum").hide();
+							}
+
+						});
+					});
+
+	//查找之后内容
+	$('#searchResult .dialogTop')
+			.on(
+					'click',
+					'.searchBtn',
+					function() {
+						var userId = $(this).attr('userId');
+						var limitTime = $('.current').attr('vl');
+						
+						$.post( HOST + 'facetrackManage/getMatchedList',
+										{
+											'userkey' : getUserKey(),
+											'beginTime' : getBeginTime(limitTime),
+											'endTime' : getEndTime()
+										},
+										function(data) {
+											console.log(data)
+											var list = '';
+											var matchList = data.results.list;
+											for ( var i in matchList) {
+												var item = matchList[i];
+												var matchId = item.matchId;
+												list += '<li id="imgId" userId="'
+												+ userId
+												+ '" matchId="'
+												+ matchId
+												+ '"><img src="'
+												+ item.headimage
+												+ '" alt=""   />'
+														+ '<p class="date">'
+														+ item.msgbegintime
+														+ '</p>'
+														+ '<div class="dialogBottom">'
+														+ '<a href="javascript:void(0);" title="确定"'
+														+ 'class="close-reveal-modal logConfim" userId="'
+														+ userId
+														+ '" matchId="'
+														+ matchId
+														+ '" personId="'
+														+ item.personId
+														+ '">确定</a>'
+														+ '</div>'
+														+ '</li>';
+											}
+											$('.JQ-slide-content').empty();
+											$('.JQ-slide-content').html(list);
+											//智能识别三张照片
+											$("#searchInfoBottomCont").Slide({
+												effect : "scroolLoop",
+												autoPlay : false,
+												speed : "normal",
+												timer : 3000,
+												steps : 1
+											});
+										})
+					})
+
+	///设置留言
+	$('.knowList').on('click','.setWord',
+					function() {
+						$("#mytext").attr("value", "")
+						$('.leaveMessage .dialogTop').html("");
+						var imgUrl = '';
+						imgUrl = $(this).attr('imgUrl');
+						if (imgUrl.indexOf("http")) {
+							imgUrl = "data:image/jpg;base64, " + imgUrl;
+						}
+						console.lo
+						var name = '';
+						name = $(this).attr('yname');
+						var userId = '';
+						userId = $(this).attr('userId');
+						var str = '';
+						str = '<div class="setHead">'
+								+ '<img src="'+imgUrl+'" alt="头像" />'
+								+ '</div>'
+								+ '<div class="leaveMessageTop">'
+								+ '<p class="name">'
+								+ name
+								+ '</p>'
+								+ '<p class="nameSet">留言设置</p>'
+								+ '<div class="addSex">'
+								+ '<div class="pItem current">'
+								+ '短期留言<input name="message" type="radio" value="1" class="radio" checked="checked">'
+								+ '</div>'
+								+ '<div class="pItem">'
+								+ '长期留言<input name="message" type="radio" value="0" class="radio">'
+								+ '</div>'
+								+ '</div>'
+								+ '<div class="shortMessage">'
+								+ '<div class="timeChoose">'
+								+ '开始时间：<input class="datainp" id="startDate" type="text"'
+								+ 'placeholder="请选择" readonly>'
+								+ '</div>'
+								+ '<div class="timeChoose">'
+								+ '结束时间：<input class="datainp" id="endDate" type="text"'+
+								'placeholder="请选择" readonly>'
+								+ '</div>'
+								+ '</div>'
+								+ '</div>'
+								+ '<input type="hidden" id="sendy" value="'+userId+'">';
+
+						$('.leaveMessage .dialogTop').html(str);
+
+						// 设置留言选择类型
+						var $options3 = $(".leaveMessage").find(".pItem");
+						$options3.each(function() {
+							var $option = $(this), $input = $option.find(":radio");
+							$option.on("click",function() {
+									if (!$option.hasClass("current")) {
+											$options3.removeClass("current");
+											$options3.not($option).each(
+														function() {
+															var $option = $(this), $input = $option.find(":radio");
+															$input.prop("checked",false);
+														});
+											$option.addClass("current");
+											$input.prop("checked",true);
+									}
+							});
+									if ($input.prop("checked")) {
+										$option.addClass("current");
+									}
+								});
+						// 选择留言类型
+						$(".leaveMessage .addSex .pItem").click(function() {
+							var num = $(this).index();
+							if (num == 0) {
+								$(".shortMessage").show();
+							} else {
+								$(".shortMessage").hide();
+							}
+
+						});
+						// 短期留言开始时间和结束时间
+						var start = {
+							format : 'YYYY-MM-DD hh:mm:ss',
+							minDate : $.nowDate(0), // 设定最小日期为当前日期
+							isinitVal : true,
+							festival : false,
+							ishmsVal : false,
+							maxDate : '2099-06-30 23:59:59', // 最大日期
+							choosefun : function(elem, datas) {
+								end.minDate = datas; // 开始日选好后，重置结束日的最小日期
+							}
+						};
+						var end = {
+							format : 'YYYY-MM-DD hh:mm:ss',
+							minDate : $.nowDate(0), // 设定最小日期为当前日期
+							festival : false,
+							maxDate : '2099-06-16 23:59:59', // 最大日期
+							choosefun : function(elem, datas) {
+								start.maxDate = datas; // 将结束日的初始值设定为开始日的最大日期
+							}
+						};
+						$('#startDate').jeDate(start);
+						$('#endDate').jeDate(end);
+					});
+	$('.useList')
+			.on(
+					'click',
+					'.setWord',
+					function() {
+						$("#mytext").attr("value", "")
+						$('.leaveMessage .dialogTop').html("");
+						var imgUrl = '';
+						imgUrl = $(this).attr('imgUrl');
+						console.log(imgUrl)
+						var name = '';
+						name = $(this).attr('yname');
+						var userId = '';
+						userId = $(this).attr('userId');
+						var str = '';
+						str = '<div class="setHead">'
+								+ '<img src=" '+imgUrl+'" alt="头像" />'
+								+ '</div>'
+								+ '<div class="leaveMessageTop">'
+								+ '<p class="name">'
+								+ name
+								+ '</p>'
+								+ '<p class="nameSet">留言设置</p>'
+								+ '<div class="addSex">'
+								+ '<div class="pItem current">'
+								+ '短期留言<input name="message" type="radio" value="1" class="radio" checked="checked">'
+								+ '</div>'
+								+ '<div class="pItem">'
+								+ '长期留言<input name="message" type="radio" value="0" class="radio">'
+								+ '</div>'
+								+ '</div>'
+								+ '<div class="shortMessage">'
+								+ '<div class="timeChoose">'
+								+ '开始时间：<input class="datainp" id="startDate" type="text"'
+								+ 'placeholder="请选择" readonly>'
+								+ '</div>'
+								+ '<div class="timeChoose">'
+								+ '结束时间：<input class="datainp" id="endDate" type="text"'+
+								'placeholder="请选择" readonly>'
+								+ '</div>'
+								+ '</div>'
+								+ '</div>'
+								+ '<input type="hidden" id="sendy" value="'+userId+'">';
+
+						$('.leaveMessage .dialogTop').html(str);
+						$(".pointMessage").html('&nbsp;');
+						//置空设置留言中的系统提示信息
+
+						// 设置留言选择类型
+						var $options3 = $(".leaveMessage").find(".pItem");
+						$options3.each(function() {
+									var $option = $(this), $input = $option.find(":radio");
+									$option.on("click",function() {
+												if (!$option.hasClass("current")) {
+													$options3.removeClass("current");
+													$options3.not($option).each(
+																function() {
+																	var $option = $(this), $input = $option.find(":radio");
+																	$input.prop("checked",false);
+																});
+															$option.addClass("current");
+															$input.prop("checked",true);
+													}
+									});
+									if ($input.prop("checked")) {
+										$option.addClass("current");
+									}
+								});
+						// 选择留言类型
+						$(".leaveMessage .addSex .pItem").click(function() {
+							var num = $(this).index();
+							if (num == 0) {
+								$(".shortMessage").show();
+							} else {
+								$(".shortMessage").hide();
+							}
+
+						});
+						// 短期留言开始时间和结束时间
+						var start = {
+							format : 'YYYY-MM-DD hh:mm:ss',
+							minDate : $.nowDate(0), // 设定最小日期为当前日期
+							isinitVal : true,
+							festival : false,
+							ishmsVal : false,
+							maxDate : '2099-06-30 23:59:59', // 最大日期
+							choosefun : function(elem, datas) {
+								end.minDate = datas; // 开始日选好后，重置结束日的最小日期
+							}
+						};
+						var end = {
+							format : 'YYYY-MM-DD hh:mm:ss',
+							minDate : $.nowDate(0), // 设定最小日期为当前日期
+							festival : false,
+							maxDate : '2099-06-16 23:59:59', // 最大日期
+							choosefun : function(elem, datas) {
+								start.maxDate = datas; // 将结束日的初始值设定为开始日的最大日期
+							}
+						};
+						$('#startDate').jeDate(start);
+						$('#endDate').jeDate(end);
+					});
+
+	//上传留言和时间
+	$('.leaveMessage .dialogBottom .submit').on('click', function() {
+		var userId = $('#sendy').val();
+		var messageType = $(':radio[name="message"]:checked').val();
+		var startTime = $('#startDate').val();
+		var msgBeginTime = (new Date(startTime)).getTime();
+		var endTime = $('#endDate').val();
+		var msgEndTime = (new Date(endTime)).getTime();
+		var messageContent = $('#mytext').val();
+		if (isEmpty(messageContent)) {
+			//			alert("留言内容不能为空");
+			$(".pointMessage").html('留言内容不能为空！');
+			$(".pointMessage").css('color', 'red');
+
+			//			2017.02.07 18:02
+			//			第一波添加内容:
+			//			1:class为pointMessage的div用作显示留言提示信息;
+			//			2:留言不能为空的提示由alert改为div显示
+
+			$(".leaveMessage").css("visibility", "visible");
+			return;
+		}
+
+		$.post(HOST + 'personManage/uploadPersonInfo', 
+			{
+				'userkey' : getUserKey(),
+				'personId' : userId,
+				'message' : messageContent,
+//				'messageType' : messageType,
+				'msgBeginTime' : msgBeginTime,
+				'msgEndTime' : msgEndTime
+			},
+		function(data) {
+//			var json = eval('(' + data + ')');
+			if (data.code == 0) {
+				//				alert('留言添加成功！');
+				//				第二波添加内容
+				//				留言成功提示替换alert
+				$(".pointMessage").html('留言添加成功！');
+				$(".pointMessage").css('color', 'green');
+				setTimeout(function() {
+					$('.containers').removeClass('vague');
+					$('#leaveMessage').css({
+						'visibility' : 'hidden',
+						'top' : '100px'
+					});
+				}, 1 * 1000)
+			} else {
+				//				alert(json.msg);
+				//				第三波添加内容
+				//				报错提示替换alert
+				$(".pointMessage").html(data.msg);
+				$(".pointMessage").css('color', 'red');
+			}
+		})
+	});
+
+	/**
+	 * 智能分析添加用户 TODO
+	 */
+	function addPerson() {
+		var personId = $('.intContent').find(':radio[name="pay"]:checked')
+				.val();
+		var matchId = $('.intContent .matchId').val();
+		var imageUrl = $('.intContent .current').find('img').attr('src');
+		var name = $('.intContent .current').find('span').html();
+		$.ajax({
+			url : HOST + "/servlet/admin?Method=addUserByAdmin",
+			data : {
+				'matchId' : matchId,
+				'personId' : personId
+			},
+			type : "POST",
+			dataType : 'json',
+			async : false,
+			success : function(data) {
+				if (data.SUCC_CODE == data.code) {
+					buildUserSucc(imageUrl, name, getLongTime(data.createTime),
+							'./images/code1.jpg');
+				}
+			}
+		});
+	}
+
+	//动图
+	function seachImgs(personId, matchId) {
+		
+		$
+				.ajax({
+//					url : HOST + "/servlet/user?Method=getUserImgs",
+					url : HOST + "personManage/getPersonMatchedList",
+					data : {
+//						'userId' : userId,
+//						'matchId' : matchId,
+						'userkey' : getUserKey(),
+						'pageNo' : 1,
+						'pageCount' : 10,
+						'personId' : personId
+					},
+					type : "POST",
+					dataType : 'json',
+					async : false,
+					success : function(data) {
+						$('#tab').css('display', 'block');
+						$('#tab').on('click', function() {
+							$('#tab').css('display', 'none');
+							clearInterval(int);//清除循环
+							return false;
+						});
+						str = "";
+						if (data.code == data.succ_code && data.results != '') {
+							var imgs = data.results.list;
+//							for ( var i in imgs) {
+//								var item = imgs[i];
+////								<img src=""/>
+//								str += '<img  src="'
+//										+ item + '" alt="" />';
+//							}
+							for ( var i = 0;i<imgs.length;i++) {
+								var item = imgs[i].facetrackImage;
+//								<img src=""/>
+								str += '<img  src="'
+										+ item + '" alt="" />';
+							}
+							$('#tab #tabContent').html(str);
+							var images = $('#tab').find('img');
+							var pos = 0;
+							var len = images.length;
+
+							var int = self.setInterval(function() {
+								images[pos].style.display = 'none';
+								pos = ++pos == len ? 0 : pos;
+								images[pos].style.display = 'inline';
+							}, 100);
+							$('.close-reveal-modal').on('click', function() {
+								$('#tab').css('display', 'none');
+								console.log('clear')
+
+								clearInterval(int);
+							})
+						} else {
+							alert(data.msg);
+						}
+					}
+				});
+	}
+	
+
+function seachImgs1(personId, sourceImg) {
+	$('#tab').css('display', 'block');
+	$('#tab').on('click', function() {
+		$('#tab').css('display', 'none');
+		return false;
+	});
+	
+	var str = '<img  src="'+ sourceImg + '" alt="" />';
+	$('#tabContent').html(str);
+	
+							
+	$('.close-reveal-modal').on('click', function() {
+		$('#tab').css('display', 'none');
+		console.log('clear')
+
+	})
+}
+	
+	
+</script>
+</html>

@@ -1,0 +1,339 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+* { margin: 0; padding: 0; list-style-type: none; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 12px;  line-height: 22px; background-color: #FFF; text-align: left }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+font-size:12px margin:0; padding: 0; }
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, img, dl, dt, dd, table, th, td, blockquote, fieldset, div, strong, label, em { margin: 0; padding: 0; border: 0; }
+ul, ol, li { list-style: none; }
+input, button { margin: 0; font-size: 12px; vertical-align: middle; }
+a { color: #333; text-decoration: none; }
+em { font-style: normal; }
+H3 { FONT-SIZE: 14px }
+img { margin: 0px; padding: 0px; border: none }
+li { list-style: none }
+.clear{clear:both;}
+body{
+    width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    background: url("../images/back.jpg") no-repeat;
+    overflow: hidden;
+    cursor: none;
+}
+
+.logo{
+    background: url("../images/logo.png") center;
+    width: 1520px;
+    height: 99px;
+    margin: 0 auto;
+    position: relative;
+}
+.logo .white{
+	width: 240px;
+	height: 50px;
+	top: 18px;
+	left: 50%;
+	margin-left: -120px;
+	position: absolute;
+}
+.wrapContent{
+    width: 1920px;
+    height: 980px;
+    position: relative;
+}
+.fWrapperLeft{
+    width: 1130px;
+    height: 700px;
+    float: left;
+    background: url("../images/videoBgImg.png") center no-repeat;
+    margin-left: 55px;
+    margin-top: 20px;
+
+}
+.adVideoContent{
+    width: 960px;
+    height: 540px;
+    margin: 80px 87px;
+    overflow: hidden;
+}
+.adVideoContent>OBJECT>EMBED{
+	width: 960px;
+	height: 572px;
+}
+
+.fWrapperRight{
+    width: 600px;
+    height: 870px;
+    background: url("../images/rightBgImg.png") center no-repeat;
+    float: right;
+    margin-right: 65px;
+    margin-top: -35px;
+}
+
+.wrapFoot{
+    position: absolute;
+    bottom: 0;
+    background: url("../images/bottom.png") center no-repeat;
+    height: 172px;
+    width: 1920px;
+
+}
+
+.wrapFoot .footDate{
+    color: #fff;
+    width: 290px;
+    float: left;
+    margin-top: 85px;
+    margin-left: 30px;
+}
+.footDate .timeInfo{
+    font-size: 60px;
+    color: #fff;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    float: left;
+    width: 155px;
+    margin-right: 10px;
+}
+.footDate .timeDateDiv p{
+    font-size: 18px;
+    font-family: 微软雅黑;
+    color: #fff;
+    line-height: 20px;
+
+}
+.timeDateDiv{
+    text-align: left;
+    margin-top: 12px;
+    float: left;
+}
+
+.wrapFoot .footCode{
+    float: right;
+    width: 250px;
+    margin-top: 75px;
+    margin-right: 30px;
+}
+
+.wrapFoot .footCode img{
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin-right: 10px;
+}
+
+.wrapFoot .footCode p {
+    font-size: 18px;
+    line-height: 26px;
+    color: #fff;
+    font-family: 微软雅黑;
+
+}
+.wrapFoot .footCode p.top{
+     padding-top: 15px;
+ }
+
+.promptHead{
+    margin: 185px 145px 100px;
+    width: 326px;
+    height: 326px;
+}
+
+.promptHead img{
+    width: 324px;
+    height: 324px;
+    margin-top: -19px;
+}
+
+.promptBar {
+    width: 326px;
+    height: 19px;
+    background: url("../images/bar.png") no-repeat;
+    /*background: #fff;*/
+    -webkit-animation: float linear 2s infinite;
+    animation: float linear 5s infinite;
+}
+
+@-webkit-keyframes float {
+
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    50% {
+        -webkit-transform: translateY(300px);
+        transform: translateY(300px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes float {
+
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    50% {
+        -webkit-transform: translateY(300px);
+        transform: translateY(300px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+}
+.promptIng {
+    width: 440px;
+    margin: 0 auto;
+    height: 110px;
+}
+
+.promptIngIcon {
+    width: 110px;
+    height: 110px;
+    float: left;
+}
+
+.promptIngIcon .iconInfo {
+    width: 100px;
+    height: 92px;
+    background: url("../images/circleInfo.png") no-repeat;
+    margin-top: -101px;
+    margin-left: 5px;
+}
+
+.promptIngIcon .iconScroll{
+    width: 110px;
+    height: 110px;
+    background: url("../images/circle.png") no-repeat;
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+
+}
+
+@-moz-keyframes spin {
+    0% { -moz-transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@-o-keyframes spin {
+    0% { -o-transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); }
+}
+@-ms-keyframes spin {
+    0% { -ms-transform: rotate(0deg); }
+    100% { -ms-transform: rotate(360deg); }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.promptTip {
+    background: url("../images/textTip.png") no-repeat;
+    width: 318px;
+    height: 79px;
+    float: left;
+    font-size: 30px;
+    color: #fff;
+    text-indent: 2em;
+    line-height: 79px;
+    margin-top: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+.scanIng{
+
+    display: block;
+}
+
+.scanSuccess {
+    display: none;
+}
+
+.div1{
+    //////////////////////////////////////////////////////////////////////////////////
+    border: 1px solid #0000ff;
+    width: 190px;
+    height: 200px;
+    position: absolute;
+
+}
+.userHead {
+    background: url("../images/headBgImg.png") no-repeat;
+    width: 168px;
+    height: 168px;
+    text-align: center;
+    float: left;
+}
+.userHead img{
+    width: 144px;
+    height: 144px;
+    margin-top: 12px;
+}
+.userInformation {
+    float: left;
+    width: 330px;
+    padding: 10px 0;
+    height: 148px;
+}
+
+.userInformation p{
+    color: #fff;
+    font-size: 18px;
+    line-height: 18px;
+    margin-left: 5px;
+}
+.userInformation p.name{
+    font-size: 30px;
+    line-height: 30px;
+}
+.userInformation p.time{
+    margin: 10px 5px;
+}
+.userInformation .message{
+    font-size: 24px;
+    line-height: 30px;
+    color: #70B3FF;
+    background: url("../images/liTipBgImg.png") no-repeat;
+    width: 290px;
+    height: 57px;
+    padding: 15px 25px;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+
+.userInfoUl li{
+    height: 168px;
+    width: 501px;
+    background: url("../images/liBgImg.png") no-repeat bottom;
+    padding: 47px 0;
+    position: absolute;
+}
+
+.scanSuccessList{
+    overflow: hidden;
+    height: 750px;
+    position: relative;
+    width: 500px;
+    margin: 50px 47px;
+}

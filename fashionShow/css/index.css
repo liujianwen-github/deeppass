@@ -1,0 +1,314 @@
+html,body{
+	color:#000;
+	background:#FFF;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+ul,li{
+	list-style: none;
+}
+img{
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+i{
+	font-style: normal;
+}
+body{
+	overflow: hidden;	
+	font-family: "微软雅黑";
+}
+@-moz-keyframes zhuan{
+	from{transform: rotate(0deg);}
+	to{transform: rotate(360deg);}
+}
+@keyframes zhuan{
+	from{transform: rotate(0deg);}
+	to{transform: rotate(360deg);}
+}
+
+.clearfix:after { 
+	content: "" ; 
+	display: block ;
+	height: 0 ;
+	clear: both ;
+	visibility: hidden ;
+}
+.w{
+	width: 1920px;
+	height: 1080px;
+	background-color: lavender;
+	background: url(../images/bg.png) no-repeat;
+}
+header{
+	height: 100px;
+}
+.cont{
+	width: 1630px;
+	height: 660px;
+	margin: 0 auto;
+	position: relative;
+	padding-top: 20px;
+}
+.left-cont{
+	width: 798px;
+	height: 100%;
+	float: left;
+}
+.right-cont{
+	width: 798px;
+	height: 100%;
+	float: right;
+}
+.top{
+	width: 798px;
+	height: 480px;
+}
+.top .video{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 400px;
+	font-size: 30px;
+}
+.buttom{
+	width: 100%;
+	height: 150px;
+	font-size: 20px;
+}
+.buttom div{
+	float: left;
+	height: 100%;
+}
+.buttom .allperson{
+	width: 128px;
+	margin-left: 10px;
+}
+.allperson .img{
+	width: 100%;
+	height: 128px;
+	background: url(../images/allperson.png) no-repeat;
+	margin-top: 12px;
+	text-align: center;
+}
+.allperson .img p{
+	margin-top: 35px;
+	font-size: 35px;
+	color: #fff;
+}
+.allperson .img span{
+	font-size: 16px;
+	color: #3accf1;
+	display: block;
+	margin-top: -3px;
+}
+.buttom .sex{
+	width: 130px;
+	margin-left: 20px;
+}
+.sex .img{
+	width: 100%;
+	height: 83px;
+	background: url(../images/nannv.png) no-repeat;
+	margin-top: 36px;
+}
+.sex .img p{
+	color: #fff;
+	font-size: 22px;
+}
+.sex .img .man{
+	margin-top: 4px;
+	padding-left: 48px;
+}
+.sex .img .women{
+	margin-top: 17px;
+	padding-left: 48px;
+}
+.buttom .ten{
+	width: 80px;
+	margin-left: 40px;
+}
+.age .img{
+	height: 80px;
+	width: 100%;
+	background: url(../images/age.png) no-repeat;
+	margin-top: 24px;
+	color: #fff;
+	text-align: center;
+}
+.age .img p{
+	margin-top: 24px;
+	font-size: 21px;
+}
+.age .img span{
+	display: block;
+	color: #3accf1;
+	margin-top: 35px;
+	font-size: 18px;
+}
+.buttom .two{
+	width: 80px;
+	margin-left: 30px;
+}
+.buttom .four{
+	width: 80px;
+	margin-left: 30px;
+}
+.buttom .saomiao{
+	width: 100px;
+	margin-left: 40px;
+}
+.saomiao .img{
+	width: 100%;
+	height: 100px;
+	background: url(../images/saomiao.png) no-repeat;
+	margin-top: 14px;
+}
+.saomiao .img .sao{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	background: url(../images/saomiao1.png) no-repeat;
+	animation: zhuan 3s infinite linear;
+}
+
+.saomiao .img p{
+	margin-top: 105px;
+	color: #3accf1;
+	font-size: 18px;
+	text-align: center;
+}
+
+.show{
+	width: 1610px;
+	height: 300px;
+	margin-left: 168px;
+}
+.show .ul{
+	height: 242px;
+	margin-top: 58px;
+	position: relative;
+	overflow: hidden;
+}
+.ul li{
+	height: 242px;
+	width: 182px;
+	float: left;
+	margin-right: 18px;
+}
+.ul li .bg{
+	width: 100%;
+	height: 100%;
+	background: url(../images/person.png) no-repeat;
+	border: 1px solid transparent;
+}
+.ul li .img{
+	width: 150px;
+	height: 150px;
+	border: 2px solid #3accf1;
+	border-radius: 50%;
+	margin: 20px auto 0px;
+	overflow: hidden;
+}
+.img div{
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+}
+.ul li .info{
+	width: 100%;
+	height: 50px;
+	padding: 0 5px;
+	margin-top: 10px;
+	text-align: center;
+	position: relative;
+}
+.info p{
+	position: relative;
+	height: 30px;
+	line-height: 30px;
+}
+.info span{
+	position: absolute;
+}
+.info span img{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.info .age{
+	color: #fff;
+	font-size: 18px;
+}
+.info .age span{
+	width: 20px;
+	height: 22px;
+	top: 0px;
+	left: 14px;
+}
+#indicatorContainer1{
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	bottom: 57px;
+	left: 327px;
+}
+#indicatorContainer2{
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	bottom: 57px;
+	left: 437px;
+}
+#indicatorContainer3{
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	bottom: 57px;
+	left: 547px;
+}
+#indicatorContainer4{
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	bottom: 57px;
+	left: 1159px;
+}
+#indicatorContainer5{
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	bottom: 57px;
+	left: 1269px;
+}
+#indicatorContainer6{
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	bottom: 57px;
+	left: 1379px;
+}
+.info .sex{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 26px;
+	font-size: 20px;
+}
+.info .shipin{
+	color: #3accf1;
+	font-size: 18px;
+	margin-top: -2px;
+}
+.info .shipin span{
+	width: 28px;
+	height: 14px;
+	left: 10px;
+	top: 8px;
+}

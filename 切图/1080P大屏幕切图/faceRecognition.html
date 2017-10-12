@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>未来迎宾系统体验版</title>
+    <link href="css/content.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- 静态页面测试数据，正式请删除 -->
+<div style="position: absolute;bottom: 30px;right:325px;z-index: 9999999;">
+    <a style="color: #fff;" href="javascript:void(0);" onclick="oBrushFace()">刷脸</a><br/>
+    <a style="color: #fff;" href="javascript:void(0);" onclick="oBrushCardSuccess(1)">刷卡后成功识别１人</a><br/>
+    <a style="color: #fff;" href="javascript:void(0);" onclick="oBrushCardSuccess(2)">刷卡后成功识别２人</a><br/>
+    <a style="color: #fff;" href="javascript:void(0);" onclick="oBrushCardSuccess(3)">刷卡后成功识别３人</a><br/>
+    <a style="color: #fff;" href="javascript:void(0);" onclick="oBrushCardSuccess(4)">刷卡后成功识别３人以上</a><br/>
+    <a style="color: #fff;" href="javascript:void(0);" onclick="oBrushCardFail()">刷卡后失败</a><br/>
+    <a style="color: #fff;" href="javascript:void(0);" onclick="backOriginal()">返回原始状态</a>
+</div>
+
+
+<!-- 静态页面测试数据，正式请删除 -->
+
+
+    <div class="logo"></div>
+        <div class="wrapContent">
+
+
+            <!-- 左侧广告 -->
+            <div class="fWrapperLeft">
+
+                <div class="adVideoContent">
+
+                    <OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" id="videoSource" id="videoSource" events="True">
+                        <param name="AutoLoop" value="1" />
+                        <param name='autoplay' value='True' />
+                        <EMBED pluginspage="http://www.videolan.org"
+                               type="application/x-vlc-plugin"
+                               version="VideoLAN.VLCPlugin.2"
+                               width="960"
+                               height="540"
+                               name="vlc"
+                               loop="yes"
+                               target="images/323169.wmv"
+                                ></EMBED>
+                    </OBJECT>
+                </div>
+            </div>
+            <!-- 左侧广告 -->
+
+
+            <!-- 右侧识别内容 -->
+            <div class="fWrapperRight">
+                <!-- 扫描中 start -->
+                <div class="scanIng">
+                    <!-- 头像扫描 start -->
+                    <div class="promptHead">
+                        <div class="promptBar">
+
+                        </div>
+                        <img src="images/promptHead.png" alt=""/>
+                    </div>
+                    <!-- 头像扫描 end -->
+                    <!-- 识别中提示 start -->
+                    <div class="promptIng">
+                        <div class="promptIngIcon">
+                            <div class="iconScroll"></div>
+                            <div class="iconInfo"></div>
+                        </div>
+                        <div class="promptTip">正在识别中...</div>
+                    </div>
+                    <!-- 识别中提示 end -->
+                </div>
+                <!-- 扫描中 end -->
+
+
+                <!-- 扫描成功后 start -->
+                <div class="scanSuccess">
+                    <div id="scanSuccessList" class="scanSuccessList" >
+                        <ul class="userInfoUl" id="holder" style="margin: 0">
+                            <!-- <li>
+                                <div class="userHead">
+                                    <img src="images/head.jpg" alt=""/>
+                                </div>
+                                <div class="userInformation">
+                                    <p class="name">李先生</p>
+                                    <p class="time">到访时间：10:00</p>
+                                    <div class="message">您今天上午 10:30 的会议马上就要开始了哦</div>
+                                </div>
+                            </li> -->
+
+
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- 扫描成功后 end -->
+
+            </div>
+
+
+            <!-- 右侧识别内容 -->
+
+
+            <!-- 底部 start -->
+
+            <div class="wrapFoot">
+                <div class="footDate">
+                    <div class="timeInfo" id="timeNow"></div>
+                    <div class="timeDateDiv">
+                        <p id="timeDate"></p>
+                        <p id="timeDay"></p>
+                    </div>
+                </div>
+                <div class="footCode">
+                    <img src="images/code.jpg" alt=""/>
+                    <p class="top">扫描二维码关注</p>
+                    <p>深度未来公众号</p>
+                </div>
+            </div>
+
+            <!-- 底部 end -->
+
+
+
+        </div>
+
+
+</body>
+<script type="text/javascript" src="js/jquery.1.8.js"></script>
+<script type="text/javascript" src="js/content.js"></script>
+</html>

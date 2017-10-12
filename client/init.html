@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width: 100%; height: 100%">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
+<title>用户登录</title>
+</head>
+<body background="images/bg.jpg">
+	<br>
+	<br>
+	<h2 class="msg" align="center">初始化数据进行中，请确保网络正常</h2>
+	<br>
+	<br>
+	<br>
+</body>
+<script type="text/javascript" src="js/jquery.1.8.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript">
+	var sss = null;
+	$(function() {
+		init();
+	});
+
+	function init() {
+		sss = setInterval(function() {
+			getInitData();
+		}, 1000)
+	}
+
+	function getInitData() {
+		$.ajax({
+			url : "/client/api/ClientAPI?Method=getInitData&Version=1.0",
+			data : {},
+			type : "POST",
+			dataType : 'json',
+			async : false,
+			success : function(data) {
+				var json = data;
+				if (json.SUCC_CODE == json.code) {
+					/* setCookie("info", JSON
+							.stringify(json.results.info)); */
+					//alert(JSON.stringify(json.results.info/));
+					setCookie("info", json.deviceId);
+					clearInterval(sss);
+					$(".msg").html("初始化数据完成！");
+					setTimeout(function() {
+						window.location.href = 'index.html';
+						//window.location.href = '/faceclient/client/faceRecognition.html';
+					}, 2000);
+				}
+			}
+		});
+	}
+</script>
+</html>

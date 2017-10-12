@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="width: 100%; height: 100%">
+<head>
+<meta charset="utf-8">
+<title>工作台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<meta name="apple-touch-fullscreen" content="yes">
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="weui-1.1.1/dist/style/weui.min.css"/>
+<style type="text/css">
+	.weui-mask{
+		background-color: rgba(0,0,0,0.9);
+	}
+	.weui-dialog{
+		max-width: none;
+		width: 100vw;
+		height: 100vw;
+		background-color: transparent;
+	}
+	.weui-dialog__bd{
+		width: 100vw;
+		height: 100vw;
+		padding: 0!important;
+		overflow: hidden;
+	}
+</style>
+
+</head>
+
+
+<body style="background: #113C68;" onload="pageInit();">
+	<div class="js_dialog" id="tab">
+        <div class="weui-mask"></div><!--半透明黑色蒙版-->
+        <div class="weui-dialog"><!--白色框内容-->
+            <div class="weui-dialog__bd">
+           	<!--
+               	描述：预留动图，span（动图标识）样式在拼接字符串里
+               -->
+            </div>
+        </div>
+   </div>
+	<div class="containers">
+
+		<div class="userList list">
+			 <!--<div class="listTip">
+				以下是智能分析在<span>4小时内</span>查找到与您最接近的来宾
+			</div>
+			<div class="listTip"><span>请确认</span></div> -->
+
+			<ul class="Info">
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!--<div class="containers">
+
+		<div class="userList list">
+			<ul class="Info1">
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<span style=""></span>-->
+</body>
+<script type="text/javascript" src="js/jquery.2.0.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+<script type="text/javascript" src="js/content.js"></script>
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript">
+	var getCookies = getCookie('userId');
+	var limitTime = getCookie("limitTime");
+	if (limitTime == null || limitTime == "") {
+		limitTime = 0.5;
+	}
+
+	var titleStr = '<div class="listTip">以下是智能分析在<span>'
+			+ limitTime
+			+ '小时内</span>查找到与您最接近的来宾<br/>'
+			+ '</div><div class="listTip"><span>偷偷告诉你：确认记录可以大大提高下次的识别度哦!</span></div>';
+
+	function pageInit() {
+		$.ajax({
+			url : "/faceserver/servlet/user?Method=getUserMatchLogs",
+			data : {
+				'userId' : getCookies,
+				'limitTime' : limitTime
+			},
+			timeout:5000,
+			//加一个时间
+			type : "POST",
+			dataType : 'json',
+			async : true,
+			success : function(data) {
+				writeInfo(data);
+			}
+		});
+	}
+
+	function writeInfo(data) {
+		$('.Info').html("");
+		$('.Info').html(titleStr);
+//		searchImg中的变量str泄露，改个名字好了
+		$('.listTip span').eq(1).css({'font-size':'10px','color':'white'})
+		var infoStr = "";
+		var matchList = data.results.matchList;
+		if (data.code == data.SUCC_CODE && matchList != "") {
+			for ( var i in matchList) {
+				var item = matchList[i];
+				var times = item.createTime.split(' ');
+				infoStr += '<li>' + '<div class="leftInfo">' + '<p class="time">'
+						+ times[1].substr(0, 5) + '</p>' + '<p class="date">'
+						+ times[0] + '</p>' + '<p class="date">'
+						+ getDayOfWeek(times[0]) + '</p>';
+				
+				if (item.confirmStatus == -1) {
+					infoStr += '<a class="btns" onclick="logConfirm('
+							+ item.matchId + ');">确认</a>';
+				} else {
+					infoStr += '<a class="btns" >记录已确认</a>';
+				}
+
+				infoStr += '</div>'
+						+ '<div style="position: relative;" class="userPic">'
+						+ '<img style="opacity: 1;" src="' + item.imageUrl
+						+ '" alt="头像" onclick="seachImgs(' + item.matchId
+						+ ')";/ >' + '</div>' + '</li>';
+			}
+//			alert(infoStr)
+			$('.Info').append(infoStr);
+		}
+
+	}
+
+	function logConfirm(matchId) {
+		$.ajax({
+			url : "/faceserver/servlet/user?Method=logConfirmByUser",
+			data : {
+				'userId' : getCookies,
+				'matchId' : matchId
+			},
+			type : "POST",
+			dataType : 'json',
+			async : false,
+			success : function(data) {
+				$('#tab').css('display','none');
+				//tab隐藏
+				if (data.code == data.SUCC_CODE) {
+					alert("确认成功，记录已添加");
+					pageInit();
+				} else {
+					alert(data.msg);
+				}
+			}
+		});
+	}
+
+
+	
+	function seachImgs(matchId) {
+		$.ajax({
+                url : "/faceserver/servlet/user?Method=getUserImgs",
+                data : {
+                    'userId' : getCookies,
+                    'matchId' : matchId
+                },
+                type : "POST",
+                dataType : 'json',
+                async : false,
+                success : function(data) {
+                    //阻止冒泡【弹出层时，container被覆盖后仍然可以滑动操作】
+
+                    $('#tab').css('display', 'block');
+                    $('#tab').on('touchend', function() {
+                        $('#tab').css('display', 'none');
+                        clearInterval(int);//清除循环
+						//如果测试出现不滚动图片，看看是不是触发了seachImgs函数
+                        return false;
+                    });
+                    str = "";
+                    if (data.code == data.SUCC_CODE) {
+                        var imgs = data.results.imgs;
+                        for ( var i in imgs) {
+                            var item = imgs[i];
+                            str += '<img width="100%" height="100%" src="data:image/jpg;base64,'
+                                    + item + '" alt="" />';
+                        }
+                        $('#tab .weui-dialog__bd').html(str);
+                        var images = $('#tab').find('img');
+                        var pos = 0;
+                        var len = images.length;
+                        var int=self.setInterval(function() {
+                            images[pos].style.display = 'none';
+                            pos = ++pos == len ? 0 : pos;
+                            images[pos].style.display = 'inline';
+                        }, 100);
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+	}
+</script>
+
+</html>

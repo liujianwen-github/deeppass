@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>返查页面</title>
+		<link rel="stylesheet" type="text/css" href="css/retrack.css"/>
+	</head>
+	<body>
+		<div class="w">
+			<header></header>
+			
+			<div class="cont">
+				<div class="top">
+					<div class="img"></div>
+					<p>ID：<span></span></p>
+				</div>
+				<div class="main">
+					<ul class="ul">
+												
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="lib/jquery.1.8.js"></script>
+	<script type="text/javascript" src="js/retrack.js"></script>
+	<script type="text/javascript">	
+		PL._init();
+		PL.userId = 'pushlet';
+		PL.joinListen('/push/facetrack');
+		PL.joinListen('/push/FaceTrackCreated');
+		function onData(event) {
+			var json = eval("(" + event.arr.msg + ")");
+			var method = json.method;
+			console.log("method = "+ method);
+			if (method == undefined || method == "getReverseResult") {
+				getData(json);
+			} 
+		}
+	</script>
+</html>
